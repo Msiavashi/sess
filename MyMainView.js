@@ -1,17 +1,17 @@
 var React = require('react-native')
+var styles = require('./styles')
+var Button = require('react-native-button')
+var Login = require('./src/login');
 
 var {
-  SwitchIOS,
-  SliderIOS,
-  PickerIOS,
-  PickerItemIOS,
+  Alert,
   View,
   ScrollView,
   Text,
-} = React
+} = React;
 
-var styles = require('./styles')
-var Button = require('./Button')
+
+
 
 var drawerTypes = ['overlay', 'displace', 'static']
 
@@ -23,7 +23,7 @@ module.exports = React.createClass({
   render(){
     return (
       <View>
-        <Text> anything about the main view goes here </Text>
+        <Button OnPress={Login.login()}> press Me </Button>
       </View>
     )
   }
