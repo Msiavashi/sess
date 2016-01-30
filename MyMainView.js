@@ -8,9 +8,8 @@ var {
   View,
   ScrollView,
   Text,
+  TextInput,
 } = React;
-
-
 
 
 var drawerTypes = ['overlay', 'displace', 'static']
@@ -23,8 +22,10 @@ module.exports = React.createClass({
   render(){
     return (
       <View>
-        <Button OnPress={Login.login()}> press Me </Button>
+        <Button OnPress={Login.login()}> successfully loged in to sess </Button>
       </View>
+
+
     )
   }
 })

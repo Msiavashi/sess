@@ -2,12 +2,17 @@
  * rn-drawer example app
  * https://github.com/facebook/react-native
  */
+var Button = require('react-native-button');
 var React = require('react-native');
 var {
   AppRegistry,
   Text,
   View,
+  TextInput,
 } = React;
+
+var username = null;
+var password = null;
 
 var styles = require('./styles')
 var drawerStyles = {
@@ -24,9 +29,54 @@ var MyControlPanel = require('./ControlPanel')
 
 var deviceScreen = require('Dimensions').get('window')
 var tweens = require('./tweens')
+var Login = require('./src/login')
+
+
+
+var sess = React.createClass({
+
+  getInitialState(){
+    return {
+      viewOne: true
+    }
+  },
+  changeView(){
+    Login.login(String(username), String(password));
+
+    //TODO: put a loading here/**********/
+
+    this.setState({
+      viewOne: !this.state.viewOne
+    });
+
+  },
+
+  render(){
+    if(!this.state.viewOne) return <MainPage changeView={ () => this.changeView() } />
+    return(
+      <View>
+      <TextInput
+        ref = {"username"}
+        placeholder = {'enter your username'}
+        onChangeText = {(text) => username = text}
+        //value = {this.state.text}
+      />
+
+      <TextInput
+       ref = {"password"}
+       placeholder = {'enter your password'}
+       onChangeText = {(text) => password = text}
+       //value = {this.state.text}
+      />
+        <Button onPress={ () => this.changeView() }> Login </Button>
+      </View>
+    )
+  },
+});
+
 
 var counter = 0
-var sess = React.createClass({
+var MainPage = React.createClass({
   getInitialState(){
     return {
       drawerType: 'overlay',
