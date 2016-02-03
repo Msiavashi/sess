@@ -3,18 +3,22 @@ var Alert = React.Alert;
 import DB from './database';
 var DOMParser = require('xmldom').DOMParser;
 var url = "https://sess.shirazu.ac.ir/sess/Start.aspx";
-var sessURL = "https://sess.shirazu.ac.ir/sess/205021723600";
+var sessURL = "https://sess.shirazu.ac.ir/sess/259634450006";
 var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx";
-var xhr;
 var loginDone = false;
-
+var username = "";
+var password = "";
+var doc = "";
+var _VIEWSTATE = "";
+var _EVENTVALIDATION = "";
+var _VIEWSTATEGENERATOR = "";
 var Login = {
-  login : function (username, password){
+  login : function (usernamee, passworde){
     //do the login things here
-    this.getRKey(username, password);
+    this.getRKey(String(usernamee), String(passworde));
   },
 
-  getRKey : function(username, password){
+  getRKey : function(usernamee, passworde){
       /*** this propery is counting the times that the server response to our request***/
       /* for the reason xhr was recieving the RKey two time this counter ensures that we are allowed to log in the last time we get the RKey so the cookie */
       if ( typeof this.counter == 'undefined' ) {
@@ -22,7 +26,7 @@ var Login = {
         this.counter = 0;
       }
 
-      xhr = new XMLHttpRequest();
+      var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
       xhr.onreadystatechange = (e) => { //when succesfully got the RKey on the last time its time to Hash the password
           //if the readyState was not equal to Done
@@ -34,10 +38,26 @@ var Login = {
             ++this.counter;
             var pageSource =  xhr.responseText; //gets the response of the request
             var parser = new DOMParser();
-            var doc = parser.parseFromString(pageSource, "text/xml");   //converts the response Text to document
+            doc = parser.parseFromString(pageSource, "text/xml");   //converts the response Text to document
             var RKeyElement = String(doc.getElementById("_RKey"));
             var RKey = RKeyElement.substring(RKeyElement.search("value"));  //gets the element of from the document
             RKey = RKey.substring(RKey.search("\"")+1, RKey.lastIndexOf("\"")); //getting the 32-digit-long _RKey
+
+            /*ViewState*/
+            _VIEWSTATE = String(doc.getElementById("__EVENTVALIDATION"));
+            _VIEWSTATE = _VIEWSTATE.substring(_VIEWSTATE.search("value"));
+            _VIEWSTATE = _VIEWSTATE.substring(_VIEWSTATE.search('\"') + 1, _VIEWSTATE.lastIndexOf('\"'));
+
+            /*_EVENTVALIDATION*/
+            _EVENTVALIDATION = String(doc.getElementById("__EVENTVALIDATION"));
+            _EVENTVALIDATION = _EVENTVALIDATION.substring(_EVENTVALIDATION.search("value"));
+            _EVENTVALIDATION = _EVENTVALIDATION.substring(_EVENTVALIDATION.search('\"') + 1, _EVENTVALIDATION.lastIndexOf('\"'));
+
+            /*_VIEWSTATEGENERATOR*/
+            _VIEWSTATEGENERATOR = String(doc.getElementById("__VIEWSTATEGENERATOR"));
+            _VIEWSTATEGENERATOR = _VIEWSTATEGENERATOR.substring(_VIEWSTATEGENERATOR.search("value"));
+            _VIEWSTATEGENERATOR = _VIEWSTATEGENERATOR.substring(_VIEWSTATEGENERATOR.search('\"') + 1, _VIEWSTATEGENERATOR.lastIndexOf('\"'));
+
             if ( this.counter == 1 )  //the last time we get the RKey we are going to hash and log in
             {
 
@@ -226,7 +246,6 @@ function fetchSelf(){
       }
 
       if (req.status === 200) {
-        console.log('success' + req.responseText);
       }
       else {
         console.log('error' + ' ' + req.status);
@@ -248,9 +267,14 @@ function fetchSess(){
 
     if (req.status === 200) {
       console.log('success' + req.responseText);
-      // fetchSelf();
-      Alert.alert("done");
+      fetchSelf();
+      // Alert.alert("done");
       loginDone = true;
+    }
+    else if ( req.status === 302 )
+    {
+      console.log("this is redirection response");
+      console.log(req.responseText);
     }
     else {
       console.log('error' + ' ' + req.status);
@@ -260,12 +284,12 @@ function fetchSess(){
 req.open('GET', sessURL, true);
 // req.setRequestHeader("Channel", "Act=Ok;");
 // req.setRequestHeader("_RKey", "");
-// req.setRequestHeader("__EVENTVALIDATION", "/wEdAAUlW8t6cusQt2mMt3dC7U8Na3XEE+61AoUroEwTw0TzoBeE+DS6Ew/rKBF70JLTBtZzH/l7PBvth6/ZzHDKK0R0S1f8aOOWPGzSVWaY7KNHgOBZ+KG49rZiPVFgEk9tfGCamX8HlfRaZKggXO2+am4E");
-// req.setRequestHeader("__VIEWSTATE", "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");
-// req.setRequestHeader("__VIEWSTATEGENERATOR", "C792DAE2");
+// req.setRequestHeader("__EVENTVALIDATION", _EVENTVALIDATION);
+// req.setRequestHeader("__VIEWSTATE", _VIEWSTATE);
+// req.setRequestHeader("__VIEWSTATEGENERATOR", _VIEWSTATEGENERATOR);
 // req.setRequestHeader("banner:zzChanel", "");
-// req.setRequestHeader("edId", "s9332045");
-req.send(null);
+// req.setRequestHeader("edId", username);
+req.send();
 }
 
 function DoLogin(iId, iPass, iCode, RKey) {
@@ -289,8 +313,34 @@ function DoLogin(iId, iPass, iCode, RKey) {
       }
     };
 
-  Request.open('GET', "https://sess.shirazu.ac.ir"+"/sess/Script/AjaxEnvironment.aspx?Act=MakeMember&Id=" + iId + "&Pass=" + Inc + "&Code=" + iCode, true);
+  Request.open('GET', "https://sess.shirazu.ac.ir" + "/sess/Script/AjaxEnvironment.aspx?Act=MakeMember&Id=" + iId + "&Pass=" + Inc + "&Code=" + iCode, true);
   Request.send();
 }
 
 module.exports = Login, loginDone;
+
+
+
+
+
+
+///////////AJAX REQUEST TO THE SESS//////////////////////////////
+
+function sendAjax(method,body,contenttype,url) {
+  var xhttp = new XMLHttpRequest();
+
+  //if get REQUEST set content to null
+  if(method=='Get'){
+    body="";
+  }
+  xhttp.open(method,url, true);
+  xhttp.setRequestHeader("Content-type",contenttype);
+  xhttp.send(body);
+xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      return xhttp.responseText;
+    }
+  };
+}
+
+///////////AJAX REQUEST TO THE SESS//////////////////////////////

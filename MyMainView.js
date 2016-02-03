@@ -1,9 +1,11 @@
-var React = require('react-native')
-var styles = require('./styles')
-var Button = require('react-native-button')
+var React = require('react-native');
+var styles = require('./styles');
+var Button = require('react-native-button');
 var Login = require('./src/login');
-
+var ReserveMealView = require('./src/selfService');
+var DayOfAWeek = require('./src/DayOfAWeek');
 var {
+  Navigator,
   Alert,
   View,
   ScrollView,
@@ -11,21 +13,40 @@ var {
   TextInput,
 } = React;
 
-
 var drawerTypes = ['overlay', 'displace', 'static']
 
-module.exports = React.createClass({
+var MyMainView = React.createClass({
   setParentState(args){
     this.props.setParentState(args)
   },
-
   render(){
     return (
-      <View>
-        <Button OnPress={Login.login()}> successfully loged in to sess </Button>
-      </View>
+      <Navigator
+          initialRoute={{id: 'ReserveMealView', name: 'Index'}}
+          renderScene={this.renderScene.bind(this)}
+          configureScene={(route) => {
+            if (route.sceneConfig) {
+              return route.sceneConfig;
+            }
+            return Navigator.SceneConfigs.FloatFromRight;
+          }} />
+    );
+  },
 
+  renderScene(route, navigator) {
+      var routeId = route.id;
+      if (routeId === 'ReserveMealView') {
+          return (
+            <ReserveMealView navigator = {navigator}/>
+          );
+      }
+      else if ( routeId === 'DayOfAWeek'){
+          return (
+            <DayOfAWeek navigator = {navigator}/>
+          );
+      }
+  },
 
-    )
-  }
-})
+});
+
+module.exports = MyMainView;

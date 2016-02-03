@@ -4,6 +4,8 @@
  */
 var Button = require('react-native-button');
 var React = require('react-native');
+var ResponsiveImage = require('react-native-responsive-image');
+var GiftedSpinner = require('react-native-gifted-spinner');
 var {
   AppRegistry,
   Text,
@@ -11,6 +13,7 @@ var {
   TextInput,
 } = React;
 
+var logoURL = 'http://shirazu.ac.ir/sites/default/files/logo-bluehq.png';
 var username = null;
 var password = null;
 
@@ -23,52 +26,58 @@ var drawerStyles = {
   }
 }
 
-var Drawer = require('react-native-drawer')
-var MyMainView = require('./MyMainView')
-var MyControlPanel = require('./ControlPanel')
-
-var deviceScreen = require('Dimensions').get('window')
-var tweens = require('./tweens')
-var Login = require('./src/login')
-
+var Drawer = require('react-native-drawer');
+var MyMainView = require('./MyMainView');
+var MyControlPanel = require('./ControlPanel');
+var deviceScreen = require('Dimensions').get('window');
+var tweens = require('./tweens');
+var Login = require('./src/login');
 
 
 var sess = React.createClass({
 
   getInitialState(){
     return {
-      viewOne: true
+      viewOne: true,
+
     }
   },
   changeView(){
-    Login.login(String(username), String(password));
+    Login.login(username, password);
 
     //TODO: put a loading here/**********/
 
     this.setState({
       viewOne: !this.state.viewOne
     });
-
   },
 
   render(){
     if(!this.state.viewOne) return <MainPage changeView={ () => this.changeView() } />
     return(
-      <View>
-      <TextInput
-        ref = {"username"}
-        placeholder = {'enter your username'}
-        onChangeText = {(text) => username = text}
-        //value = {this.state.text}
-      />
+      <View style = {styles.loginViewContainer}>
+        <View style = {styles.loginViewHeader}>
 
-      <TextInput
-       ref = {"password"}
-       placeholder = {'enter your password'}
-       onChangeText = {(text) => password = text}
-       //value = {this.state.text}
-      />
-        <Button onPress={ () => this.changeView() }> Login </Button>
+             <ResponsiveImage source={{uri: logoURL}} initWidth="256" initHeight="256"/>
+
+        </View>
+        <View style = {styles.loginViewFooter}>
+            <TextInput
+              ref = {"username"}
+              placeholder = {'enter your username'}
+              onChangeText = {(text) => username = text}
+
+            />
+            <TextInput
+             ref = {"password"}
+             secureTextEntry={true}
+             placeholder = {'enter your password'}
+             onChangeText = {(text) => password = text}
+
+            />
+              <Button onPress={ () => this.changeView() }> Login </Button>
+              <GiftedSpinner/>
+        </View>
       </View>
     )
   },

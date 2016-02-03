@@ -2,6 +2,57 @@ var { StyleSheet, PixelRatio } = require('react-native')
 var deviceScreen = require('Dimensions').get('window')
 
 module.exports = StyleSheet.create({
+
+  loginViewContainer:{
+    flex : 1,
+    alignItems: 'stretch',
+    backgroundColor: '#e3e3e3',
+  },
+  loginViewHeader:{
+    flex : 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loginViewFooter:{
+    flex : 1,
+  },
+  controlPanelHeader:{
+    flex: 1,
+    backgroundColor: 'blue',
+  },
+  controlPanelFooter:{
+    flex: 2,
+    alignItems: 'flex-start',
+  },
+  selfServiceContainer:{
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  selfServiceWeekDays:{
+    height: 100,
+    borderColor: 'gray',
+    borderWidth: 1,
+    backgroundColor: '#00bfff',
+    alignItems: 'center',
+  },
+  selfServiceWeekDayName:{
+    fontSize:18,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  selfServiceHeaderTitle:{
+    textAlign: 'center',
+    fontSize:16,
+    color: 'white',
+  },
+  selfServiceHeader:{
+    flex : 1,
+    backgroundColor: '#b4b4b4',
+  },
+  selfServiceFooter:{
+    flex: 5,
+    backgroundColor: '#333333',
+  },
   scrollView: {
     backgroundColor: '#B99BC4',
   },
