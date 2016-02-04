@@ -4,8 +4,6 @@
  */
 var Button = require('react-native-button');
 var React = require('react-native');
-var ResponsiveImage = require('react-native-responsive-image');
-var GiftedSpinner = require('react-native-gifted-spinner');
 var {
   AppRegistry,
   Text,
@@ -58,8 +56,6 @@ var sess = React.createClass({
       <View style = {styles.loginViewContainer}>
       <ActionButton/>
         <View style = {styles.loginViewHeader}>
-
-             <ResponsiveImage source={{uri: logoURL}} initWidth="256" initHeight="256"/>
 
         </View>
         <View style = {styles.loginViewFooter}>

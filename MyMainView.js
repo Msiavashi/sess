@@ -23,7 +23,7 @@ var MyMainView = React.createClass({
     return (
       <Navigator
           initialRoute={{id: 'ReserveMealView', name: 'Index'}}
-          renderScene={this.renderScene.bind(this)}
+          renderScene={this.renderScene}
           configureScene={(route) => {
             if (route.sceneConfig) {
               return route.sceneConfig;
