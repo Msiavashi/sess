@@ -6,24 +6,24 @@ module.exports = React.createClass({
 
   componentWillMount: function() {
     this._panGesture = PanResponder.create({
-      onStartShouldSetPanResponder: (evt, gestureState) => { return false },
-      onStartShouldSetPanResponderCapture: (evt, gestureState) => { return false },
-      onMoveShouldSetPanResponder: (evt, gestureState) => { return false },
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) => { return false },
+      onStartShouldSetPanResponder: (evt, gestureState) => false,
+      onStartShouldSetPanResponderCapture: (evt, gestureState) => false,
+      onMoveShouldSetPanResponder: (evt, gestureState) => false,
+      onMoveShouldSetPanResponderCapture: (evt, gestureState) => false,
     });
   },
-
+  var style = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: this.props.width || deviceScreen.width,
+    height: deviceScreen.height,
+    backgroundColor: 'transparent'
+  },
   render () {
-    var style = {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: this.props.width || deviceScreen.width,
-      height: deviceScreen.height,
-      backgroundColor: 'transparent'
-    }
+
     return (
-      <View style={style} {...this._panGesture.panHandlers} />
+      <View style={this.style} {...this._panGesture.panHandlers} />
     );
   }
 });

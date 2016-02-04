@@ -2,7 +2,11 @@ var { StyleSheet, PixelRatio } = require('react-native')
 var deviceScreen = require('Dimensions').get('window')
 
 module.exports = StyleSheet.create({
-
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+  },
   loginViewContainer:{
     flex : 1,
     alignItems: 'stretch',

@@ -32,7 +32,7 @@ var MyControlPanel = require('./ControlPanel');
 var deviceScreen = require('Dimensions').get('window');
 var tweens = require('./tweens');
 var Login = require('./src/login');
-
+var ActionButton = require('./src/ActionButton');
 
 var sess = React.createClass({
 
@@ -56,6 +56,7 @@ var sess = React.createClass({
     if(!this.state.viewOne) return <MainPage changeView={ () => this.changeView() } />
     return(
       <View style = {styles.loginViewContainer}>
+      <ActionButton/>
         <View style = {styles.loginViewHeader}>
 
              <ResponsiveImage source={{uri: logoURL}} initWidth="256" initHeight="256"/>
@@ -76,7 +77,7 @@ var sess = React.createClass({
 
             />
               <Button onPress={ () => this.changeView() }> Login </Button>
-              <GiftedSpinner/>
+              {/*}<GiftedSpinner/>*/}
         </View>
       </View>
     )

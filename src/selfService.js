@@ -1,6 +1,9 @@
 var React = require('react-native');
 var styles = require('.././styles');
 var Button = require('react-native-button');
+var DOMParser = require('xmldom').DOMParser;
+var selfPage = '';
+
 var {
   Text,
   Image,
@@ -10,7 +13,12 @@ var {
   Navigator,
 } = React;
 
+var setSelfPage = function(pageSource)
+{
+  let parser = new DOMParser();
+  selfPage = parser.parseFromString(pageSource, "text/xml");
 
+}
 
 var ReserveMealView = React.createClass({
 
@@ -26,8 +34,6 @@ var ReserveMealView = React.createClass({
         </View>
         <ScrollView style = {styles.selfServiceFooter}
         automaticallyAdjustContentInsets={false}>
-
-
           <Button onPress={this._handlePress}>
             <View style = {styles.selfServiceWeekDays}>
                 <Text style = {styles.selfServiceWeekDayName}>
@@ -83,7 +89,5 @@ var ReserveMealView = React.createClass({
   }
 });
 
-
-
-
-module.exports = ReserveMealView;
+exports.ReserveMealView = ReserveMealView;
+exports.setSelfPage = setSelfPage;

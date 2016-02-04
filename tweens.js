@@ -2,7 +2,7 @@ var deviceScreen = require('Dimensions').get('window')
 
 module.exports = {
   material: (ratio) => {
-    var drawerShadow = ratio < .2 ? ratio*5*5 : 5
+    var drawerShadow = ratio < 0.2 ? ratio*5*5 : 5
     return {
       drawer: {
         shadowRadius: drawerShadow,

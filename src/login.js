@@ -2,16 +2,19 @@ var React = require('react-native');
 var Alert = React.Alert;
 import DB from './database';
 var DOMParser = require('xmldom').DOMParser;
+var selfService = require('./selfService');
 var url = "https://sess.shirazu.ac.ir/sess/Start.aspx";
-var sessURL = "https://sess.shirazu.ac.ir/sess/259634450006";
-var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx";
-var loginDone = false;
-var username = "";
-var password = "";
+var sessURL = "https://sess.shirazu.ac.ir/sess/205038594699";
+var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Gate/RemoteLogin.aspx?Token=0010000264234XAuFQh6XaOdcrncataWdO80O&Target=SfxChipWeek&Ret=http://sess.shirazu.ac.ir/sess/FStudent/Student.aspx";
+/*TODO: remove this part*/
+var username = "s9332045";
+var password = "mohammad95";
 var doc = "";
 var _VIEWSTATE = "";
 var _EVENTVALIDATION = "";
 var _VIEWSTATEGENERATOR = "";
+/************************/
+
 var Login = {
   login : function (usernamee, passworde){
     //do the login things here
@@ -36,28 +39,28 @@ var Login = {
           }
           if (xhr.status === 200) {
             ++this.counter;
-            var pageSource =  xhr.responseText; //gets the response of the request
-            var parser = new DOMParser();
+            let pageSource =  xhr.responseText; //gets the response of the request
+            let parser = new DOMParser();
             doc = parser.parseFromString(pageSource, "text/xml");   //converts the response Text to document
             var RKeyElement = String(doc.getElementById("_RKey"));
             var RKey = RKeyElement.substring(RKeyElement.search("value"));  //gets the element of from the document
             RKey = RKey.substring(RKey.search("\"")+1, RKey.lastIndexOf("\"")); //getting the 32-digit-long _RKey
-
-            /*ViewState*/
+/*
+            //ViewState
             _VIEWSTATE = String(doc.getElementById("__EVENTVALIDATION"));
             _VIEWSTATE = _VIEWSTATE.substring(_VIEWSTATE.search("value"));
             _VIEWSTATE = _VIEWSTATE.substring(_VIEWSTATE.search('\"') + 1, _VIEWSTATE.lastIndexOf('\"'));
 
-            /*_EVENTVALIDATION*/
+            //_EVENTVALIDATION
             _EVENTVALIDATION = String(doc.getElementById("__EVENTVALIDATION"));
             _EVENTVALIDATION = _EVENTVALIDATION.substring(_EVENTVALIDATION.search("value"));
             _EVENTVALIDATION = _EVENTVALIDATION.substring(_EVENTVALIDATION.search('\"') + 1, _EVENTVALIDATION.lastIndexOf('\"'));
 
-            /*_VIEWSTATEGENERATOR*/
+            //_VIEWSTATEGENERATOR
             _VIEWSTATEGENERATOR = String(doc.getElementById("__VIEWSTATEGENERATOR"));
             _VIEWSTATEGENERATOR = _VIEWSTATEGENERATOR.substring(_VIEWSTATEGENERATOR.search("value"));
             _VIEWSTATEGENERATOR = _VIEWSTATEGENERATOR.substring(_VIEWSTATEGENERATOR.search('\"') + 1, _VIEWSTATEGENERATOR.lastIndexOf('\"'));
-
+*/
             if ( this.counter == 1 )  //the last time we get the RKey we are going to hash and log in
             {
 
@@ -237,7 +240,7 @@ function Md5High(Key, Value) {
     return binl2hex(coreMD5(str2binl(s)));
 }
 
-
+/*this only works for test*/
 function fetchSelf(){
     var req = new XMLHttpRequest();
     req.onreadystatechange = (e) => {
@@ -246,6 +249,8 @@ function fetchSelf(){
       }
 
       if (req.status === 200) {
+        //console.log(req.responseText);
+        selfService.setSelfPage(req.responseText);
       }
       else {
         console.log('error' + ' ' + req.status);
@@ -253,7 +258,7 @@ function fetchSelf(){
     };
 
   req.open('GET', selfURL, true);
-  req.send(null);
+  req.send();
 
 }
 
@@ -261,19 +266,19 @@ function fetchSelf(){
 function fetchSess(){
   var req = new XMLHttpRequest();
   req.onreadystatechange = (e) => {
+
     if (req.readyState !== 4) {
       return;
     }
 
     if (req.status === 200) {
-      console.log('success' + req.responseText);
+      // console.log('success' + req.responseText);
       fetchSelf();
       // Alert.alert("done");
-      loginDone = true;
     }
     else if ( req.status === 302 )
     {
-      console.log("this is redirection response");
+      console.log("this is 302 response");
       console.log(req.responseText);
     }
     else {
@@ -282,20 +287,24 @@ function fetchSess(){
   };
 
 req.open('GET', sessURL, true);
-// req.setRequestHeader("Channel", "Act=Ok;");
-// req.setRequestHeader("_RKey", "");
-// req.setRequestHeader("__EVENTVALIDATION", _EVENTVALIDATION);
-// req.setRequestHeader("__VIEWSTATE", _VIEWSTATE);
-// req.setRequestHeader("__VIEWSTATEGENERATOR", _VIEWSTATEGENERATOR);
-// req.setRequestHeader("banner:zzChanel", "");
-// req.setRequestHeader("edId", username);
+// var params="Channel=Act=Ok;&_RKey=&__EVENTVALIDATION=/wEdAAV2jtM7qvfQnGzibIXMs/Xxa3XEE+61AoUroEwTw0TzoBeE+DS6Ew/rKBF70JLTBtZzH/l7PBvth6/ZzHDKK0R0S1f8aOOWPGzSVWaY7KNHgO7t9NXDgONroXff0Gi3QEEviwJ/CzErH/GkuwMuHfSX&__VIEWSTATE=/wEPDwUKMTQ4MDM5MTkwMg9kFgICAQ9kFggCAQ9kFgYCBQ8WAh4JaW5uZXJodG1sZWQCBw8WAh8ABTvYp9iq2LXYp9mEINin2LIg2LfYsdmK2YI62LTYqNqp2Ycg2K/Yp9iu2YTZii3Yp9mK2YbYqtix2YbYqmQCCw8WAh8ABRk8Yj7bsduz27nbtC/bsduxL9ux27Q8L2I+ZAIFDxYCHgdWaXNpYmxlaGQCBw8WAh8BZxYCAgEPFgIfAAXXCdmC2KfYqNmEINiq2YjYrNmHINiv2KfZhti02KzZiNmK2KfZhiDZiNix2YjYr9mKINis2K/ZitivOjxici8+DQoxLdio2Ycg2YXZhti42YjYsSDYp9iz2KrZgdin2K/ZhyDYqNmH2YrZhtmHINin2LIg2LPYp9mF2KfZhtmHINii2YXZiNiy2LTZitiM2b7amNmI2YfYtNmKINmIINiv2KfZhti02KzZiNmK2Yog2K/Yp9mG2LTar9in2Ycg2LTZitix2KfYsiDZhNi32YHYpyDYp9iyINmF2LHZiNix2q/YsSBJbnRlcm5ldCBFeHBsb3Jlctin2LPYqtmB2KfYr9mHINmG2YXYp9mK2YrYry48YnIvPg0KMi3Yr9ixINm+2KfZitin2YYg2KvYqNiqINmG2KfZhSDYp9mK2YbYqtix2YbYqtmKINmE2KfYstmFINin2LPYqiDYqNixINin2LPYp9izINiy2YXYp9mG2KjZhtiv2Yog2qnZhyDYp9iyINi32LHZitmCINiz2KfZhdin2YbZhyDYotmF2YjYsti02Yog2K/YsdmK2KfZgdiqINmF2Yog2YbZhdin2YrZitiv2Iwg2KzZh9iqINir2KjYqiDZhtin2YUg2K3YttmI2LHZiiDYtNiu2LXYpyDZhdix2KfYrNi52Ycg2YHYsdmF2KfZitmK2K8uKioq2KrZiNis2Yc6INiq2KfYsdmK2K4g2KvYqNiqINmG2KfZhSDYrdi22YjYsdmKINio2LEg2KfYs9in2LMg2LLZhdin2YYg2KjZhtiv2Yog2K/Yp9mG2LTar9in2Ycg2KfYsiDYqtin2LHZitiuIDExLzcvMTM5NCgg2YrYp9iy2K/Zh9mFINmF2YfYsSDZhdin2YcpINio2Ycg2KjYudivINmF2Yog2KjYp9i02K8uKioqINis2YfYqiDZhdi02KfZh9iv2Ycg2YbZiNio2Kog2KvYqNiqINmG2KfZhSDYrdi22YjYsdmKINiu2YjYryDYqNmHINiz2KfZhdin2YbZhyDYotmF2YjYsti02Yog2YXYsdin2KzYudmHINmB2LHZhdin2YrZitivLjxici8+DQozLdin2YbYqtiu2KfYqCDZiNin2K3YryDYtNmF2Kcg2KrZiNiz2Lcg2KjYrti0INmF2LHYqNmI2LfZhyDYp9mG2KzYp9mFINiu2YjYp9mH2K8g2LTYry48YnIvPg0KNC3Yp9ix2KfYptmHINix2YrYstmG2YXYsdin2Kog2YXZgti32Lkg2YrYpyDZhdmC2KfYt9i5INmC2KjZhCDYr9ixINiy2YXYp9mGINir2KjYqiDZhtin2YUg2K3YttmI2LHZiiDYp9mE2LLYp9mF2Yog2YXZiiDYqNin2LTYrzxici8+DQo1Ldiu2YjYp9mH2LTZhdmG2K8g2KfYs9iqINin2LIg2YXYsdin2KzYudmHINit2LbZiNix2Yog2Ygg2KrZhNmB2YbZiiDYqNmHINmI2KfYrdivINmH2KfZiiDZhdiu2KrZhNmBINiv2KfZhti02q/Yp9mHINiv2LEg2K7YtdmI2LUg2YXZiNin2LHYryDYqNin2YTYpyDYrtmI2K/Yr9in2LHZiiDZgdix2YXYp9mK2YrYry4NCmQCCQ8WAh8ABQEgZGRDY9B9c/B5YHJtWvxroJcmLKB7mcNVjEPC771IlbjsIQ==&__VIEWSTATEGENERATOR=C792DAE2&banner:zzChanel=&edId=s9332045";
+// req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// req.setRequestHeader("Content-length", String(params.length));
+// req.setRequestHeader("Connection", "keep-alive");
+// req.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:43.0) Gecko/20100101 Firefox/43.0");
+// req.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+// req.setRequestHeader("Accept-Language", "en-US,en;q=0.5");
+// req.setRequestHeader("Accept-Encoding", "gzip, deflate");
+// req.setRequestHeader("Referer", "https://sess.shirazu.ac.ir/sess/Script/Login.aspx");
+// req.setRequestHeader("Cookie", "ASP.NET_SessionId=e2vveqfcyrvwusn3uklcn4zm");
+// req.setRequestHeader("Connection", "keep-alive");
 req.send();
 }
 
-function DoLogin(iId, iPass, iCode, RKey) {
+function DoLogin(iId, iPass, iCode, RKey){
     var Inc = Md5High(RKey, iPass);
     // var Req = CreateRequest();
-    console.log( "hashed password is : " +  Inc);
+    // console.log( "hashed password is : " +  Inc);
 
     var Request = new XMLHttpRequest();
     Request.onreadystatechange = (e) => {
@@ -317,7 +326,7 @@ function DoLogin(iId, iPass, iCode, RKey) {
   Request.send();
 }
 
-module.exports = Login, loginDone;
+module.exports = Login;
 
 
 
