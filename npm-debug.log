@@ -1,0 +1,1223 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/amin/.nvm/versions/node/v4.2.2/bin/node',
+1 verbose cli   '/Users/amin/.nvm/versions/node/v4.2.2/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'react-native-responsive-image' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.2
+4 verbose install initial load of /Users/amin/projects/sess/package.json
+5 verbose installManyTop reading scoped package data from /Users/amin/projects/sess/node_modules/react-native/package.json
+6 verbose installManyTop reading scoped package data from /Users/amin/projects/sess/node_modules/react-native-action-button/package.json
+7 verbose installManyTop reading scoped package data from /Users/amin/projects/sess/node_modules/react-native-button/package.json
+8 verbose installManyTop reading scoped package data from /Users/amin/projects/sess/node_modules/react-native-drawer/package.json
+9 verbose installManyTop reading scoped package data from /Users/amin/projects/sess/node_modules/react-native-sms-android/package.json
+10 verbose installManyTop reading scoped package data from /Users/amin/projects/sess/node_modules/react-native-store/package.json
+11 verbose installManyTop reading scoped package data from /Users/amin/projects/sess/node_modules/react-native-vector-icons/package.json
+12 verbose installManyTop reading scoped package data from /Users/amin/projects/sess/node_modules/xmldom/package.json
+13 info package.json xmldom@0.1.22 No license field.
+14 verbose readDependencies loading dependencies from /Users/amin/projects/sess/package.json
+15 silly cache add args [ 'react-native-responsive-image', null ]
+16 verbose cache add spec react-native-responsive-image
+17 silly cache add parsed spec Result {
+17 silly cache add   raw: 'react-native-responsive-image',
+17 silly cache add   scope: null,
+17 silly cache add   name: 'react-native-responsive-image',
+17 silly cache add   rawSpec: '',
+17 silly cache add   spec: '*',
+17 silly cache add   type: 'range' }
+18 silly addNamed react-native-responsive-image@*
+19 verbose addNamed "*" is a valid semver range for react-native-responsive-image
+20 silly addNameRange { name: 'react-native-responsive-image',
+20 silly addNameRange   range: '*',
+20 silly addNameRange   hasData: false }
+21 silly mapToRegistry name react-native-responsive-image
+22 silly mapToRegistry using default registry
+23 silly mapToRegistry registry https://registry.npmjs.org/
+24 silly mapToRegistry uri https://registry.npmjs.org/react-native-responsive-image
+25 verbose addNameRange registry:https://registry.npmjs.org/react-native-responsive-image not in flight; fetching
+26 verbose request uri https://registry.npmjs.org/react-native-responsive-image
+27 verbose request no auth needed
+28 info attempt registry request try #1 at 8:25:59 PM
+29 verbose request id 8b510c48607f6af6
+30 verbose etag "BBHPN6TC4DKB9CSADG8WCNAJ1"
+31 http request GET https://registry.npmjs.org/react-native-responsive-image
+32 http 304 https://registry.npmjs.org/react-native-responsive-image
+33 verbose headers { date: 'Thu, 04 Feb 2016 16:56:01 GMT',
+33 verbose headers   via: '1.1 varnish',
+33 verbose headers   'cache-control': 'max-age=300',
+33 verbose headers   etag: '"BBHPN6TC4DKB9CSADG8WCNAJ1"',
+33 verbose headers   age: '0',
+33 verbose headers   connection: 'keep-alive',
+33 verbose headers   'x-served-by': 'cache-fra1231-FRA',
+33 verbose headers   'x-cache': 'MISS',
+33 verbose headers   'x-cache-hits': '0',
+33 verbose headers   'x-timer': 'S1454604961.267814,VS0,VE178',
+33 verbose headers   vary: 'Accept' }
+34 silly get cb [ 304,
+34 silly get   { date: 'Thu, 04 Feb 2016 16:56:01 GMT',
+34 silly get     via: '1.1 varnish',
+34 silly get     'cache-control': 'max-age=300',
+34 silly get     etag: '"BBHPN6TC4DKB9CSADG8WCNAJ1"',
+34 silly get     age: '0',
+34 silly get     connection: 'keep-alive',
+34 silly get     'x-served-by': 'cache-fra1231-FRA',
+34 silly get     'x-cache': 'MISS',
+34 silly get     'x-cache-hits': '0',
+34 silly get     'x-timer': 'S1454604961.267814,VS0,VE178',
+34 silly get     vary: 'Accept' } ]
+35 verbose etag https://registry.npmjs.org/react-native-responsive-image from cache
+36 verbose get saving react-native-responsive-image to /Users/amin/.npm/registry.npmjs.org/react-native-responsive-image/.cache.json
+37 silly addNameRange number 2 { name: 'react-native-responsive-image',
+37 silly addNameRange   range: '*',
+37 silly addNameRange   hasData: true }
+38 silly addNameRange versions [ 'react-native-responsive-image',
+38 silly addNameRange   [ '0.0.9', '0.1.1', '1.0.0', '1.0.1', '1.1.0', '1.1.1', '1.1.2' ] ]
+39 silly addNamed react-native-responsive-image@1.1.2
+40 verbose addNamed "1.1.2" is a plain semver version for react-native-responsive-image
+41 silly cache afterAdd react-native-responsive-image@1.1.2
+42 verbose afterAdd /Users/amin/.npm/react-native-responsive-image/1.1.2/package/package.json not in flight; writing
+43 verbose afterAdd /Users/amin/.npm/react-native-responsive-image/1.1.2/package/package.json written
+44 silly install resolved [ { name: 'react-native-responsive-image',
+44 silly install resolved     version: '1.1.2',
+44 silly install resolved     description: 'Image component, that resizes itself appropriately on various screensizes.',
+44 silly install resolved     main: 'react-native-responsive-image.js',
+44 silly install resolved     scripts: { test: 'echo "Error: no test specified" && exit 1' },
+44 silly install resolved     repository:
+44 silly install resolved      { type: 'git',
+44 silly install resolved        url: 'git+https://github.com/Dharmoslap/react-native-responsive-images.git' },
+44 silly install resolved     keywords: [ 'React', 'Native' ],
+44 silly install resolved     author:
+44 silly install resolved      { name: 'Ladislav Maxa',
+44 silly install resolved        email: 'ladislavmaxa@outlook.com',
+44 silly install resolved        url: 'https://github.com/Dharmoslap' },
+44 silly install resolved     license: 'ISC',
+44 silly install resolved     bugs: { url: 'https://github.com/Dharmoslap/react-native-responsive-images/issues' },
+44 silly install resolved     homepage: 'https://github.com/Dharmoslap/react-native-responsive-images#readme',
+44 silly install resolved     peerDependencies: { 'react-native': '0.17.x' },
+44 silly install resolved     gitHead: '58b792b88cfd3a8f669befaaa5ad938d4285ccd8',
+44 silly install resolved     _id: 'react-native-responsive-image@1.1.2',
+44 silly install resolved     _shasum: '9b007c0e949fa23de8d88cc41bcb130d6f89d93d',
+44 silly install resolved     _from: 'react-native-responsive-image@*',
+44 silly install resolved     _npmVersion: '2.14.12',
+44 silly install resolved     _nodeVersion: '4.2.6',
+44 silly install resolved     _npmUser: { name: 'ladislavmaxa01', email: 'ladislavmaxa@outlook.com' },
+44 silly install resolved     dist:
+44 silly install resolved      { shasum: '9b007c0e949fa23de8d88cc41bcb130d6f89d93d',
+44 silly install resolved        tarball: 'http://registry.npmjs.org/react-native-responsive-image/-/react-native-responsive-image-1.1.2.tgz' },
+44 silly install resolved     maintainers: [ [Object] ],
+44 silly install resolved     directories: {},
+44 silly install resolved     _resolved: 'https://registry.npmjs.org/react-native-responsive-image/-/react-native-responsive-image-1.1.2.tgz',
+44 silly install resolved     readme: 'ERROR: No README data found!' } ]
+45 info install react-native-responsive-image@1.1.2 into /Users/amin/projects/sess
+46 info installOne react-native-responsive-image@1.1.2
+47 verbose installOne of react-native-responsive-image to /Users/amin/projects/sess not in flight; installing
+48 verbose lock using /Users/amin/.npm/_locks/react-native-responsive--43613fa81455a72b.lock for /Users/amin/projects/sess/node_modules/react-native-responsive-image
+49 silly install write writing react-native-responsive-image 1.1.2 to /Users/amin/projects/sess/node_modules/react-native-responsive-image
+50 verbose unbuild node_modules/react-native-responsive-image
+51 silly gentlyRm /Users/amin/projects/sess/node_modules/react-native-responsive-image is being purged from base /Users/amin/projects/sess
+52 verbose gentlyRm don't care about contents; nuking /Users/amin/projects/sess/node_modules/react-native-responsive-image
+53 verbose tar unpack /Users/amin/.npm/react-native-responsive-image/1.1.2/package.tgz
+54 verbose tar unpacking to /Users/amin/projects/sess/node_modules/react-native-responsive-image
+55 silly gentlyRm /Users/amin/projects/sess/node_modules/react-native-responsive-image is being purged
+56 verbose gentlyRm don't care about contents; nuking /Users/amin/projects/sess/node_modules/react-native-responsive-image
+57 silly gunzTarPerm modes [ '755', '644' ]
+58 silly gunzTarPerm extractEntry package.json
+59 silly gunzTarPerm extractEntry .npmignore
+60 silly gunzTarPerm extractEntry README.md
+61 silly gunzTarPerm extractEntry device.android.js
+62 silly gunzTarPerm extractEntry device.ios.js
+63 silly gunzTarPerm extractEntry react-native-responsive-image.js
+64 silly gunzTarPerm extractEntry ResponsiveImageExample/package.json
+65 silly gunzTarPerm extractEntry ResponsiveImageExample/.npmignore
+66 silly gunzTarPerm extractEntry ResponsiveImageExample/index.android.js
+67 silly gunzTarPerm extractEntry ResponsiveImageExample/index.ios.js
+68 silly gunzTarPerm extractEntry ResponsiveImageExample/.flowconfig
+69 silly gunzTarPerm extractEntry ResponsiveImageExample/.watchmanconfig
+70 silly gunzTarPerm extractEntry ResponsiveImageExample/android/.gradle/2.4/taskArtifacts/cache.properties
+71 silly gunzTarPerm extractEntry ResponsiveImageExample/android/.gradle/2.4/taskArtifacts/cache.properties.lock
+72 silly gunzTarPerm extractEntry ResponsiveImageExample/android/.gradle/2.4/taskArtifacts/fileHashes.bin
+73 silly gunzTarPerm extractEntry ResponsiveImageExample/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin
+74 silly gunzTarPerm extractEntry ResponsiveImageExample/android/.gradle/2.4/taskArtifacts/outputFileStates.bin
+75 silly gunzTarPerm extractEntry ResponsiveImageExample/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin
+76 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/generated/source/buildConfig/debug/com/responsiveimageexample/BuildConfig.java
+77 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java
+78 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/generated/source/r/debug/android/support/v7/recyclerview/R.java
+79 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/generated/source/r/debug/com/facebook/drawee/R.java
+80 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/generated/source/r/debug/com/facebook/drawee/backends/pipeline/R.java
+81 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/generated/source/r/debug/com/facebook/react/R.java
+82 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/generated/source/r/debug/com/responsiveimageexample/R.java
+83 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/generated/source/r/debug/org/webkit/android_jsc/R.java
+84 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/incremental/aidl/debug/dependency.store
+85 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/incremental/mergeAssets/debug/merger.xml
+86 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/incremental/mergeResourcesdebug/merger.xml
+87 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/dex/debug/classes.dex
+88 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/AndroidManifest.xml
+89 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/R.txt
+90 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/aapt/AndroidManifest.xml
+91 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/annotations.zip
+92 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar
+93 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/public.txt
+94 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ko/values-ko.xml
+95 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_fade_in.xml
+96 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_fade_out.xml
+97 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_grow_fade_in_from_bottom.xml
+98 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_popup_enter.xml
+99 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_popup_exit.xml
+100 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_shrink_fade_out_from_bottom.xml
+101 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_slide_in_bottom.xml
+102 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_slide_in_top.xml
+103 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_slide_out_bottom.xml
+104 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_slide_out_top.xml
+105 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color-v11/abc_background_cache_hint_selector_material_dark.xml
+106 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color-v11/abc_background_cache_hint_selector_material_light.xml
+107 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color-v23/abc_color_highlight_material.xml
+108 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_item_background_holo_light.xml
+109 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_btn_borderless_material.xml
+110 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_btn_colored_material.xml
+111 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_btn_default_mtrl_shape.xml
+112 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_btn_radio_material.xml
+113 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_cab_background_internal_bg.xml
+114 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_cab_background_top_material.xml
+115 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_dialog_material_background_dark.xml
+116 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_dialog_material_background_light.xml
+117 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_edit_text_material.xml
+118 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_item_background_holo_dark.xml
+119 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_btn_check_material.xml
+120 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_list_selector_background_transition_holo_dark.xml
+121 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_list_selector_background_transition_holo_light.xml
+122 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_list_selector_holo_dark.xml
+123 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_list_selector_holo_light.xml
+124 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_ratingbar_full_material.xml
+125 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_spinner_textfield_background_material.xml
+126 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_switch_thumb_material.xml
+127 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_tab_indicator_material.xml
+128 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_text_cursor_material.xml
+129 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable/abc_textfield_search_material.xml
+130 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_menu_share_mtrl_alpha.png
+131 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ab_share_pack_mtrl_alpha.9.png
+132 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_btn_check_to_on_mtrl_015.png
+133 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_btn_radio_to_on_mtrl_000.png
+134 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_btn_radio_to_on_mtrl_015.png
+135 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_btn_rating_star_off_mtrl_alpha.png
+136 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_btn_rating_star_on_mtrl_alpha.png
+137 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_btn_switch_to_on_mtrl_00001.9.png
+138 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_btn_switch_to_on_mtrl_00012.9.png
+139 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_cab_background_top_mtrl_alpha.9.png
+140 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_ab_back_mtrl_am_alpha.png
+141 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_clear_mtrl_alpha.png
+142 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_commit_search_api_mtrl_alpha.png
+143 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_go_search_api_mtrl_alpha.png
+144 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+145 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_menu_cut_mtrl_alpha.png
+146 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png
+147 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_menu_paste_mtrl_am_alpha.png
+148 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_menu_selectall_mtrl_alpha.png
+149 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_btn_check_to_on_mtrl_000.png
+150 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_search_api_mtrl_alpha.png
+151 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_ic_voice_search_api_mtrl_alpha.png
+152 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_divider_mtrl_alpha.9.png
+153 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_focused_holo.9.png
+154 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_longpressed_holo.9.png
+155 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_pressed_holo_dark.9.png
+156 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_pressed_holo_light.9.png
+157 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_selector_disabled_holo_dark.9.png
+158 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_selector_disabled_holo_light.9.png
+159 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_menu_hardkey_panel_mtrl_mult.9.png
+160 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_popup_background_mtrl_mult.9.png
+161 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_spinner_mtrl_am_alpha.9.png
+162 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_switch_track_mtrl_alpha.9.png
+163 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_tab_indicator_mtrl_alpha.9.png
+164 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_textfield_activated_mtrl_alpha.9.png
+165 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_textfield_default_mtrl_alpha.9.png
+166 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_textfield_search_activated_mtrl_alpha.9.png
+167 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_textfield_search_default_mtrl_alpha.9.png
+168 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-hdpi/abc_ic_ab_back_mtrl_am_alpha.png
+169 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-hdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+170 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-hdpi/abc_ic_menu_cut_mtrl_alpha.png
+171 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-hdpi/abc_spinner_mtrl_am_alpha.9.png
+172 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-mdpi/abc_ic_ab_back_mtrl_am_alpha.png
+173 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+174 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-mdpi/abc_ic_menu_cut_mtrl_alpha.png
+175 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-mdpi/abc_spinner_mtrl_am_alpha.9.png
+176 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+177 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+178 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xhdpi/abc_ic_menu_cut_mtrl_alpha.png
+179 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xhdpi/abc_spinner_mtrl_am_alpha.9.png
+180 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xxhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+181 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xxhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+182 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xxhdpi/abc_ic_menu_cut_mtrl_alpha.png
+183 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xxhdpi/abc_spinner_mtrl_am_alpha.9.png
+184 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xxxhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+185 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xxxhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+186 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xxxhdpi/abc_ic_menu_cut_mtrl_alpha.png
+187 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-ldrtl-xxxhdpi/abc_spinner_mtrl_am_alpha.9.png
+188 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png
+189 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png
+190 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png
+191 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png
+192 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png
+193 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png
+194 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png
+195 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png
+196 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png
+197 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png
+198 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png
+199 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png
+200 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png
+201 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png
+202 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+203 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png
+204 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png
+205 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png
+206 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png
+207 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png
+208 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png
+209 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png
+210 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png
+211 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png
+212 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png
+213 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png
+214 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png
+215 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png
+216 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png
+217 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png
+218 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png
+219 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png
+220 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png
+221 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png
+222 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png
+223 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png
+224 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png
+225 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png
+226 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-v21/abc_action_bar_item_background_material.xml
+227 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-v21/abc_btn_colored_material.xml
+228 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-v23/abc_control_background_material.xml
+229 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_menu_share_mtrl_alpha.png
+230 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ab_share_pack_mtrl_alpha.9.png
+231 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_btn_check_to_on_mtrl_015.png
+232 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_btn_radio_to_on_mtrl_000.png
+233 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_btn_radio_to_on_mtrl_015.png
+234 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_btn_rating_star_off_mtrl_alpha.png
+235 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_btn_rating_star_on_mtrl_alpha.png
+236 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_btn_switch_to_on_mtrl_00001.9.png
+237 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_btn_switch_to_on_mtrl_00012.9.png
+238 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_cab_background_top_mtrl_alpha.9.png
+239 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+240 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_clear_mtrl_alpha.png
+241 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_commit_search_api_mtrl_alpha.png
+242 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_go_search_api_mtrl_alpha.png
+243 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+244 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_menu_cut_mtrl_alpha.png
+245 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png
+246 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_menu_paste_mtrl_am_alpha.png
+247 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_menu_selectall_mtrl_alpha.png
+248 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_btn_check_to_on_mtrl_000.png
+249 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_search_api_mtrl_alpha.png
+250 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_ic_voice_search_api_mtrl_alpha.png
+251 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_list_divider_mtrl_alpha.9.png
+252 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_list_focused_holo.9.png
+253 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_list_longpressed_holo.9.png
+254 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_list_pressed_holo_dark.9.png
+255 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_list_pressed_holo_light.9.png
+256 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_list_selector_disabled_holo_dark.9.png
+257 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_list_selector_disabled_holo_light.9.png
+258 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_menu_hardkey_panel_mtrl_mult.9.png
+259 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_popup_background_mtrl_mult.9.png
+260 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_spinner_mtrl_am_alpha.9.png
+261 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_switch_track_mtrl_alpha.9.png
+262 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_tab_indicator_mtrl_alpha.9.png
+263 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_textfield_activated_mtrl_alpha.9.png
+264 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_textfield_default_mtrl_alpha.9.png
+265 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_textfield_search_activated_mtrl_alpha.9.png
+266 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_textfield_search_default_mtrl_alpha.9.png
+267 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_menu_share_mtrl_alpha.png
+268 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ab_share_pack_mtrl_alpha.9.png
+269 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_btn_check_to_on_mtrl_015.png
+270 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_btn_radio_to_on_mtrl_000.png
+271 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_btn_radio_to_on_mtrl_015.png
+272 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_btn_rating_star_off_mtrl_alpha.png
+273 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_btn_rating_star_on_mtrl_alpha.png
+274 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_btn_switch_to_on_mtrl_00001.9.png
+275 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_btn_switch_to_on_mtrl_00012.9.png
+276 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_cab_background_top_mtrl_alpha.9.png
+277 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+278 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_clear_mtrl_alpha.png
+279 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_commit_search_api_mtrl_alpha.png
+280 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_go_search_api_mtrl_alpha.png
+281 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+282 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_menu_cut_mtrl_alpha.png
+283 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png
+284 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_menu_paste_mtrl_am_alpha.png
+285 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_menu_selectall_mtrl_alpha.png
+286 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_btn_check_to_on_mtrl_000.png
+287 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_search_api_mtrl_alpha.png
+288 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_ic_voice_search_api_mtrl_alpha.png
+289 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_list_divider_mtrl_alpha.9.png
+290 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_list_focused_holo.9.png
+291 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_list_longpressed_holo.9.png
+292 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_list_pressed_holo_dark.9.png
+293 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_list_pressed_holo_light.9.png
+294 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_list_selector_disabled_holo_dark.9.png
+295 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_list_selector_disabled_holo_light.9.png
+296 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_menu_hardkey_panel_mtrl_mult.9.png
+297 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_popup_background_mtrl_mult.9.png
+298 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_spinner_mtrl_am_alpha.9.png
+299 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_switch_track_mtrl_alpha.9.png
+300 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_tab_indicator_mtrl_alpha.9.png
+301 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_textfield_activated_mtrl_alpha.9.png
+302 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_textfield_default_mtrl_alpha.9.png
+303 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_textfield_search_activated_mtrl_alpha.9.png
+304 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxhdpi/abc_textfield_search_default_mtrl_alpha.9.png
+305 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_ic_menu_cut_mtrl_alpha.png
+306 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_btn_check_to_on_mtrl_000.png
+307 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_btn_radio_to_on_mtrl_000.png
+308 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_btn_radio_to_on_mtrl_015.png
+309 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_btn_switch_to_on_mtrl_00001.9.png
+310 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_btn_switch_to_on_mtrl_00012.9.png
+311 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+312 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_ic_clear_mtrl_alpha.png
+313 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+314 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_btn_check_to_on_mtrl_015.png
+315 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png
+316 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_ic_menu_paste_mtrl_am_alpha.png
+317 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_ic_menu_selectall_mtrl_alpha.png
+318 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_ic_menu_share_mtrl_alpha.png
+319 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_ic_search_api_mtrl_alpha.png
+320 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_ic_voice_search_api_mtrl_alpha.png
+321 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_spinner_mtrl_am_alpha.9.png
+322 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_switch_track_mtrl_alpha.9.png
+323 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xxxhdpi/abc_tab_indicator_mtrl_alpha.9.png
+324 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml
+325 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_title_item.xml
+326 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_view_list_nav_layout.xml
+327 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_item_layout.xml
+328 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_layout.xml
+329 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_bar.xml
+330 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_close_item_material.xml
+331 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view.xml
+332 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view_list_item.xml
+333 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml
+334 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_dialog_title_material.xml
+335 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_expanded_menu_layout.xml
+336 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_checkbox.xml
+337 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml
+338 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_layout.xml
+339 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_radio.xml
+340 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_popup_menu_item_layout.xml
+341 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_content_include.xml
+342 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_up_container.xml
+343 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple_overlay_action_mode.xml
+344 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_toolbar.xml
+345 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_search_dropdown_item_icons_2line.xml
+346 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_search_view.xml
+347 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_select_dialog_material.xml
+348 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_action.xml
+349 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_cancel_action.xml
+350 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_big_media.xml
+351 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_big_media_narrow.xml
+352 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_lines.xml
+353 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_media.xml
+354 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_chronometer.xml
+355 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_time.xml
+356 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_item_material.xml
+357 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_multichoice_material.xml
+358 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_singlechoice_material.xml
+359 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/support_simple_spinner_dropdown_item.xml
+360 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml
+361 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-af/values-af.xml
+362 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-am/values-am.xml
+363 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ar/values-ar.xml
+364 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-az-rAZ/values-az-rAZ.xml
+365 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-bg/values-bg.xml
+366 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-bn-rBD/values-bn-rBD.xml
+367 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ca/values-ca.xml
+368 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-cs/values-cs.xml
+369 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-da/values-da.xml
+370 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-de/values-de.xml
+371 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-el/values-el.xml
+372 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-en-rAU/values-en-rAU.xml
+373 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-en-rGB/values-en-rGB.xml
+374 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-en-rIN/values-en-rIN.xml
+375 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-es/values-es.xml
+376 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-es-rUS/values-es-rUS.xml
+377 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-et-rEE/values-et-rEE.xml
+378 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-eu-rES/values-eu-rES.xml
+379 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-fa/values-fa.xml
+380 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-fi/values-fi.xml
+381 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-fr/values-fr.xml
+382 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-fr-rCA/values-fr-rCA.xml
+383 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-gl-rES/values-gl-rES.xml
+384 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-gu-rIN/values-gu-rIN.xml
+385 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-h720dp/values-h720dp.xml
+386 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-hdpi/values-hdpi.xml
+387 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-hi/values-hi.xml
+388 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-hr/values-hr.xml
+389 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-hu/values-hu.xml
+390 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-hy-rAM/values-hy-rAM.xml
+391 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-in/values-in.xml
+392 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-is-rIS/values-is-rIS.xml
+393 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-it/values-it.xml
+394 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-iw/values-iw.xml
+395 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ja/values-ja.xml
+396 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ka-rGE/values-ka-rGE.xml
+397 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-kk-rKZ/values-kk-rKZ.xml
+398 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-km-rKH/values-km-rKH.xml
+399 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-kn-rIN/values-kn-rIN.xml
+400 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/abc_primary_text_material_light.xml
+401 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/abc_background_cache_hint_selector_material_dark.xml
+402 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/abc_primary_text_disable_only_material_dark.xml
+403 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/abc_primary_text_disable_only_material_light.xml
+404 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/abc_primary_text_material_dark.xml
+405 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/abc_background_cache_hint_selector_material_light.xml
+406 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/abc_search_url_text.xml
+407 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/abc_secondary_text_material_dark.xml
+408 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/abc_secondary_text_material_light.xml
+409 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/switch_thumb_material_dark.xml
+410 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/switch_thumb_material_light.xml
+411 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ky-rKG/values-ky-rKG.xml
+412 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-land/values-land.xml
+413 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-large/values-large.xml
+414 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-lo-rLA/values-lo-rLA.xml
+415 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-lt/values-lt.xml
+416 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-lv/values-lv.xml
+417 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-mk-rMK/values-mk-rMK.xml
+418 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ml-rIN/values-ml-rIN.xml
+419 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-mn-rMN/values-mn-rMN.xml
+420 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-mr-rIN/values-mr-rIN.xml
+421 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ms-rMY/values-ms-rMY.xml
+422 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-my-rMM/values-my-rMM.xml
+423 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-nb/values-nb.xml
+424 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ne-rNP/values-ne-rNP.xml
+425 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-nl/values-nl.xml
+426 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-pa-rIN/values-pa-rIN.xml
+427 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-pl/values-pl.xml
+428 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-port/values-port.xml
+429 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-pt/values-pt.xml
+430 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-pt-rPT/values-pt-rPT.xml
+431 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ro/values-ro.xml
+432 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ru/values-ru.xml
+433 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-si-rLK/values-si-rLK.xml
+434 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-sk/values-sk.xml
+435 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-sl/values-sl.xml
+436 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-sq-rAL/values-sq-rAL.xml
+437 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-sr/values-sr.xml
+438 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-sv/values-sv.xml
+439 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-sw/values-sw.xml
+440 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-sw600dp/values-sw600dp.xml
+441 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ta-rIN/values-ta-rIN.xml
+442 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-te-rIN/values-te-rIN.xml
+443 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-th/values-th.xml
+444 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-tl/values-tl.xml
+445 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-tr/values-tr.xml
+446 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-uk/values-uk.xml
+447 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-ur-rPK/values-ur-rPK.xml
+448 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-uz-rUZ/values-uz-rUZ.xml
+449 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-v11/values-v11.xml
+450 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-v12/values-v12.xml
+451 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-v14/values-v14.xml
+452 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-v17/values-v17.xml
+453 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-v18/values-v18.xml
+454 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-v21/values-v21.xml
+455 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-v22/values-v22.xml
+456 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-v23/values-v23.xml
+457 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-vi/values-vi.xml
+458 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-w360dp/values-w360dp.xml
+459 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-w480dp/values-w480dp.xml
+460 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-w500dp/values-w500dp.xml
+461 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-w600dp/values-w600dp.xml
+462 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-w720dp/values-w720dp.xml
+463 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-xlarge/values-xlarge.xml
+464 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-xlarge-land/values-xlarge-land.xml
+465 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-zh-rCN/values-zh-rCN.xml
+466 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-zh-rHK/values-zh-rHK.xml
+467 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-zh-rTW/values-zh-rTW.xml
+468 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-zu/values-zu.xml
+469 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/AndroidManifest.xml
+470 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/R.txt
+471 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/aapt/AndroidManifest.xml
+472 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar
+473 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/res/values/values.xml
+474 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml
+475 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/aapt/AndroidManifest.xml
+476 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/aidl/android/support/v4/media/MediaMetadataCompat.aidl
+477 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/aidl/android/support/v4/media/RatingCompat.aidl
+478 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/aidl/android/support/v4/media/session/MediaSessionCompat.aidl
+479 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/aidl/android/support/v4/media/session/ParcelableVolumeInfo.aidl
+480 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/aidl/android/support/v4/media/session/PlaybackStateCompat.aidl
+481 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/annotations.zip
+482 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar
+483 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar
+484 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.8.1/AndroidManifest.xml
+485 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.8.1/R.txt
+486 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.8.1/aapt/AndroidManifest.xml
+487 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.8.1/jars/classes.jar
+488 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.8.1/res/values/values.xml
+489 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.8.1/AndroidManifest.xml
+490 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.8.1/aapt/AndroidManifest.xml
+491 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.8.1/jars/classes.jar
+492 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.8.1/AndroidManifest.xml
+493 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.8.1/R.txt
+494 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.8.1/aapt/AndroidManifest.xml
+495 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.8.1/jars/classes.jar
+496 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/AndroidManifest.xml
+497 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/aapt/AndroidManifest.xml
+498 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jars/classes.jar
+499 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/arm64-v8a/libbitmaps.so
+500 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/arm64-v8a/libgifimage.so
+501 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/arm64-v8a/libimagepipeline.so
+502 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/arm64-v8a/libmemchunk.so
+503 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/arm64-v8a/libwebp.so
+504 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/arm64-v8a/libwebpimage.so
+505 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi/libbitmaps.so
+506 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi/libgifimage.so
+507 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi/libimagepipeline.so
+508 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi/libmemchunk.so
+509 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi/libwebp.so
+510 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi/libwebpimage.so
+511 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi-v7a/libbitmaps.so
+512 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi-v7a/libgifimage.so
+513 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi-v7a/libimagepipeline.so
+514 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi-v7a/libmemchunk.so
+515 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi-v7a/libwebp.so
+516 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/armeabi-v7a/libwebpimage.so
+517 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86/libbitmaps.so
+518 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86/libgifimage.so
+519 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86/libimagepipeline.so
+520 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86/libmemchunk.so
+521 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86/libwebp.so
+522 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86/libwebpimage.so
+523 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86_64/libbitmaps.so
+524 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86_64/libgifimage.so
+525 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86_64/libimagepipeline.so
+526 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86_64/libmemchunk.so
+527 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86_64/libwebp.so
+528 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jni/x86_64/libwebpimage.so
+529 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp/0.8.1/AndroidManifest.xml
+530 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp/0.8.1/aapt/AndroidManifest.xml
+531 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp/0.8.1/jars/classes.jar
+532 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/AndroidManifest.xml
+533 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/R.txt
+534 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/aapt/AndroidManifest.xml
+535 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/annotations.zip
+536 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jars/classes.jar
+537 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jars/libs/infer-annotations-1.5.jar
+538 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/armeabi-v7a/libfb.so
+539 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/armeabi-v7a/libfbjni.so
+540 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/armeabi-v7a/libfolly_json.so
+541 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/armeabi-v7a/libglog.so
+542 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/armeabi-v7a/libgnustl_shared.so
+543 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/armeabi-v7a/libreactnativejni.so
+544 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/x86/libfb.so
+545 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/x86/libfbjni.so
+546 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/x86/libfolly_json.so
+547 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/x86/libglog.so
+548 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/x86/libgnustl_shared.so
+549 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/jni/x86/libreactnativejni.so
+550 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-ja/values-ja.xml
+551 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/anim/catalyst_push_up_in.xml
+552 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/anim/catalyst_push_up_out.xml
+553 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values/values.xml
+554 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-cs/values-cs.xml
+555 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-da/values-da.xml
+556 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-de/values-de.xml
+557 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-el/values-el.xml
+558 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-en-rGB/values-en-rGB.xml
+559 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-es/values-es.xml
+560 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-es-rES/values-es-rES.xml
+561 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-fb/values-fb.xml
+562 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-fb-rLL/values-fb-rLL.xml
+563 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-fi/values-fi.xml
+564 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-fr/values-fr.xml
+565 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-hu/values-hu.xml
+566 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-in/values-in.xml
+567 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-it/values-it.xml
+568 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/layout/fps_view.xml
+569 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/layout/redbox_item_frame.xml
+570 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/layout/redbox_item_title.xml
+571 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/layout/redbox_view.xml
+572 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-ko/values-ko.xml
+573 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-nb/values-nb.xml
+574 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-nl/values-nl.xml
+575 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-pl/values-pl.xml
+576 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-pt/values-pt.xml
+577 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-pt-rPT/values-pt-rPT.xml
+578 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-ro/values-ro.xml
+579 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-ru/values-ru.xml
+580 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-sv/values-sv.xml
+581 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-th/values-th.xml
+582 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-tr/values-tr.xml
+583 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-vi/values-vi.xml
+584 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-zh-rCN/values-zh-rCN.xml
+585 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-zh-rHK/values-zh-rHK.xml
+586 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/values-zh-rTW/values-zh-rTW.xml
+587 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.17.1/res/xml/preferences.xml
+588 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/org.webkit/android-jsc/r174650/AndroidManifest.xml
+589 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/org.webkit/android-jsc/r174650/R.txt
+590 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/org.webkit/android-jsc/r174650/jars/classes.jar
+591 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/org.webkit/android-jsc/r174650/jni/armeabi/libicu_common.so
+592 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/org.webkit/android-jsc/r174650/jni/armeabi-v7a/libicu_common.so
+593 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/org.webkit/android-jsc/r174650/jni/armeabi-v7a/libjsc.so
+594 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/org.webkit/android-jsc/r174650/jni/x86/libicu_common.so
+595 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/exploded-aar/org.webkit/android-jsc/r174650/jni/x86/libjsc.so
+596 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class
+597 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$anim.class
+598 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$bool.class
+599 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$color.class
+600 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$dimen.class
+601 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$drawable.class
+602 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$attr.class
+603 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$integer.class
+604 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$layout.class
+605 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$string.class
+606 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$style.class
+607 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$styleable.class
+608 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R.class
+609 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/recyclerview/R$attr.class
+610 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/recyclerview/R$dimen.class
+611 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/recyclerview/R$id.class
+612 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/recyclerview/R$styleable.class
+613 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/android/support/v7/recyclerview/R.class
+614 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/drawee/R$attr.class
+615 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/drawee/R$id.class
+616 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/drawee/R$styleable.class
+617 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/drawee/R.class
+618 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/drawee/backends/pipeline/R$attr.class
+619 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/drawee/backends/pipeline/R$id.class
+620 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/drawee/backends/pipeline/R$styleable.class
+621 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/drawee/backends/pipeline/R.class
+622 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$integer.class
+623 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$anim.class
+624 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$bool.class
+625 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$color.class
+626 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$dimen.class
+627 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$drawable.class
+628 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$id.class
+629 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$attr.class
+630 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$layout.class
+631 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$string.class
+632 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$style.class
+633 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$styleable.class
+634 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R$xml.class
+635 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/facebook/react/R.class
+636 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$id.class
+637 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/BuildConfig.class
+638 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$anim.class
+639 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$attr.class
+640 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$bool.class
+641 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$color.class
+642 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$dimen.class
+643 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$drawable.class
+644 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/MainActivity.class
+645 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$integer.class
+646 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$layout.class
+647 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$mipmap.class
+648 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$string.class
+649 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$style.class
+650 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$styleable.class
+651 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R$xml.class
+652 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/com/responsiveimageexample/R.class
+653 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/classes/debug/org/webkit/android_jsc/R.class
+654 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/manifests/full/debug/AndroidManifest.xml
+655 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/infer-annotations-1.5-7629fbab754fa3fc332de2ae9f327105a5d166a8.jar
+656 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-33ce8a5841307b9dbd16f802063c47d234bddf4d.jar
+657 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/classes-145244ec048034a5fa8365a2df5be9ce5970f9cb.jar
+658 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/classes-161f5df7eb87e48b3b897c6535fab57eddd63d6b.jar
+659 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/classes-3febb9a3406588ef2fce9d9571d03f4c654834af.jar
+660 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/classes-4f1b2f32f8f97df7def113a6db8832c667b3b9fa.jar
+661 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/classes-565f2a2a8633170e4749ccaeca96a7b527b76369.jar
+662 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/classes-80b786842edb2d22d722f74fdc6ba09898153984.jar
+663 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/classes-bce6fd24ac0c89b29ee16bbe5abed70de4d49fae.jar
+664 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/classes-fe9e0fd6e332d273a3d6f759a0dcb6c755297b8f.jar
+665 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/commons-cli-1.2-537985672606b21c4e0dde0542c30832394c7f4d.jar
+666 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/classes-11be01c0c7fe31bcf30a550112fa98532374e049.jar
+667 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-fdab0688f96dad15c207b2d8102d0f5904849883.jar
+668 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/jackson-core-2.2.3-9c7a812237ea63943c7437c166facad94e1c7484.jar
+669 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0-1fdf793bba37d9bbedb56743d2ebeb0b4ee39faa.jar
+670 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/library-2.4.0-6c357a804bc63e1230d9a886c447d7f030c65610.jar
+671 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/okhttp-2.5.0-35d9e66e807b2672a013514843c45e9bc7c45220.jar
+672 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/okhttp-ws-2.5.0-e63b86373ec0a42d4e0de851075eabbfa3095393.jar
+673 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/okio-1.6.0-fc3877a2acd3b7d6aa97795f823e873e225aff58.jar
+674 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/stetho-1.2.0-48df4e9e34c11dc24e2577e59bd40789ee8bf978.jar
+675 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/stetho-okhttp-1.2.0-9b2326294cf71fcc7ced9951634f6e1d15adb860.jar
+676 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-83cbd8867bbfafb64844edcdc4bcc0a8099d3359.jar
+677 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-kk-rKZ/values-kk-rKZ.xml
+678 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml
+679 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml
+680 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml
+681 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml
+682 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml
+683 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml
+684 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml
+685 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml
+686 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml
+687 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml
+688 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/catalyst_push_up_in.xml
+689 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/anim/catalyst_push_up_out.xml
+690 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml
+691 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml
+692 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml
+693 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_light.xml
+694 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_btn_borderless_material.xml
+695 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_btn_colored_material.xml
+696 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_btn_default_mtrl_shape.xml
+697 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_btn_radio_material.xml
+698 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_internal_bg.xml
+699 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_top_material.xml
+700 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_dark.xml
+701 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_light.xml
+702 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml
+703 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_dark.xml
+704 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_btn_check_material.xml
+705 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_dark.xml
+706 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml
+707 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml
+708 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_light.xml
+709 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_full_material.xml
+710 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml
+711 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_switch_thumb_material.xml
+712 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_tab_indicator_material.xml
+713 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_text_cursor_material.xml
+714 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable/abc_textfield_search_material.xml
+715 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_menu_share_mtrl_alpha.png
+716 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ab_share_pack_mtrl_alpha.9.png
+717 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_check_to_on_mtrl_015.png
+718 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_radio_to_on_mtrl_000.png
+719 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_radio_to_on_mtrl_015.png
+720 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_rating_star_off_mtrl_alpha.png
+721 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_rating_star_on_mtrl_alpha.png
+722 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_switch_to_on_mtrl_00001.9.png
+723 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_switch_to_on_mtrl_00012.9.png
+724 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_cab_background_top_mtrl_alpha.9.png
+725 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_ab_back_mtrl_am_alpha.png
+726 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_clear_mtrl_alpha.png
+727 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_commit_search_api_mtrl_alpha.png
+728 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_go_search_api_mtrl_alpha.png
+729 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+730 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_menu_cut_mtrl_alpha.png
+731 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png
+732 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_menu_paste_mtrl_am_alpha.png
+733 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_menu_selectall_mtrl_alpha.png
+734 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_check_to_on_mtrl_000.png
+735 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_search_api_mtrl_alpha.png
+736 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_voice_search_api_mtrl_alpha.png
+737 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_list_divider_mtrl_alpha.9.png
+738 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_list_focused_holo.9.png
+739 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_list_longpressed_holo.9.png
+740 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_list_pressed_holo_dark.9.png
+741 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_list_pressed_holo_light.9.png
+742 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_list_selector_disabled_holo_dark.9.png
+743 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_list_selector_disabled_holo_light.9.png
+744 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_menu_hardkey_panel_mtrl_mult.9.png
+745 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_popup_background_mtrl_mult.9.png
+746 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_spinner_mtrl_am_alpha.9.png
+747 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_switch_track_mtrl_alpha.9.png
+748 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_tab_indicator_mtrl_alpha.9.png
+749 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_textfield_activated_mtrl_alpha.9.png
+750 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_textfield_default_mtrl_alpha.9.png
+751 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_textfield_search_activated_mtrl_alpha.9.png
+752 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_textfield_search_default_mtrl_alpha.9.png
+753 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi/abc_ic_ab_back_mtrl_am_alpha.png
+754 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+755 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi/abc_ic_menu_cut_mtrl_alpha.png
+756 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi/abc_spinner_mtrl_am_alpha.9.png
+757 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-mdpi/abc_ic_ab_back_mtrl_am_alpha.png
+758 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+759 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-mdpi/abc_ic_menu_cut_mtrl_alpha.png
+760 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-mdpi/abc_spinner_mtrl_am_alpha.9.png
+761 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+762 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+763 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xhdpi/abc_ic_menu_cut_mtrl_alpha.png
+764 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xhdpi/abc_spinner_mtrl_am_alpha.9.png
+765 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+766 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+767 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi/abc_ic_menu_cut_mtrl_alpha.png
+768 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi/abc_spinner_mtrl_am_alpha.9.png
+769 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxxhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+770 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxxhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+771 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxxhdpi/abc_ic_menu_cut_mtrl_alpha.png
+772 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxxhdpi/abc_spinner_mtrl_am_alpha.9.png
+773 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png
+774 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png
+775 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png
+776 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png
+777 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png
+778 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png
+779 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png
+780 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png
+781 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png
+782 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png
+783 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png
+784 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png
+785 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png
+786 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png
+787 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+788 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png
+789 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png
+790 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png
+791 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png
+792 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png
+793 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png
+794 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png
+795 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png
+796 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png
+797 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png
+798 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png
+799 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png
+800 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png
+801 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png
+802 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png
+803 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png
+804 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png
+805 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png
+806 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png
+807 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png
+808 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png
+809 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png
+810 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png
+811 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml
+812 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml
+813 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml
+814 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_menu_share_mtrl_alpha.png
+815 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ab_share_pack_mtrl_alpha.9.png
+816 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_btn_check_to_on_mtrl_015.png
+817 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_btn_radio_to_on_mtrl_000.png
+818 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_btn_radio_to_on_mtrl_015.png
+819 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_btn_rating_star_off_mtrl_alpha.png
+820 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_btn_rating_star_on_mtrl_alpha.png
+821 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_btn_switch_to_on_mtrl_00001.9.png
+822 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_btn_switch_to_on_mtrl_00012.9.png
+823 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_cab_background_top_mtrl_alpha.9.png
+824 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+825 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_clear_mtrl_alpha.png
+826 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_commit_search_api_mtrl_alpha.png
+827 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_go_search_api_mtrl_alpha.png
+828 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+829 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_menu_cut_mtrl_alpha.png
+830 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png
+831 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_menu_paste_mtrl_am_alpha.png
+832 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_menu_selectall_mtrl_alpha.png
+833 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_btn_check_to_on_mtrl_000.png
+834 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_search_api_mtrl_alpha.png
+835 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_voice_search_api_mtrl_alpha.png
+836 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_list_divider_mtrl_alpha.9.png
+837 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_list_focused_holo.9.png
+838 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_list_longpressed_holo.9.png
+839 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_list_pressed_holo_dark.9.png
+840 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_list_pressed_holo_light.9.png
+841 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_list_selector_disabled_holo_dark.9.png
+842 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_list_selector_disabled_holo_light.9.png
+843 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_menu_hardkey_panel_mtrl_mult.9.png
+844 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_popup_background_mtrl_mult.9.png
+845 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_spinner_mtrl_am_alpha.9.png
+846 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_switch_track_mtrl_alpha.9.png
+847 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_tab_indicator_mtrl_alpha.9.png
+848 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_textfield_activated_mtrl_alpha.9.png
+849 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_textfield_default_mtrl_alpha.9.png
+850 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_textfield_search_activated_mtrl_alpha.9.png
+851 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_textfield_search_default_mtrl_alpha.9.png
+852 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_menu_share_mtrl_alpha.png
+853 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ab_share_pack_mtrl_alpha.9.png
+854 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_btn_check_to_on_mtrl_015.png
+855 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_btn_radio_to_on_mtrl_000.png
+856 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_btn_radio_to_on_mtrl_015.png
+857 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_btn_rating_star_off_mtrl_alpha.png
+858 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_btn_rating_star_on_mtrl_alpha.png
+859 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_btn_switch_to_on_mtrl_00001.9.png
+860 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_btn_switch_to_on_mtrl_00012.9.png
+861 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_cab_background_top_mtrl_alpha.9.png
+862 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+863 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_clear_mtrl_alpha.png
+864 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_commit_search_api_mtrl_alpha.png
+865 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_go_search_api_mtrl_alpha.png
+866 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+867 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_menu_cut_mtrl_alpha.png
+868 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png
+869 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_menu_paste_mtrl_am_alpha.png
+870 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_menu_selectall_mtrl_alpha.png
+871 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_btn_check_to_on_mtrl_000.png
+872 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_search_api_mtrl_alpha.png
+873 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_ic_voice_search_api_mtrl_alpha.png
+874 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_list_divider_mtrl_alpha.9.png
+875 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_list_focused_holo.9.png
+876 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_list_longpressed_holo.9.png
+877 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_list_pressed_holo_dark.9.png
+878 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_list_pressed_holo_light.9.png
+879 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_list_selector_disabled_holo_dark.9.png
+880 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_list_selector_disabled_holo_light.9.png
+881 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_menu_hardkey_panel_mtrl_mult.9.png
+882 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_popup_background_mtrl_mult.9.png
+883 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_spinner_mtrl_am_alpha.9.png
+884 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_switch_track_mtrl_alpha.9.png
+885 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_tab_indicator_mtrl_alpha.9.png
+886 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_textfield_activated_mtrl_alpha.9.png
+887 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_textfield_default_mtrl_alpha.9.png
+888 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_textfield_search_activated_mtrl_alpha.9.png
+889 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi/abc_textfield_search_default_mtrl_alpha.9.png
+890 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_ic_menu_cut_mtrl_alpha.png
+891 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_btn_check_to_on_mtrl_000.png
+892 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_btn_radio_to_on_mtrl_000.png
+893 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_btn_radio_to_on_mtrl_015.png
+894 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_btn_switch_to_on_mtrl_00001.9.png
+895 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_btn_switch_to_on_mtrl_00012.9.png
+896 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_ic_ab_back_mtrl_am_alpha.png
+897 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_ic_clear_mtrl_alpha.png
+898 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_ic_menu_copy_mtrl_am_alpha.png
+899 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_btn_check_to_on_mtrl_015.png
+900 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png
+901 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_ic_menu_paste_mtrl_am_alpha.png
+902 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_ic_menu_selectall_mtrl_alpha.png
+903 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_ic_menu_share_mtrl_alpha.png
+904 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_ic_search_api_mtrl_alpha.png
+905 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_ic_voice_search_api_mtrl_alpha.png
+906 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_spinner_mtrl_am_alpha.9.png
+907 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_switch_track_mtrl_alpha.9.png
+908 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi/abc_tab_indicator_mtrl_alpha.9.png
+909 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml
+910 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml
+911 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml
+912 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml
+913 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml
+914 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml
+915 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml
+916 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml
+917 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml
+918 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml
+919 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml
+920 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml
+921 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml
+922 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml
+923 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml
+924 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml
+925 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml
+926 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml
+927 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml
+928 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml
+929 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml
+930 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml
+931 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml
+932 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml
+933 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/fps_view.xml
+934 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml
+935 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml
+936 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml
+937 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml
+938 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml
+939 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml
+940 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml
+941 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml
+942 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/redbox_item_frame.xml
+943 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/redbox_item_title.xml
+944 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/redbox_view.xml
+945 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml
+946 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml
+947 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml
+948 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml
+949 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png
+950 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher.png
+951 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png
+952 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher.png
+953 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values/values.xml
+954 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-af/values-af.xml
+955 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-am/values-am.xml
+956 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ar/values-ar.xml
+957 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-az-rAZ/values-az-rAZ.xml
+958 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-bg/values-bg.xml
+959 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-bn-rBD/values-bn-rBD.xml
+960 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ca/values-ca.xml
+961 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-cs/values-cs.xml
+962 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-da/values-da.xml
+963 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-de/values-de.xml
+964 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-el/values-el.xml
+965 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-en-rAU/values-en-rAU.xml
+966 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-en-rGB/values-en-rGB.xml
+967 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-en-rIN/values-en-rIN.xml
+968 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-es/values-es.xml
+969 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-es-rES/values-es-rES.xml
+970 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-es-rUS/values-es-rUS.xml
+971 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-et-rEE/values-et-rEE.xml
+972 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-eu-rES/values-eu-rES.xml
+973 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-fa/values-fa.xml
+974 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-fb/values-fb.xml
+975 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-fb-rLL/values-fb-rLL.xml
+976 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-fi/values-fi.xml
+977 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-fr/values-fr.xml
+978 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-fr-rCA/values-fr-rCA.xml
+979 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-gl-rES/values-gl-rES.xml
+980 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-gu-rIN/values-gu-rIN.xml
+981 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-h720dp/values-h720dp.xml
+982 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-hdpi/values-hdpi.xml
+983 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-hi/values-hi.xml
+984 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-hr/values-hr.xml
+985 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-hu/values-hu.xml
+986 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-hy-rAM/values-hy-rAM.xml
+987 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-in/values-in.xml
+988 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-is-rIS/values-is-rIS.xml
+989 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-it/values-it.xml
+990 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-iw/values-iw.xml
+991 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ja/values-ja.xml
+992 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ka-rGE/values-ka-rGE.xml
+993 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_light.xml
+994 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/abc_background_cache_hint_selector_material_dark.xml
+995 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_dark.xml
+996 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_light.xml
+997 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_dark.xml
+998 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/abc_background_cache_hint_selector_material_light.xml
+999 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/abc_search_url_text.xml
+1000 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_dark.xml
+1001 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_light.xml
+1002 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/switch_thumb_material_dark.xml
+1003 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/color/switch_thumb_material_light.xml
+1004 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-km-rKH/values-km-rKH.xml
+1005 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-kn-rIN/values-kn-rIN.xml
+1006 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ko/values-ko.xml
+1007 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ky-rKG/values-ky-rKG.xml
+1008 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-land/values-land.xml
+1009 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-large/values-large.xml
+1010 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-lo-rLA/values-lo-rLA.xml
+1011 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-lt/values-lt.xml
+1012 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-lv/values-lv.xml
+1013 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-mk-rMK/values-mk-rMK.xml
+1014 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ml-rIN/values-ml-rIN.xml
+1015 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-mn-rMN/values-mn-rMN.xml
+1016 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-mr-rIN/values-mr-rIN.xml
+1017 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ms-rMY/values-ms-rMY.xml
+1018 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-my-rMM/values-my-rMM.xml
+1019 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-nb/values-nb.xml
+1020 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ne-rNP/values-ne-rNP.xml
+1021 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-nl/values-nl.xml
+1022 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-pa-rIN/values-pa-rIN.xml
+1023 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-pl/values-pl.xml
+1024 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-port/values-port.xml
+1025 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-pt/values-pt.xml
+1026 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-pt-rPT/values-pt-rPT.xml
+1027 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ro/values-ro.xml
+1028 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ru/values-ru.xml
+1029 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-si-rLK/values-si-rLK.xml
+1030 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-sk/values-sk.xml
+1031 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-sl/values-sl.xml
+1032 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-sq-rAL/values-sq-rAL.xml
+1033 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-sr/values-sr.xml
+1034 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-sv/values-sv.xml
+1035 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-sw/values-sw.xml
+1036 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-sw600dp/values-sw600dp.xml
+1037 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ta-rIN/values-ta-rIN.xml
+1038 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-te-rIN/values-te-rIN.xml
+1039 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-th/values-th.xml
+1040 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-tl/values-tl.xml
+1041 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-tr/values-tr.xml
+1042 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-uk/values-uk.xml
+1043 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-ur-rPK/values-ur-rPK.xml
+1044 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-uz-rUZ/values-uz-rUZ.xml
+1045 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-v11/values-v11.xml
+1046 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-v12/values-v12.xml
+1047 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-v14/values-v14.xml
+1048 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-v17/values-v17.xml
+1049 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-v18/values-v18.xml
+1050 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-v21/values-v21.xml
+1051 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-v22/values-v22.xml
+1052 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-v23/values-v23.xml
+1053 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-vi/values-vi.xml
+1054 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-w360dp/values-w360dp.xml
+1055 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-w480dp/values-w480dp.xml
+1056 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-w500dp/values-w500dp.xml
+1057 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-w600dp/values-w600dp.xml
+1058 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-w720dp/values-w720dp.xml
+1059 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-xlarge/values-xlarge.xml
+1060 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-xlarge-land/values-xlarge-land.xml
+1061 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-zh-rCN/values-zh-rCN.xml
+1062 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-zh-rHK/values-zh-rHK.xml
+1063 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-zh-rTW/values-zh-rTW.xml
+1064 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/values-zu/values-zu.xml
+1065 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/merged/debug/xml/preferences.xml
+1066 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/res/resources-debug.ap_
+1067 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/intermediates/symbols/debug/R.txt
+1068 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/outputs/apk/app-debug-unaligned.apk
+1069 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/outputs/apk/app-debug.apk
+1070 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build/outputs/logs/manifest-merger-debug-report.txt
+1071 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/build.gradle
+1072 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/proguard-rules.pro
+1073 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/react.gradle
+1074 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/src/main/AndroidManifest.xml
+1075 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/src/main/java/com/responsiveimageexample/MainActivity.java
+1076 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+1077 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+1078 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+1079 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+1080 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/src/main/res/values/strings.xml
+1081 silly gunzTarPerm extractEntry ResponsiveImageExample/android/app/src/main/res/values/styles.xml
+1082 silly gunzTarPerm extractEntry ResponsiveImageExample/android/build/intermediates/dex-cache/cache.xml
+1083 silly gunzTarPerm extractEntry ResponsiveImageExample/android/build.gradle
+1084 silly gunzTarPerm extractEntry ResponsiveImageExample/android/gradle/wrapper/gradle-wrapper.jar
+1085 silly gunzTarPerm extractEntry ResponsiveImageExample/android/gradle/wrapper/gradle-wrapper.properties
+1086 silly gunzTarPerm extractEntry ResponsiveImageExample/android/gradle.properties
+1087 silly gunzTarPerm extractEntry ResponsiveImageExample/android/gradlew
+1088 silly gunzTarPerm extractEntry ResponsiveImageExample/android/gradlew.bat
+1089 silly gunzTarPerm extractEntry ResponsiveImageExample/android/settings.gradle
+1090 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExample/AppDelegate.h
+1091 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExample/AppDelegate.m
+1092 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExample/Base.lproj/LaunchScreen.xib
+1093 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExample/Images.xcassets/AppIcon.appiconset/Contents.json
+1094 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExample/Info.plist
+1095 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExample/main.m
+1096 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExample.xcodeproj/project.pbxproj
+1097 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExample.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+1098 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExample.xcodeproj/xcshareddata/xcschemes/ResponsiveImageExample.xcscheme
+1099 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExampleTests/Info.plist
+1100 silly gunzTarPerm extractEntry ResponsiveImageExample/ios/ResponsiveImageExampleTests/ResponsiveImageExampleTests.m
+1101 verbose write writing to /Users/amin/projects/sess/node_modules/react-native-responsive-image/package.json
+1102 info preinstall react-native-responsive-image@1.1.2
+1103 verbose readDependencies loading dependencies from /Users/amin/projects/sess/node_modules/react-native-responsive-image/package.json
+1104 silly prepareForInstallMany adding react-native@0.17.x from react-native-responsive-image peerDependencies
+1105 warn peerDependencies The peer dependency react-native@0.17.x included from react-native-responsive-image will no
+1106 warn peerDependencies longer be automatically installed to fulfill the peerDependency
+1107 warn peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+1108 verbose readDependencies loading dependencies from /Users/amin/projects/sess/node_modules/react-native-responsive-image/package.json
+1109 silly install resolved []
+1110 verbose about to build /Users/amin/projects/sess/node_modules/react-native-responsive-image
+1111 info build /Users/amin/projects/sess/node_modules/react-native-responsive-image
+1112 info linkStuff react-native-responsive-image@1.1.2
+1113 silly linkStuff react-native-responsive-image@1.1.2 has /Users/amin/projects/sess/node_modules as its parent node_modules
+1114 verbose linkBins react-native-responsive-image@1.1.2
+1115 verbose linkMans react-native-responsive-image@1.1.2
+1116 verbose rebuildBundles react-native-responsive-image@1.1.2
+1117 info install react-native-responsive-image@1.1.2
+1118 info postinstall react-native-responsive-image@1.1.2
+1119 verbose readDependencies loading dependencies from /Users/amin/projects/sess/package.json
+1120 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/react-native/package.json
+1121 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/react-native-action-button/package.json
+1122 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/react-native-button/package.json
+1123 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/react-native-drawer/package.json
+1124 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/react-native-responsive-image/package.json
+1125 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/react-native-sms-android/package.json
+1126 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/react-native-store/package.json
+1127 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/react-native-vector-icons/package.json
+1128 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/xmldom/package.json
+1129 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/.bin/generate-icon/package.json
+1130 verbose targetResolver reading package data from /Users/amin/projects/sess/node_modules/.bin/react-native/package.json
+1131 verbose already installed skipping react-native@0.17.x /Users/amin/projects/sess
+1132 silly install resolved []
+1133 verbose unlock done using /Users/amin/.npm/_locks/react-native-responsive--43613fa81455a72b.lock for /Users/amin/projects/sess/node_modules/react-native-responsive-image
+1134 verbose validateInstall loading /Users/amin/projects/sess/package.json for validation
+1135 verbose stack Error: The package react-native@0.19.0 does not satisfy its siblings' peerDependencies requirements!
+1135 verbose stack     at /Users/amin/.nvm/versions/node/v4.2.2/lib/node_modules/npm/lib/install.js:125:32
+1135 verbose stack     at /Users/amin/.nvm/versions/node/v4.2.2/lib/node_modules/npm/lib/install.js:268:7
+1135 verbose stack     at /Users/amin/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
+1135 verbose stack     at /Users/amin/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+1135 verbose stack     at cb (/Users/amin/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+1135 verbose stack     at /Users/amin/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+1135 verbose stack     at cb (/Users/amin/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+1135 verbose stack     at /Users/amin/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+1135 verbose stack     at cb (/Users/amin/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+1135 verbose stack     at /Users/amin/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+1136 verbose cwd /Users/amin/projects/sess
+1137 error Darwin 15.3.0
+1138 error argv "/Users/amin/.nvm/versions/node/v4.2.2/bin/node" "/Users/amin/.nvm/versions/node/v4.2.2/bin/npm" "install" "--save" "react-native-responsive-image"
+1139 error node v4.2.2
+1140 error npm  v2.14.7
+1141 error code EPEERINVALID
+1142 error peerinvalid The package react-native@0.19.0 does not satisfy its siblings' peerDependencies requirements!
+1142 error peerinvalid Peer react-native-action-button@1.1.2 wants react-native@>=0.11
+1142 error peerinvalid Peer react-native-sms-android@0.2.1 wants react-native@>=0.12.0
+1142 error peerinvalid Peer react-native-responsive-image@1.1.2 wants react-native@0.17.x
+1143 verbose exit [ 1, true ]
