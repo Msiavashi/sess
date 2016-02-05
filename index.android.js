@@ -1,5 +1,5 @@
-/**
- * rn-drawer example app
+
+ /**
  * https://github.com/facebook/react-native
  */
 var Button = require('react-native-button');
@@ -9,15 +9,17 @@ var GiftedSpinner = require('react-native-gifted-spinner');
 var {
   AppRegistry,
   Text,
+  Linking,
   View,
   TextInput,
+  TouchableHighlight,
 } = React;
 
 var logoURL = 'http://shirazu.ac.ir/sites/default/files/logo-bluehq.png';
 var username = null;
 var password = null;
 
-var styles = require('./styles')
+var styles = require('./styles');
 var drawerStyles = {
   drawer: {
     shadowColor: "#000000",
@@ -56,28 +58,33 @@ var sess = React.createClass({
     if(!this.state.viewOne) return <MainPage changeView={ () => this.changeView() } />
     return(
       <View style = {styles.loginViewContainer}>
-      <ActionButton/>
+      {/*<ActionButton/> */}
         <View style = {styles.loginViewHeader}>
-
-             <ResponsiveImage source={{uri: logoURL}} initWidth="256" initHeight="256"/>
-
+             <ResponsiveImage source={{uri: logoURL}} initWidth="150" initHeight="150"/>
         </View>
         <View style = {styles.loginViewFooter}>
+            <View style = {styles.loginViewInputsView}>
             <TextInput
+              placeholderTextColor = {'white'}
               ref = {"username"}
-              placeholder = {'enter your username'}
+              placeholder = {'نام کاربری'}
               onChangeText = {(text) => username = text}
-
             />
+
             <TextInput
-             ref = {"password"}
-             secureTextEntry={true}
-             placeholder = {'enter your password'}
-             onChangeText = {(text) => password = text}
-
+              placeholderTextColor = {'white'}
+              ref = {"password"}
+              placeholder = {'رمز عبور'}
+              onChangeText = {(text) => password = text}
             />
-              <Button onPress={ () => this.changeView() }> Login </Button>
-              {/*}<GiftedSpinner/>*/}
+
+            </View>
+
+            <View style = {styles.ButtonsSection}>
+              <View style = {styles.loginButtonView}><Button style = {styles.loginButton} onPress={ () => this.changeView() }> <Text style = {styles.loginButtonText}> ورود</Text>  </Button></View>
+
+              <View style = {styles.smsButtonView}><Button style = {styles.smsButton}> <Text style = {styles.smsButtonText}>پیامک</Text> </Button></View>
+            </View>
         </View>
       </View>
     )
