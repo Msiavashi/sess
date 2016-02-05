@@ -10,7 +10,8 @@ module.exports = StyleSheet.create({
   loginViewContainer:{
     flex : 1,
     alignItems: 'stretch',
-    backgroundColor: '#e3e3e3',
+    backgroundColor: '4099FF',
+
   },
   loginViewHeader:{
     flex : 1,
@@ -18,7 +19,43 @@ module.exports = StyleSheet.create({
     alignItems: 'center',
   },
   loginViewFooter:{
-    flex : 1,
+    flex : 2,
+  },
+  loginViewInputsView:{
+    flex: 1,
+    marginLeft: 50,
+    marginRight: 50,
+  },
+  ButtonsSection:{
+    flex: 1,
+    alignItems: 'center',
+  },
+  loginButtonView:{
+    backgroundColor: 'ff4040',
+    marginBottom: 10,
+  },
+  loginButtonText:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  loginButton:{
+    backgroundColor: 'ff4040',
+    height:40,
+    width: 80,
+  },
+  smsButtonView:{
+    backgroundColor: '#ffa500',
+  },
+  smsButton:{
+    backgroundColor: '#ffa500',
+    height: 40,
+    width: 80,
+  },
+  smsButtonText:{
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
   controlPanelHeader:{
     flex: 1,
