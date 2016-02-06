@@ -10,7 +10,8 @@ module.exports = StyleSheet.create({
   loginViewContainer:{
     flex : 1,
     alignItems: 'stretch',
-    backgroundColor: '#e3e3e3',
+    backgroundColor: '4099FF',
+
   },
   loginViewHeader:{
     flex : 1,
@@ -18,7 +19,43 @@ module.exports = StyleSheet.create({
     alignItems: 'center',
   },
   loginViewFooter:{
-    flex : 1,
+    flex : 2,
+  },
+  loginViewInputsView:{
+    flex: 1,
+    marginLeft: 50,
+    marginRight: 50,
+  },
+  ButtonsSection:{
+    flex: 1,
+    alignItems: 'center',
+  },
+  loginButtonView:{
+    backgroundColor: 'ff4040',
+    marginBottom: 10,
+  },
+  loginButtonText:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  loginButton:{
+    backgroundColor: 'ff4040',
+    height:40,
+    width: 80,
+  },
+  smsButtonView:{
+    backgroundColor: '#ffa500',
+  },
+  smsButton:{
+    backgroundColor: '#ffa500',
+    height: 40,
+    width: 80,
+  },
+  smsButtonText:{
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
   controlPanelHeader:{
     flex: 1,
@@ -33,28 +70,40 @@ module.exports = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   selfServiceWeekDays:{
-    height: 100,
-    borderColor: 'gray',
+    height: 50,
+    borderColor: '#FFCF75',
     borderWidth: 1,
-    backgroundColor: '#00bfff',
-    alignItems: 'center',
+    borderTopRightRadius: 10,
+    backgroundColor: '#4099FF',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
   },
   selfServiceWeekDayName:{
     fontSize:18,
     fontWeight: 'bold',
     color: 'white',
   },
+  backButton:{
+
+    fontWeight: 'bold',
+    alignSelf: 'flex-end',
+    alignItems: 'flex-end',
+    fontSize: 16,
+  },
   selfServiceHeaderTitle:{
+    flex:1,
     textAlign: 'center',
-    fontSize:16,
+    fontSize:22,
     color: 'white',
+    fontWeight: 'bold',
   },
   selfServiceHeader:{
     flex : 1,
-    backgroundColor: '#b4b4b4',
+    backgroundColor: 'FF6600',
+    justifyContent: 'center',
   },
   selfServiceFooter:{
-    flex: 5,
+    flex: 11,
     backgroundColor: '#333333',
   },
   scrollView: {
@@ -157,5 +206,27 @@ module.exports = StyleSheet.create({
     marginRight:20,
     marginLeft:20,
     alignSelf: 'center',
+  },
+
+  wrapper: {
+    paddingTop: 50,
+    flex: 1
+  },
+
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  modalView: {
+    alignItems: 'stretch',
+    height: 300,
+    width: 300,
+    backgroundColor: '#FFFAF0',
+  },
+  sendButtonView: {
+    backgroundColor: 'red',
+    alignSelf: 'flex-end',
+
   },
 });
