@@ -7,8 +7,8 @@ var url = "https://sess.shirazu.ac.ir/sess/Start.aspx";
 var sessURL = "https://sess.shirazu.ac.ir/sess/205038594699";
 var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Gate/RemoteLogin.aspx?Token=0010000264234XAuFQh6XaOdcrncataWdO80O&Target=SfxChipWeek&Ret=http://sess.shirazu.ac.ir/sess/FStudent/Student.aspx";
 /*TODO: remove this part*/
-var username = "s9332045";
-var password = "mohammad95";
+var username = "";
+var password = "";
 var doc = "";
 var _VIEWSTATE = "";
 var _EVENTVALIDATION = "";
