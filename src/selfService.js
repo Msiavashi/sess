@@ -16,8 +16,11 @@ var selfServices = ['مهندسی نفت و گاز', 'مرکزی', 'ارم', 'خ
 
 var setSelfPage = function(pageSource)
 {
-  let parser = new DOMParser();
-  selfPage = parser.parseFromString(pageSource, "text/xml");
+  //TODO: fix warning of this function
+  // let parser = new DOMParser();
+  // selfPage = parser.parseFromString(pageSource, "text/xml");
+  /*TODO: delete this line below */
+  selfPage = pageSource;
 }
 
 var ReserveMealView = React.createClass({
@@ -31,7 +34,6 @@ var ReserveMealView = React.createClass({
         <ScrollView style = {styles.selfServiceFooter}
         automaticallyAdjustContentInsets={false}>
           {this.showList()}
-
         </ScrollView>
       </View>
     )
@@ -43,6 +45,24 @@ var ReserveMealView = React.createClass({
   },
 });
 
+ReserveMealView.openURL = function(url, indexPage){
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = (e) => {
+    if ( request.readyState === 4 ){
+      return;
+    }
+    if (request.status === 200) {
+      setSelfPage(request.responseText);
+      indexPage.changeView();
+    }
+    else {
+      console.log('error' + ' ' + request.status);
+    }
+  };
+  request.open('GET', url, true);
+  request.send();
+}
+
 /*produce a single button for a single self service provided in the selfServices array*/
 var ViewNames = React.createClass({
   _handlePress(){
@@ -52,7 +72,6 @@ var ViewNames = React.createClass({
     return(
     <Button onPress={this._handlePress}>
       <View style = {styles.selfServiceWeekDays}>
-
           <Text style = {styles.selfServiceWeekDayName}>
             {this.props.name}
           </Text>
@@ -62,6 +81,4 @@ var ViewNames = React.createClass({
   },
 });
 
-
 exports.ReserveMealView = ReserveMealView;
-exports.setSelfPage = setSelfPage;
