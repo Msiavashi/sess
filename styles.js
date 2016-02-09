@@ -16,7 +16,11 @@ module.exports = StyleSheet.create({
   loginViewHeader:{
     flex : 1,
     justifyContent: 'center',
+    alignItems: 'stretch',
+  },
+  logoView:{
     alignItems: 'center',
+    justifyContent: 'center',
   },
   loginViewFooter:{
     flex : 2,

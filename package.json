@@ -7,12 +7,16 @@
   },
   "dependencies": {
     "react-native": "^0.17.0",
+    "react-native-action-button": "^1.1.2",
     "react-native-button": "^1.3.1",
+    "react-native-flip-card": "^2.0.0",
+    "react-native-gifted-spinner": "0.0.3",
     "react-native-modalbox": "^1.2.8",
     "react-native-responsive-image": "^1.1.1",
     "react-native-sms-android": "^0.2.1",
     "react-native-store": "^0.4.1",
     "react-native-vector-icons": "^1.1.1",
     "xmldom": "^0.1.21",
+    "zombie": "^4.2.1"
   }
 }

@@ -54,16 +54,28 @@ var SMSPanelView = React.createClass({
         {this.showList()}
       </ScrollView>
       <Modal style={[styles.modal, styles.modalView]} position={"center"} ref={"modalView"}>
-              <View style = {{flex: 5}}>
-                <Text> فراموشی </Text>
-                <Button>  </Button>
-              </View>
+              <Text> فراموشی </Text>
+              <View style = {{flex: 5, backgroundColor: 'lightblue', borderRadius: 5, borderColor: 'white'}}>
 
-              <View style = {{flex : 5, backgroundColor: 'gray'}}>
-                <Text> بدون کارت </Text>
-                <Button>  </Button>
-              </View>
+                <View style = {{flex: 1, alignItems: 'center', flexDirection: 'row', borderWidth: 1, borderColor: 'grey'}}>
+                  <Button style = {{flex: 1}}>   انتخاب  </Button>
+                  <Text style = {{flex: 1, fontSize: 18, fontWeight: 'bold'}}> غذای یک </Text>
+                </View>
 
+                <View style = {{flex: 1, alignItems: 'center', flexDirection: 'row', borderWidth: 1, borderColor: 'grey'}}>
+                  <Button style = {{flex: 1}}>   انتخاب  </Button>
+                  <Text style = {{flex: 1, fontSize: 18, fontWeight: 'bold'}}> غذای دو </Text>
+                </View>
+
+              </View>
+              <Text> سایر گزینه ها </Text>
+              <View style = {{flex: 5, backgroundColor: 'lightblue', borderRadius: 5, borderColor: 'white'}}>
+                <View style = {{flex: 1, alignItems: 'flex-start', flexDirection: 'row', borderWidth: 1, borderColor: 'grey'}}>
+                  <Button style = {{flex: 1}}>   انتخاب  </Button>
+                  <Text style = {{flex: 1, fontSize: 18, fontWeight: 'bold'}}>  بدون کارت </Text>
+                </View>
+
+              </View>
               <View style = {{ justifyContent:'center', flex:1, backgroundColor: '#CDBA96', borderWidth: 2, borderColor: '#EED8AE'}}>
                   <Button style = {{flex: 1,}}> ارسال </Button>
               </View>

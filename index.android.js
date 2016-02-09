@@ -74,25 +74,37 @@ var IndexView = React.createClass({
   getInitialState(){
     return {
       viewOne: true,
+      pageNumber: 0,
     }
   },
-  changeView(){
-    Login.login(username, password);
+
+  login(){
+    console.log("in the login fucking shit");
+    Login.login(username, password, this);
     //TODO: put a loading here/**********/
+  },
+
+  changeView(){
+    if (this.state.pageNumber === 0){
     this.setState({
       viewOne: !this.state.viewOne
     });
+    ++this.state.pageNumber;
+  }
   },
+
   changeViewToSMSPanel(){
     this.props.navigator.push({id: 'SMSPanelView'})
   },
   render(){
-    if(!this.state.viewOne) return <MainPage changeView={ () => this.changeView() } />
+    if(!this.state.viewOne) return <MainPage changeView={ () => {this.login()} } />
     return(
       <View style = {styles.loginViewContainer}>
       {/*<ActionButton/> */}
         <View style = {styles.loginViewHeader}>
-             <ResponsiveImage source={{uri: logoURL}} initWidth="150" initHeight="150"/>
+            <View style = {styles.logoView} >
+              <ResponsiveImage source={{uri: logoURL}} initWidth="150" initHeight="150"/>
+            </View>
         </View>
         <View style = {styles.loginViewFooter}>
             <View style = {styles.loginViewInputsView}>
@@ -111,9 +123,8 @@ var IndexView = React.createClass({
             />
 
             </View>
-
             <View style = {styles.ButtonsSection}>
-              <View style = {styles.loginButtonView}><Button style = {styles.loginButton} onPress={ () => this.changeView() }> <Text style = {styles.loginButtonText}> ورود</Text>  </Button></View>
+              <View style = {styles.loginButtonView}><Button style = {styles.loginButton} onPress={ () => this.login() }> <Text style = {styles.loginButtonText}> ورود</Text>  </Button></View>
               <View style = {styles.smsButtonView}><Button style = {styles.smsButton} onPress = { () => this.changeViewToSMSPanel() }> <Text style = {styles.smsButtonText}>پیامک</Text> </Button></View>
             </View>
         </View>
