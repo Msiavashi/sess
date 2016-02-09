@@ -7,8 +7,8 @@ var url = "http://sups.shirazu.ac.ir/SfxWeb/Gate/Login.aspx";
 var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Emp/MemInfo.aspx";
 var weeklyReservationURL = "http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx";
 /*TODO: remove this part*/
-var username = "";
-var password = "";
+var username = "s9332045";
+var password = "mohammad95";
 
 var Login = {
   login : function (usernamee, passworde, indexPage){
@@ -205,7 +205,6 @@ function Md5High(Key, Value) {
 function fetchSelf(indexPage){
   var req = new XMLHttpRequest();
   req.onreadystatechange = (e) => {
-
     if (req.readyState !== 4) {
       return;
     }
