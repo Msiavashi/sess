@@ -13,43 +13,30 @@ var {
 } = React;
 
 var selfServices = ['مهندسی نفت و گاز', 'مرکزی', 'ارم', 'خوابگاه شهید دستغیب', 'دانشکده هنر و معماری', 'دانشکده کشاورزی', 'بوفه ارم', 'بوفه مرکزی', 'بوفه خوابگاه مفتح', 'دانشکده دامپزشکی', 'خوابگاه دامپزشکی', 'دانشکده علوم'];
-var selfNumbers = [];
-var commands = [{jetonViaSMS: '#1#'}];    //the commands that are used in sms's should be add to here
-/*
-SmsAndroid.sms(
-  '123456789', // phone number to send sms to
-  'This is the sms text', // sms body
-  'sendDirect', // sendDirect or sendIndirect
-  (err, message) => {
-    if (err){
-      console.log("error");
-    } else {
-      console.log(message); // callback message
-    }
-  }
-);
-*/
-var SMSPanelView = React.createClass({
-  _selectFieldOnPress(){
-    this.setState({
+var selfNumbers = {selfMarkazi: '09170428700', };
+var commands = {jetonViaSMS: '#1#', };    //the commands that are used in sms's should be add to here
 
-    });
-  },
+var SMSPanelView = React.createClass({
   _backButtonPressed(){
     this.props.navigator.push({ id: "IndexView" });
   },
   getInitialState: function() { //they are used for Modal view
     return {
+
       /*modal variables*/
       isOpen: false,
       isDisabled: false,
       swipeToClose: true,
+
       /*selections variables*/
       forgottenFirstFood: 'off',
       forgottenSecondFood: 'off',
-      jetonViaSMS: 'off'
+      jetonViaSMS: 'off',
+      selectedSelfIndex: '',
+      selectedOption: '',
     };
   },
+
   /*TODO: find a shortcut for this radio-like buttons (this function is only for test & not yet effecient to use ) */
   selectionChanged(selected){
     switch (selected) {
@@ -58,6 +45,7 @@ var SMSPanelView = React.createClass({
           forgottenFirstFood: 'on',
           forgottenSecondFood: 'off',
           jetonViaSMS: 'off',
+          selectedOption: 'forgottenFirstFood',
         });
         break;
       case "forgottenSecondFood":
@@ -65,6 +53,7 @@ var SMSPanelView = React.createClass({
           forgottenFirstFood: 'off',
           forgottenSecondFood: 'on',
           jetonViaSMS: 'off',
+          selectedOption: 'forgottenSecondFood',
         });
         break;
       case "jetonViaSMS":
@@ -72,6 +61,7 @@ var SMSPanelView = React.createClass({
           forgottenFirstFood: 'off',
           forgottenSecondFood: 'off',
           jetonViaSMS: 'on',
+          selectedOption: 'jetonViaSMS',
         });
         break;
       default:
@@ -79,13 +69,42 @@ var SMSPanelView = React.createClass({
     }
   },
   sendButtonOnPress(){
-    //TODO: write the body
-    //find the number of the self
-    //find what is the selection of the user
-    //call the sendSMS fucntion to perform the rest
-  }
-  openmodalView(id){
+    var phoneNumber = selfNumbers[this.state.selectedSelfIndex];   //TODO: handle the different self numbers here (girls , boys ,etc)
+    var smsText = '';
+    /*fill the smsText*/
+    switch (this.state.selectedOption) {
+      case "jetonViaSMS":
+        smsText = commands.jetonViaSMS;
+        break;
+      case "forgottenFirstFood":
+        smsText = commands.forgottenFirstFood;
+        break;
+      case "forgottenSecondFood":
+        smsText = commands.forgottenSecondFood;
+        break;
+      default:
+        break;
+    }
+    SmsAndroid.sms(
+      phoneNumber, // phone number to send sms to
+      smsText, // sms body
+      'sendDirect', // sendDirect or sendIndirect (send method)
+      (err, message) => {
+        if (err){
+          Alert.alert("خطا");
+        } else {
+          Alert.alert(message); // callback message
+        }
+      }
+    );
+
+  },
+  openmodalView(){
     this.refs.modalView.open();
+  },
+  _selfServicePresHandler(selectedName){
+    this.setState({selectedSelfIndex: selfServices.indexOf(selectedName)});
+    this.openmodalView();
   },
   render(){
   return (
@@ -131,19 +150,15 @@ var SMSPanelView = React.createClass({
 },
   showList(){
     return (
-      selfServices.map((selfName) => <ViewNames name={selfName} navigator={this.props.navigator} open = {this.openmodalView} />)
+      selfServices.map((selfName) => <ViewNames name={selfName} navigator={this.props.navigator} open = {this._selfServicePresHandler} />)
   );
 },
 });
 
 var ViewNames = React.createClass({
-  _nameOnPress(){
-
-  },
-
   render(){
     return(
-      <Button onPress={this.props.open}>
+      <Button onPress={() => this.props.open(this.props.name)}>
         <View style = {styles.selfServiceWeekDays}>
             <Text style = {styles.selfServiceWeekDayName}>
               {this.props.name}
