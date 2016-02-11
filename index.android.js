@@ -79,9 +79,7 @@ var IndexView = React.createClass({
   },
 
   login(){
-    console.log("in the login fucking shit");
     Login.login(username, password, this);
-    //TODO: put a loading here/**********/
   },
 
   changeView(){
