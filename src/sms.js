@@ -2,7 +2,7 @@ var React = require('react-native');
 var styles = require('.././styles');
 var Button = require('react-native-button');
 var SmsAndroid = require('react-native-sms-android');
-var Modal   = require('react-native-modalbox');
+var Modal = require('react-native-modalbox');
 var {
   Text,
   View,

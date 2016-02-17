@@ -46,8 +46,23 @@ var DayOfAWeek = React.createClass({
       <ScrollView style = {styles.daysFooter}>
         {this.showDays(this.openmodalView)}
       </ScrollView>
-      <Modal style={[styles.modal, styles.modalView]} position={"center"} ref={"modalView"}>
-              <Text> hello world </Text>
+      <Modal style={[styles.modal, styles.mealModalView]} position={"center"} ref={"modalView"}>
+        <View style = {{flex: 1}}>
+          <View style = {{flex: 1, backgroundColor: 'pink', justifyContent: 'center'}}>
+            <Button>
+              {/*TODO: set te name of the food in the fields */}
+              <Text> food name 1 </Text>
+              <Text> radioButton </Text>
+            </Button>
+          </View>
+          <View style = {{flex: 1, backgroundColor: 'lightGreen', justifyContent: 'center'}}>
+            <Button style = {{flex : 1}}>
+              {/*TODO: set te name of the food in the fields */}
+              <Text> food name 2</Text>
+              <Text> radioButton </Text>
+            </Button>
+          </View>
+        </View>
       </Modal>
     </View>
   );

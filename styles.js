@@ -265,4 +265,10 @@ module.exports = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  mealModalView:{
+    alignItems: 'stretch',
+    height: 100,
+    width: 300,
+    backgroundColor: '#FFFAF0',
+  },
 });

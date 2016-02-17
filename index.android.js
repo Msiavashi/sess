@@ -4,7 +4,7 @@
  */
 var Button = require('react-native-button');
 var React = require('react-native');
-// var ResponsiveImage = require('react-native-responsive-image');
+var ResponsiveImage = require('react-native-responsive-image');
 // var GiftedSpinner = require('react-native-gifted-spinner');
 var {
   AppRegistry,
@@ -101,7 +101,7 @@ var IndexView = React.createClass({
       {/*<ActionButton/> */}
         <View style = {styles.loginViewHeader}>
             <View style = {styles.logoView} >
-              {/*<ResponsiveImage source={{uri: logoURL}} initWidth="150" initHeight="150"/>*/}
+              <ResponsiveImage source={{uri: logoURL}} initWidth="150" initHeight="150"/>
             </View>
         </View>
         <View style = {styles.loginViewFooter}>
