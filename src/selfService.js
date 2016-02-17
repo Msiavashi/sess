@@ -54,6 +54,7 @@ ReserveMealView.openURL = function(url, indexPage){
     if (request.status === 200) {
       setSelfPage(request.responseText);
       indexPage.changeView();
+      console.log(request.responseText);
     }
     else {
       console.log('error' + ' ' + request.status);

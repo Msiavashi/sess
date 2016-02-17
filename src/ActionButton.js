@@ -1,6 +1,7 @@
+/*
 import React, { Component, StyleSheet, View } from 'react-native';
 
-import ActionButton from 'react-native-action-button';
+// import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from '.././styles';
@@ -20,3 +21,4 @@ module.exports = React.createClass({
   }
 
 });
+*/
