@@ -233,4 +233,17 @@ module.exports = StyleSheet.create({
     alignSelf: 'flex-end',
 
   },
+  daysHeader:{
+    flex : 1,
+    backgroundColor: 'FF6600',
+    justifyContent: 'center',
+  },
+  daysContainer:{
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  daysFooder:{
+    flex: 11,
+    backgroundColor: '#333333',
+  },
 });

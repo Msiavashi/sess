@@ -18,18 +18,18 @@ var DayOfAWeek = React.createClass({
   },
   render(){
     return(
-    <View>
+    <View style = {styles.daysContainer}>
 
       {/*navbar*/}
-      <View>
+      <View style={styles.daysHeader}>
         <Button onPress = {this._handlePress}>
           back
         </Button>
       </View>
 
       {/*content*/}
-      <View>
-        <Text> hello world </Text>
+      <View style = {styles.daysFooder}>
+
       </View>
 
     </View>
