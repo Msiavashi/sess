@@ -27,7 +27,7 @@ var DayOfAWeek = React.createClass({
 
       {/*navbar*/}
       <View style={styles.daysHeader}>
-        <Button onPress = {this._handlePress}>
+        <Button onPress = {this._handlePress} style = {{fontSize: 20, color: 'white', alignSelf: 'flex-end', marginRight: 5}}>
           بازگشت
         </Button>
       </View>
