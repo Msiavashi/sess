@@ -240,10 +240,29 @@ module.exports = StyleSheet.create({
   },
   daysContainer:{
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#999999',
   },
-  daysFooder:{
+  daysFooter:{
     flex: 11,
-    backgroundColor: '#333333',
+  },
+  mealButton:{
+    backgroundColor: 'F5FAFA',
+    padding: 5,
+    borderWidth: 1,
+    borderColor: 'A2A9AF',
+  },
+  weekDayName:{
+     marginRight: 5,
+     color: 'white',
+     fontSize: 16,
+     fontWeight: 'bold',
+  },
+  singleDayContainer:{
+    flex: 1,
+    paddingTop: 30,
+  },
+  mealText:{
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
