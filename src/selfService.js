@@ -3,7 +3,6 @@ var styles = require('.././styles');
 var Button = require('react-native-button');
 var DOMParser = require('xmldom').DOMParser;
 var selfPage = '';
-
 var {
   Text,
   View,
@@ -16,14 +15,17 @@ var selfServices = ['مهندسی نفت و گاز', 'مرکزی', 'ارم', 'خ
 
 var setSelfPage = function(pageSource)
 {
-  //TODO: fix warning of this function
-  // let parser = new DOMParser();
-  // selfPage = parser.parseFromString(pageSource, "text/xml");
-  /*TODO: delete this line below */
   selfPage = pageSource;
 }
 
+var convertSelfSourceToXMLDom = function(pageSource)
+{
+  var parser = new DOMParser();
+  selfPage = parser.parseFromString(pageSource, "text/xml");   //converts the response Text to document
+}
+
 var ReserveMealView = React.createClass({
+
   render(){
     return (
        <View style = {styles.selfServiceContainer}
@@ -38,10 +40,19 @@ var ReserveMealView = React.createClass({
       </View>
     )
   },
+  /*the function should load the next page <ViewNames> on second response from server thats why that counter is there*/
   showList(){
-    return (
-      selfServices.map((selfName) => <ViewNames name={selfName} navigator={this.props.navigator} />)
-  );
+    ReserveMealView.countResponses = ++ReserveMealView.countResponses || 0 //if its was not defined first time;
+    if (ReserveMealView.countResponses == 1)
+    {
+        convertSelfSourceToXMLDom(selfPage);
+    }
+    if (selfPage)
+    {
+        return (
+          selfServices.map((selfName) => <ViewNames name = {selfName} navigator = {this.props.navigator} pageSource = {selfPage} />)
+      );
+    }
   },
 });
 
@@ -65,12 +76,12 @@ ReserveMealView.openURL = function(url, indexPage){
 
 /*produce a single button for a single self service provided in the selfServices array*/
 var ViewNames = React.createClass({
-  _handlePress(){
-    this.props.navigator.push({ id: "DayOfAWeek" });
+  _handlePress(selectedValue){
+    this.props.navigator.push({ id: "DayOfAWeek", selectedSelfName: selectedValue, selfPage: this.props.pageSource });
   },
   render(){
     return(
-    <Button onPress={this._handlePress}>
+    <Button onPress={() => this._handlePress(this.props.name)}>
       <View style = {styles.selfServiceWeekDays}>
           <Text style = {styles.selfServiceWeekDayName}>
             {this.props.name}

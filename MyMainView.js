@@ -41,8 +41,9 @@ var MyMainView = React.createClass({
           );
       }
       else if ( routeId === 'DayOfAWeek'){
+        
           return (
-            <DayOfAWeek navigator = {navigator}/>
+            <DayOfAWeek navigator = {navigator} selectedSelfName = {route.selectedSelfName} selfPage = {route.selfPage}/>
           );
       }
   },
