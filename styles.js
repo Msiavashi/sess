@@ -233,4 +233,42 @@ module.exports = StyleSheet.create({
     alignSelf: 'flex-end',
 
   },
+  daysHeader:{
+    flex : 1,
+    backgroundColor: 'FF6600',
+    justifyContent: 'center',
+  },
+  daysContainer:{
+    flex: 1,
+    backgroundColor: '#999999',
+  },
+  daysFooter:{
+    flex: 11,
+  },
+  mealButton:{
+    backgroundColor: 'F5FAFA',
+    padding: 5,
+    borderWidth: 1,
+    borderColor: 'A2A9AF',
+  },
+  weekDayName:{
+     marginRight: 5,
+     color: 'white',
+     fontSize: 16,
+     fontWeight: 'bold',
+  },
+  singleDayContainer:{
+    flex: 1,
+    paddingTop: 30,
+  },
+  mealText:{
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  mealModalView:{
+    alignItems: 'stretch',
+    height: 100,
+    width: 300,
+    backgroundColor: '#FFFAF0',
+  },
 });

@@ -2,7 +2,7 @@ var React = require('react-native');
 var styles = require('.././styles');
 var Button = require('react-native-button');
 var SmsAndroid = require('react-native-sms-android');
-var Modal   = require('react-native-modalbox');
+var Modal = require('react-native-modalbox');
 var {
   Text,
   View,
@@ -39,52 +39,14 @@ var SMSPanelView = React.createClass({
 
   /*TODO: find a shortcut for this radio-like buttons (this function is only for test & not yet effecient to use ) */
   selectionChanged(selected){
-    switch (selected) {
-      case "forgottenFirstFood":
-        this.setState({
-          forgottenFirstFood: 'on',
-          forgottenSecondFood: 'off',
-          jetonViaSMS: 'off',
-          selectedOption: 'forgottenFirstFood',
-        });
-        break;
-      case "forgottenSecondFood":
-        this.setState({
-          forgottenFirstFood: 'off',
-          forgottenSecondFood: 'on',
-          jetonViaSMS: 'off',
-          selectedOption: 'forgottenSecondFood',
-        });
-        break;
-      case "jetonViaSMS":
-        this.setState({
-          forgottenFirstFood: 'off',
-          forgottenSecondFood: 'off',
-          jetonViaSMS: 'on',
-          selectedOption: 'jetonViaSMS',
-        });
-        break;
-      default:
-        break;
-    }
+    var state = { forgottenFirstFood: 'off', forgottenSecondFood: 'off', jetonViaSMS: 'off' };
+    state.selectedOption = selected;
+    state[selected] = 'on';
+    this.setState(state);
   },
   sendButtonOnPress(){
     var phoneNumber = selfNumbers[this.state.selectedSelfIndex];   //TODO: handle the different self numbers here (girls , boys ,etc)
-    var smsText = '';
-    /*fill the smsText*/
-    switch (this.state.selectedOption) {
-      case "jetonViaSMS":
-        smsText = commands.jetonViaSMS;
-        break;
-      case "forgottenFirstFood":
-        smsText = commands.forgottenFirstFood;
-        break;
-      case "forgottenSecondFood":
-        smsText = commands.forgottenSecondFood;
-        break;
-      default:
-        break;
-    }
+    var smsText = commands[this.state.selectedOption];
     SmsAndroid.sms(
       phoneNumber, // phone number to send sms to
       smsText, // sms body

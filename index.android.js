@@ -5,7 +5,7 @@
 var Button = require('react-native-button');
 var React = require('react-native');
 var ResponsiveImage = require('react-native-responsive-image');
-var GiftedSpinner = require('react-native-gifted-spinner');
+// var GiftedSpinner = require('react-native-gifted-spinner');
 var {
   AppRegistry,
   Text,
