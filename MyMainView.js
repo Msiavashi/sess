@@ -13,7 +13,7 @@ var {
   TextInput,
 } = React;
 
-var drawerTypes = ['overlay', 'displace', 'static']
+var drawerTypes = ['overlay', 'displace', 'static'];
 
 var MyMainView = React.createClass({
   setParentState(args){
@@ -41,7 +41,7 @@ var MyMainView = React.createClass({
           );
       }
       else if ( routeId === 'DayOfAWeek'){
-        
+
           return (
             <DayOfAWeek navigator = {navigator} selectedSelfName = {route.selectedSelfName} selfPage = {route.selfPage}/>
           );

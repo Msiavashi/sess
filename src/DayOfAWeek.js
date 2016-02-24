@@ -10,25 +10,28 @@ var {
   Navigator,
 } = React;
 
+var listOfFoods = [];
 var weekDays = ['شنبه', 'یک شنبه', 'دو شنبه','سه شنبه', 'چهار شنبه', 'پنج شنبه', 'جمعه'];
 
 function requestFoodList(weekDayName, selfName, mealIndex, selfPage){
   /*we can change the selfName to index along the way to be more like what sess does*/
   var request = new XMLHttpRequest();
-  
+  requestFoodList.requestMealIndex = ++requestFoodList.requestMealIndex || 0;
   /*getting the edDate and edMeal (.value not working after converting so a bit of extra work happend here )*/
-  var mealElement = String(selfPage.getElementById(mealIndex));
+  var mealElement = String(selfPage.getElementById("Meal" + requestFoodList.requestMealIndex));
   var value = mealElement.substring(mealElement.search("onclick"));
   value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
   var edDate = value[0];
   var edMeal = value[1];
-
   request.onreadystatechange = (e) => {
-    if ( request.readyState === 4 ){
+    if ( request.readyState !== 4 ){
       return;
     }
-    if (request.status === 200) {
-      console.log(request.responseText);
+    if (request.status === 200 && requestFoodList.requestMealIndex < 20) {
+      console.log(requestFoodList.requestMealIndex);
+      listOfFoods[requestFoodList.requestMealIndex] = request.responseText;
+      requestFoodList("", "", 0, selfPage);
+      return;
     }
     else {
       console.log('error' + ' ' + request.status);
@@ -45,23 +48,27 @@ var DayOfAWeek = React.createClass({
       isOpen: false,
       isDisabled: false,
       swipeToClose: true,
+
+      /*foods in modal view*/
+      food1: '',
+      food2: ''
     };
   },
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
-  openmodalView(weekDay, mealIndex){
-    // Alert.alert(String(mealIndex));
-    requestFoodList(weekDay, this.props.selectedSelfName, mealIndex, this.props.selfPage);
+  openmodalView(weekDay, mealIndexInWeek, mealIndexInDay){
+    var obj = {food1: listOfFoods[mealIndexInWeek], food2: listOfFoods[mealIndexInWeek]}
+    this.setState(obj);
     this.refs.modalView.open();
   },
   _handlePress(){
     this.props.navigator.pop();
   },
   showDays(modal){
-    // Alert.alert(String(this.props.selectedSelfName));
     var counter = -3; //TODO: replace it with a better approach to be started from 0
     return weekDays.map((dayName) => <Day weekDay = {dayName} modalView = {modal} mealIndex = {counter += 3}  />)
   },
   render(){
+    // getListOfFoodsForCurrentWeek(this.props.selfPage);
     return(
     <View style = {styles.daysContainer}>
       {/*navbar*/}
@@ -80,14 +87,14 @@ var DayOfAWeek = React.createClass({
           <View style = {{flex: 1, backgroundColor: 'pink', justifyContent: 'center'}}>
             <Button>
               {/*TODO: set te name of the food in the fields */}
-              <Text> food name 1 </Text>
+              <Text> {this.state.food1} </Text>
               <Text> radioButton </Text>
             </Button>
           </View>
           <View style = {{flex: 1, backgroundColor: 'lightGreen', justifyContent: 'center'}}>
             <Button style = {{flex : 1}}>
               {/*TODO: set te name of the food in the fields */}
-              <Text> food name 2</Text>
+              <Text> {this.state.food2} </Text>
               <Text> radioButton </Text>
             </Button>
           </View>
@@ -98,6 +105,10 @@ var DayOfAWeek = React.createClass({
   }
 });
 
+DayOfAWeek.getListOfFoodsForCurrentWeek = function(selfPage){
+  var totalNumberOfMealsPerWeek = 20;
+  requestFoodList("", "", 0,selfPage);
+}
 
 /*renders one day of a week*/
 var Day = React.createClass({
@@ -109,28 +120,26 @@ var Day = React.createClass({
         <View>
           <View style = {styles.mealButton}>
             {/*fires up when a meal is selected*/}
-            <Button onPress = {() => this.props.modalView(this.props.weekDay,"Meal" + this.props.mealIndex)}>
+            <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex, 0)}>
                 <Text style = {styles.mealText}> صبحانه </Text>
                 {/*TODO: add a on/off button here for all the buttons below */}
             </Button>
           </View>
           <View style = {styles.mealButton}>
-            <Button onPress = {() => this.props.modalView(this.props.weekDay,"Meal" + (this.props.mealIndex + 1))}>
+            <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 1, 1)}>
                 <Text style = {styles.mealText}> ناهار </Text>
             </Button>
           </View>
           <View style = {styles.mealButton}>
-            <Button onPress = {() => this.props.modalView(this.props.weekDay,"Meal" + (this.props.mealIndex + 2))}>
+            <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 2, 2)}>
                 <Text style = {styles.mealText}> شام </Text>
             </Button>
           </View>
         </View>
       </View>
-
     );
   },
-
-
 });
 
 module.exports = DayOfAWeek;
+// exports.getListOfFoodsForCurrentWeek = getListOfFoodsForCurrentWeek;
