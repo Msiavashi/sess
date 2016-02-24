@@ -9,11 +9,11 @@ var {
   Alert,
   Navigator,
 } = React;
-
+var currentPageSource = '';
 var listOfFoods = [];
 var weekDays = ['شنبه', 'یک شنبه', 'دو شنبه','سه شنبه', 'چهار شنبه', 'پنج شنبه', 'جمعه'];
 
-function requestFoodList(weekDayName, selfName, mealIndex, selfPage){
+function requestFoodList(mealIndex, selfPage){
   /*we can change the selfName to index along the way to be more like what sess does*/
   var request = new XMLHttpRequest();
   requestFoodList.requestMealIndex = ++requestFoodList.requestMealIndex || 0;
@@ -29,7 +29,7 @@ function requestFoodList(weekDayName, selfName, mealIndex, selfPage){
     }
     if (request.status === 200 && requestFoodList.requestMealIndex < 20) {
       listOfFoods[requestFoodList.requestMealIndex] = request.responseText;
-      requestFoodList("", "", 0, selfPage);
+      requestFoodList(0, selfPage);
       return;
     }
     else {
@@ -38,6 +38,13 @@ function requestFoodList(weekDayName, selfName, mealIndex, selfPage){
   };
   request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
   request.send();
+}
+
+function submitReservation(selfCode, foodCode, edDate, edMeal){
+  console.log(selfCode);
+  console.log(foodCode);
+  console.log(edDate);
+  console.log(edMeal);
 }
 
 var DayOfAWeek = React.createClass({
@@ -53,6 +60,8 @@ var DayOfAWeek = React.createClass({
       food2: '',
       food1Code: '',
       food2Code: '',
+      selectedFoodCode: '',
+      selectedMealIndexPerDay: '',
     };
   },
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
@@ -77,12 +86,20 @@ var DayOfAWeek = React.createClass({
       food2Info = '';
       code1 = foods[0];   //for breakfasts the number should be for the food 1
     }
-
-    var obj = {food1: food1Info, food2: food2Info, food2Code: code2, food1Code: code1};
+    var obj = {food1: food1Info, food2: food2Info, food2Code: code2, food1Code: code1, selectedMealIndexInDay: mealIndexInDay };
     this.setState(obj);
-    console.log(this.state.food2Code);
-    console.log(this.state.food1Code);
     this.refs.modalView.open();
+
+  },
+  submitButton(){
+    //finding the edDate
+    var mealElement = String(currentPageSource.getElementById("Meal" + this.state.selectedMealIndexInDay));
+    var value = mealElement.substring(mealElement.search("onclick"));
+    value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
+    var edDate = value[0];
+    var edMeal = value[1];
+    //sending the request
+    submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal);
   },
   _handlePress(){
     this.props.navigator.pop();
@@ -91,6 +108,7 @@ var DayOfAWeek = React.createClass({
     var counter = -3; //TODO: replace it with a better approach to be started from 0
     return weekDays.map((dayName) => <Day weekDay = {dayName} modalView = {modal} mealIndex = {counter += 3}  />)
   },
+
   render(){
     // getListOfFoodsForCurrentWeek(this.props.selfPage);
     return(
@@ -109,15 +127,20 @@ var DayOfAWeek = React.createClass({
       <Modal style={[styles.modal, styles.mealModalView]} position={"center"} ref={"modalView"}>
         <View style = {{flex: 1}}>
           <View style = {{flex: 1, backgroundColor: 'pink', justifyContent: 'center'}}>
-            <Button style = {{flex : 1}}>
+            <Button onPress = {() => this.setState({selectedFoodCode: this.state.food1Code})}>
               {/*TODO: set te name of the food in the fields */}
               <Text> {this.state.food1} </Text>
             </Button>
           </View>
           <View style = {{flex: 1, backgroundColor: 'lightGreen', justifyContent: 'center'}}>
-            <Button style = {{flex : 1}}>
+            <Button onPress = {() => this.setState({selectedFoodCode: this.state.food2Code})}>
               {/*TODO: set te name of the food in the fields */}
               <Text> {this.state.food2} </Text>
+            </Button>
+          </View>
+          <View>
+            <Button onPress = {this.submitButton}>
+                تایید
             </Button>
           </View>
         </View>
@@ -129,7 +152,8 @@ var DayOfAWeek = React.createClass({
 
 DayOfAWeek.getListOfFoodsForCurrentWeek = function(selfPage){
   var totalNumberOfMealsPerWeek = 20;
-  requestFoodList("", "", 0,selfPage);
+  currentPageSource = selfPage;
+  requestFoodList(totalNumberOfMealsPerWeek,selfPage);
 }
 
 /*renders one day of a week*/

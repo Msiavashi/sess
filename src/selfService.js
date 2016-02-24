@@ -13,6 +13,7 @@ var {
 } = React;
 
 var selfServices = ['مهندسی نفت و گاز', 'مرکزی', 'ارم', 'خوابگاه شهید دستغیب', 'دانشکده هنر و معماری', 'دانشکده کشاورزی', 'بوفه ارم', 'بوفه مرکزی', 'بوفه خوابگاه مفتح', 'دانشکده دامپزشکی', 'خوابگاه دامپزشکی', 'دانشکده علوم'];
+var selfServicesCodes = [7, 8, 3, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]; //the index of each Code should be correspond to the selft Name Index in the selfServices array TODO: add the others COdes
 
 var setSelfPage = function(pageSource){
   selfPage = pageSource;
@@ -81,7 +82,7 @@ ReserveMealView.openURL = function(url, indexPage){
 var ViewNames = React.createClass({
   _handlePress(selectedValue){
     DayOfAWeek.getListOfFoodsForCurrentWeek(this.props.pageSource);
-    this.props.navigator.push({ id: "DayOfAWeek", selectedSelfName: selectedValue, selfPage: this.props.pageSource });
+    this.props.navigator.push({ id: "DayOfAWeek", selectedSelfName: selectedValue, selectedSelfCode: selfServicesCodes[selfServices.indexOf(selectedValue)], selfPage: this.props.pageSource });
   },
   render(){
     return(

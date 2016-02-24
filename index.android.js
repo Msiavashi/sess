@@ -16,7 +16,7 @@ var {
   TouchableHighlight,
 } = React;
 var SMSPanelView = require('./src/sms');
-var logoURL = 'http://www.axgig.com/images/64406443103982150927.png';
+var logoURL = 'http://shirazu.ac.ir/sites/default/files/logo-bluehq.png';
 var username = null;
 var password = null;
 
@@ -101,7 +101,7 @@ var IndexView = React.createClass({
       {/*<ActionButton/> */}
         <View style = {styles.loginViewHeader}>
             <View style = {styles.logoView} >
-              <ResponsiveImage source={{uri: logoURL}} initWidth="360" initHeight="240"/>
+              <ResponsiveImage source={{uri: logoURL}} initWidth="150" initHeight="150"/>
             </View>
         </View>
         <View style = {styles.loginViewFooter}>
