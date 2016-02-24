@@ -28,7 +28,6 @@ function requestFoodList(weekDayName, selfName, mealIndex, selfPage){
       return;
     }
     if (request.status === 200 && requestFoodList.requestMealIndex < 20) {
-      console.log(requestFoodList.requestMealIndex);
       listOfFoods[requestFoodList.requestMealIndex] = request.responseText;
       requestFoodList("", "", 0, selfPage);
       return;
@@ -49,15 +48,40 @@ var DayOfAWeek = React.createClass({
       isDisabled: false,
       swipeToClose: true,
 
-      /*foods in modal view*/
+      /*foods to be shown in modal view*/
       food1: '',
-      food2: ''
+      food2: '',
+      food1Code: '',
+      food2Code: '',
     };
   },
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
   openmodalView(weekDay, mealIndexInWeek, mealIndexInDay){
-    var obj = {food1: listOfFoods[mealIndexInWeek], food2: listOfFoods[mealIndexInWeek]}
+    var foods = listOfFoods[mealIndexInWeek].split('^');
+    var food1Info = '';
+    var food2Info =  '';
+    var code1 = '';
+    var code2 = '';
+    try{
+      food1Info = foods[1].split('!')[0].split("~")[0];
+      code1 = foods[1].split("~")[1];
+    }
+    catch(err){   //this should never happen xD
+      food1Info = '';
+    }
+    try{
+      food2Info = foods[2].split("!")[0];
+      code2 = foods[0];
+    }
+    catch(err){   // but this might happen sometimes xD
+      food2Info = '';
+      code1 = foods[0];   //for breakfasts the number should be for the food 1
+    }
+
+    var obj = {food1: food1Info, food2: food2Info, food2Code: code2, food1Code: code1};
     this.setState(obj);
+    console.log(this.state.food2Code);
+    console.log(this.state.food1Code);
     this.refs.modalView.open();
   },
   _handlePress(){
@@ -85,17 +109,15 @@ var DayOfAWeek = React.createClass({
       <Modal style={[styles.modal, styles.mealModalView]} position={"center"} ref={"modalView"}>
         <View style = {{flex: 1}}>
           <View style = {{flex: 1, backgroundColor: 'pink', justifyContent: 'center'}}>
-            <Button>
+            <Button style = {{flex : 1}}>
               {/*TODO: set te name of the food in the fields */}
               <Text> {this.state.food1} </Text>
-              <Text> radioButton </Text>
             </Button>
           </View>
           <View style = {{flex: 1, backgroundColor: 'lightGreen', justifyContent: 'center'}}>
             <Button style = {{flex : 1}}>
               {/*TODO: set te name of the food in the fields */}
               <Text> {this.state.food2} </Text>
-              <Text> radioButton </Text>
             </Button>
           </View>
         </View>
