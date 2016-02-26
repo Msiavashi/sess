@@ -267,7 +267,7 @@ module.exports = StyleSheet.create({
   },
   mealModalView:{
     alignItems: 'stretch',
-    height: 100,
+    height: 300,
     width: 300,
     backgroundColor: '#FFFAF0',
   },
