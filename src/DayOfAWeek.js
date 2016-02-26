@@ -41,11 +41,6 @@ function requestFoodList(mealIndex, selfPage){
 }
 
 function submitReservation(selfCode, foodCode, edDate, edMeal){
-  console.log(selfCode);
-  console.log(foodCode);
-  console.log(edDate);
-  console.log(edMeal);
-  /**********************************/
   var request = new XMLHttpRequest();
   request.onreadystatechange = (e) => {
     if ( request.readyState !== 4 ){
@@ -59,6 +54,23 @@ function submitReservation(selfCode, foodCode, edDate, edMeal){
     }
   };
   request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=BuyChipsWeek&Restaurant=" + selfCode + "&ProgDate=" + edDate + "&Meal=" + edMeal + "&Food=" + foodCode + "&Dessert=&Rand=0.47429", true);
+  request.send();
+}
+
+function deleteMeal(date, code, mealIndex){
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = (e) => {
+    if ( request.readyState !== 4 ){
+      return;
+    }
+    if (request.status === 200) {
+      console.log(request.responseText);
+    }
+    else {
+      console.log('error' + ' ' + request.status);
+    }
+  };
+  request.open('GET', 'http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=DeleteMeal&IdentChip=1%3A' + code + '%3A' + date + '%3A' + mealIndex +'%3A1&Rand=0.7137566171586514', true);
   request.send();
 }
 
@@ -81,40 +93,59 @@ var DayOfAWeek = React.createClass({
   },
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
   openmodalView(weekDay, mealIndexInWeek, mealIndexInDay){
-    var foods = listOfFoods[mealIndexInWeek].split('^');
-    var food1Info = '';
-    var food2Info =  '';
-    var code1 = '';
-    var code2 = '';
-    try{
-      food1Info = foods[1].split('!')[0].split("~")[0];
-      code1 = foods[0];
+    var foods = listOfFoods[mealIndexInWeek];
+    if (foods.indexOf("ErrorMessage") > -1){    //it contains an error mean that the Meal is already reserved
+      var mealElement = String(currentPageSource.getElementById("Meal" + mealIndexInWeek));
+      var value = mealElement.substring(mealElement.search("value"));
+      value = value.substring(value.search("\"") + 1, value.lastIndexOf("\"")) + '\t' + "(حذف)";    //TODO: remove this extra String and replace it by more beautiful solution
+      this.setState({food1: value, food2: '', selectedMealIndexInWeek: mealIndexInWeek});
     }
-    catch(err){   //this should never happen xD
-      food1Info = '';
-    }
-    try{
-      food2Info = foods[2].split("!")[0];
-      code2 = foods[1].split("~")[1];
-    }
-    catch(err){   // but this might happen sometimes xD
-      food2Info = '';
-      code1 = foods[0];   //for breakfasts the number should be for the food 1
-    }
-    var obj = {food1: food1Info, food2: food2Info, food2Code: code2, food1Code: code1, selectedMealIndexInWeek: mealIndexInWeek };
-    this.setState(obj);
-    this.refs.modalView.open();
+    else{   //the Meal is not Reserved Yet
+      foods = listOfFoods[mealIndexInWeek].split('^');
+      var food1Info = '';
+      var food2Info =  '';
+      var code1 = '';
+      var code2 = '';
+      try{
+        food1Info = foods[1].split('!')[0].split("~")[0];
+        code1 = foods[0];
+      }
+      catch(err){   //this should never happen xD
+        food1Info = '';
+      }
+      try{
+        food2Info = foods[2].split("!")[0];
+        code2 = foods[1].split("~")[1];
+      }
+      catch(err){   // but this might happen sometimes xD
+        food2Info = '';
+        code1 = foods[0];   //for breakfasts the number should be for the food 1
+      }
 
+      var obj = {food1: food1Info, food2: food2Info, food2Code: code2, food1Code: code1, selectedMealIndexInWeek: mealIndexInWeek };
+      this.setState(obj);
+    }
+    this.refs.modalView.open();
   },
   submitButton(){
     //finding the edDate
     var mealElement = String(currentPageSource.getElementById("Meal" + this.state.selectedMealIndexInWeek));
     var value = mealElement.substring(mealElement.search("onclick"));
-    value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
-    var edDate = value[0];
-    var edMeal = value[1];
-    //sending the request
-    submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal);
+    if (value.indexOf("DeleteMeal") > -1){    //if the food is already reserved
+      value = value.substring(value.search('\'') + 1, value.lastIndexOf('\''))
+      value = value.split(":");
+      var date = value[2];
+      var code = value[1];
+      var mealIndex = value[3];
+      deleteMeal(date, code, mealIndex);
+    }
+    else{     //if the food is not reserved
+      value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
+      var edDate = value[0];
+      var edMeal = value[1];
+      //sending the request
+      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal);
+    }
   },
   _handlePress(){
     this.props.navigator.pop();
