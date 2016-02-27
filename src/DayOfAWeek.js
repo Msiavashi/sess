@@ -9,14 +9,14 @@ var {
   Alert,
   Navigator,
 } = React;
-var currentPageSource = '';
+var selfService = require('./selfService');
 var listOfFoods = [];
 var weekDays = ['شنبه', 'یک شنبه', 'دو شنبه','سه شنبه', 'چهار شنبه', 'پنج شنبه', 'جمعه'];
 
 function requestFoodList(mealIndex, selfPage){
   /*we can change the selfName to index along the way to be more like what sess does*/
   var request = new XMLHttpRequest();
-  requestFoodList.requestMealIndex = ++requestFoodList.requestMealIndex || 0;
+  requestFoodList.requestMealIndex = mealIndex;
   /*getting the edDate and edMeal (.value not working after converting so a bit of extra work happend here )*/
   var mealElement = String(selfPage.getElementById("Meal" + requestFoodList.requestMealIndex));
   var value = mealElement.substring(mealElement.search("onclick"));
@@ -29,7 +29,7 @@ function requestFoodList(mealIndex, selfPage){
     }
     if (request.status === 200 && requestFoodList.requestMealIndex < 20) {
       listOfFoods[requestFoodList.requestMealIndex] = request.responseText;
-      requestFoodList(0, selfPage);
+      requestFoodList(++mealIndex, selfPage);
       return;
     }
     else {
@@ -40,14 +40,35 @@ function requestFoodList(mealIndex, selfPage){
   request.send();
 }
 
-function submitReservation(selfCode, foodCode, edDate, edMeal){
+function updateFoodList(edMeal, mealIndexInWeek, edDate){
   var request = new XMLHttpRequest();
+  updateFoodList.mealIndexInWeek = mealIndexInWeek;
   request.onreadystatechange = (e) => {
     if ( request.readyState !== 4 ){
       return;
     }
     if (request.status === 200) {
-      //TODO: do something here
+      listOfFoods[updateFoodList.mealIndexInWeek] = request.responseText;
+      selfService.ReserveMealView.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null);
+    }
+  };
+  console.log("http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984");
+  request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+  request.send();
+
+}
+
+function submitReservation(selfCode, foodCode, edDate, edMeal, mealIndexInWeek){
+  var request = new XMLHttpRequest();
+  submitReservation.mealIndexInWeek = mealIndexInWeek;
+  submitReservation.edDate = edDate;
+  submitReservation.edMeal = edMeal;
+  request.onreadystatechange = (e) => {
+    if ( request.readyState !== 4 ){
+      return;
+    }
+    if (request.status === 200) {
+      updateFoodList(submitReservation.edMeal, submitReservation.mealIndexInWeek, submitReservation.edDate);
     }
     else {
       console.log('error' + ' ' + request.status);
@@ -57,20 +78,23 @@ function submitReservation(selfCode, foodCode, edDate, edMeal){
   request.send();
 }
 
-function deleteMeal(date, code, mealIndex){
+function deleteMeal(date, code, mealIndexInDay, mealIndexInWeek){
   var request = new XMLHttpRequest();
+  deleteMeal.mealIndexInWeek = mealIndexInWeek;
+  deleteMeal.mealIndexInDay = mealIndexInDay;
+  deleteMeal.date = date;
   request.onreadystatechange = (e) => {
     if ( request.readyState !== 4 ){
       return;
     }
     if (request.status === 200) {
-      console.log(request.responseText);
+        updateFoodList(deleteMeal.mealIndexInDay, deleteMeal.mealIndexInWeek, deleteMeal.date);
     }
     else {
       console.log('error' + ' ' + request.status);
     }
   };
-  request.open('GET', 'http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=DeleteMeal&IdentChip=1%3A' + code + '%3A' + date + '%3A' + mealIndex +'%3A1&Rand=0.7137566171586514', true);
+  request.open('GET', 'http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=DeleteMeal&IdentChip=1%3A' + code + '%3A' + date + '%3A' + mealIndexInDay +'%3A1&Rand=0.7137566171586514', true);
   request.send();
 }
 
@@ -94,8 +118,9 @@ var DayOfAWeek = React.createClass({
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
   openmodalView(weekDay, mealIndexInWeek, mealIndexInDay){
     var foods = listOfFoods[mealIndexInWeek];
+    console.log(foods);
     if (foods.indexOf("ErrorMessage") > -1){    //it contains an error mean that the Meal is already reserved
-      var mealElement = String(currentPageSource.getElementById("Meal" + mealIndexInWeek));
+      var mealElement = String(DayOfAWeek.currentPageSource.getElementById("Meal" + mealIndexInWeek));
       var value = mealElement.substring(mealElement.search("value"));
       value = value.substring(value.search("\"") + 1, value.lastIndexOf("\"")) + '\t' + "(حذف)";    //TODO: remove this extra String and replace it by more beautiful solution
       this.setState({food1: value, food2: '', selectedMealIndexInWeek: mealIndexInWeek});
@@ -129,7 +154,7 @@ var DayOfAWeek = React.createClass({
   },
   submitButton(){
     //finding the edDate
-    var mealElement = String(currentPageSource.getElementById("Meal" + this.state.selectedMealIndexInWeek));
+    var mealElement = String(DayOfAWeek.currentPageSource.getElementById("Meal" + this.state.selectedMealIndexInWeek));
     var value = mealElement.substring(mealElement.search("onclick"));
     if (value.indexOf("DeleteMeal") > -1){    //if the food is already reserved
       value = value.substring(value.search('\'') + 1, value.lastIndexOf('\''))
@@ -137,14 +162,14 @@ var DayOfAWeek = React.createClass({
       var date = value[2];
       var code = value[1];
       var mealIndex = value[3];
-      deleteMeal(date, code, mealIndex);
+      deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek);
     }
     else{     //if the food is not reserved
       value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
       var edDate = value[0];
       var edMeal = value[1];
       //sending the request
-      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal);
+      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek);
     }
   },
   _handlePress(){
@@ -197,11 +222,11 @@ var DayOfAWeek = React.createClass({
 });
 
 DayOfAWeek.getListOfFoodsForCurrentWeek = function(selfPage){
-  var totalNumberOfMealsPerWeek = 20;
-  currentPageSource = selfPage;
+  var totalNumberOfMealsPerWeek = 0;
+  // DayOfAWeek.currentPageSource = selfPage;
   requestFoodList(totalNumberOfMealsPerWeek,selfPage);
 }
-
+DayOfAWeek.currentPageSource = '';
 /*renders one day of a week*/
 var Day = React.createClass({
   render(){

@@ -33,7 +33,6 @@ var convertSelfSourceToXMLDom = function(pageSource){
 }
 
 var ReserveMealView = React.createClass({
-
   render(){
     return (
        <View style = {styles.selfServiceContainer}
@@ -51,6 +50,7 @@ var ReserveMealView = React.createClass({
   /*the function should load the next page <ViewNames> on second response from server thats why that counter is there*/
   showList(){
         convertSelfSourceToXMLDom(selfPage);
+        DayOfAWeek.currentPageSource = selfPage;
         return (
           selfServices.map((selfName) => <ViewNames name = {selfName.name} navigator = {this.props.navigator} pageSource = {selfPage} />)
       );
@@ -59,20 +59,25 @@ var ReserveMealView = React.createClass({
 
 ReserveMealView.openURL = function(url, indexPage){
   var request = new XMLHttpRequest();
-  // ReserveMealView.countResponses = ++ReserveMealView.countResponses || 0; //if its was not defined first time;
   request.onreadystatechange = (e) => {
     if ( request.readyState !== 4 ){
       return;
     }
     if (request.status === 200 && request.responseText) {
-      // console.log("got the response");
-      // console.log(request.responseText);
       setSelfPage(request.responseText);
-      indexPage.changeView();
+      if (indexPage !== null){
+        indexPage.changeView();
+      }
+      //update the content of app
+      else{
+        var parser = new DOMParser();
+        selfPage = parser.parseFromString(selfPage, "text/xml");   //converts the response Text to document
+        DayOfAWeek.currentPageSource = selfPage;
+
+      }
     }
     else {
       console.log('error' + ' ' + request.status);
-      // ++ReserveMealView.countResponses;
     }
   };
   request.open('GET', url, true);
