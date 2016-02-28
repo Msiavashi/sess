@@ -47,7 +47,7 @@ function submitReservation(selfCode, foodCode, edDate, edMeal){
       return;
     }
     if (request.status === 200) {
-      console.log(request.responseText);
+      //TODO: do something here
     }
     else {
       console.log('error' + ' ' + request.status);
