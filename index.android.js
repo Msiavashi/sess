@@ -15,6 +15,7 @@ var {
   Navigator,
   TouchableHighlight,
 } = React;
+import Spinner from 'react-native-loading-spinner-overlay';
 var SMSPanelView = require('./src/sms');
 var logoURL = 'http://shirazu.ac.ir/sites/default/files/logo-bluehq.png';
 var username = null;
@@ -73,12 +74,14 @@ var sess = React.createClass({
 var IndexView = React.createClass({
   getInitialState(){
     return {
+      visible: false,
       viewOne: true,
       pageNumber: 0,
     }
   },
 
   login(){
+    this.setState({visible: true});
     Login.login(username, password, this);
   },
 
@@ -126,6 +129,7 @@ var IndexView = React.createClass({
               <View style = {styles.smsButtonView}><Button style = {styles.smsButton} onPress = { () => this.changeViewToSMSPanel() }> <Text style = {styles.smsButtonText}>پیامک</Text> </Button></View>
             </View>
         </View>
+        <Spinner visible={this.state.visible} />
       </View>
     )
   },
