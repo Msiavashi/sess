@@ -13,7 +13,7 @@ var {
 } = React;
 var selfService = require('./selfService');
 var listOfFoods = [];
-var weekDays = ['شنبه', 'یک شنبه', 'دو شنبه','سه شنبه', 'چهار شنبه', 'پنج شنبه', 'جمعه'];
+var weekDays = ['شنبـه', 'یک شنبـه', 'دو شنبـه','سه شنبـه', 'چهار شنبـه', 'پنج شنبـه', 'جمعه'];
 
 
 
@@ -110,7 +110,7 @@ var DayOfAWeek = React.createClass({
     console.log(foods);
     if (foods.indexOf("ErrorMessage") > -1){    //it contains an error mean that the Meal is already reserved
       var mealElement = String(DayOfAWeek.currentPageSource.getElementById("Meal" + mealIndexInWeek));
-      var value = mealElement.substring(mealElement.search("value"));
+      var value = mealElement.substring(mealElement.search("title"));   //TODO: fix this (if any element added after title)
       value = value.substring(value.search("\"") + 1, value.lastIndexOf("\"")) + '\t' + "(حذف)";    //TODO: remove this extra String and replace it by more beautiful solution
       this.setState({food1: value, food2: '', selectedMealIndexInWeek: mealIndexInWeek});
     }
@@ -176,44 +176,62 @@ var DayOfAWeek = React.createClass({
     selfService.ReserveMealView.changeWeek("previous", loading);
   },
   render(){
+    /*****this.nextweek, this._handleOnPres, this.previousWeek*****/
     // getListOfFoodsForCurrentWeek(this.props.selfPage);
     return(
     <View style = {styles.daysContainer}>
       {/*navbar*/}
-      <View style={styles.daysHeader}>
-        <Button onPress = {this._handlePress} style = {{fontSize: 20, color: 'white', alignSelf: 'flex-end', marginRight: 5}}>
-          بازگشت
-        </Button>
-        <Button onPress = {this.nextWeek} style = {{fontSize: 20, color: 'white', alignSelf: 'flex-end', marginRight: 5}}>
-          هفته بعد
-        </Button>
-        <Button onPress = {this.previousWeek} style = {{fontSize: 20, color: 'white', alignSelf: 'flex-end', marginRight: 5}}>
-          هفته قبل
-        </Button>
+      <View styles = {{flex:1}}>
+        <View style = {styles.selfServiceHeader}>
+          <View style = {styles.selfServiceCreditView}>
+            <Text style = {styles.creditText}>اعتبار</Text>
+          </View>
+          <Text style = { styles.selfServiceHeaderTitle }> محمد سیاوشی </Text>
+        </View>
+        <Text style = {{marginRight: 5, fontSize: 22, fontWeight: "bold", color: 'white'}}> {this.props.selectedSelfName} </Text>
+        <View style = {[styles.selfServiceHeader, {marginTop: 20}]}>
+          <View style = {{flex:1, flexDirection: 'row'}}>
+            <View style = {{backgroundColor: '#D2D2D2'}}>
+              <Button style = {styles.creditText} onPress = {this.previousWeek}>هفته قبلی</Button>
+            </View>
+            <View style = {{backgroundColor: '#D2D2D2', marginLeft: 5}}>
+              <Button style = {styles.creditText} onPress = {this.nextWeek}>هفته بعدی</Button>
+            </View>
+          </View>
+          <View style = {{marginRight:5, padding: 5, alignItems: 'center',borderWidth:1, borderRadius: 5, backgroundColor: '#43459C'}}>
+            <Button style = { [styles.selfServiceHeaderTitle, {color: 'white'}] } onPress = {this._handlePress}> بازگشت </Button>
+          </View>
+        </View>
       </View>
 
       {/*content*/}
       <ScrollView style = {styles.daysFooter}>
         {this.showDays(this.openmodalView)}
+        {/*make gaps*/}
+        <Text>   </Text>
+        <Text>   </Text>
       </ScrollView>
       <Spinner visible = {this.state.visible}/>
-      <Modal style={[styles.modal, styles.mealModalView]} position={"center"} ref={"modalView"}>
-        <View style = {{flex: 1}}>
-          <View style = {{flex: 1, backgroundColor: 'pink', justifyContent: 'center'}}>
+      <Modal style={[styles.modal, styles.mealModalView, { backgroundColor: '#D6D6D6' }]} position={"center"} ref={"modalView"}>
+        <View style = {{flex: 1, marginLeft: 10, marginRight: 10}}>
+          <View style = {{marginTop: 10}}>
+            <Text style = {{fontSize: 22, fontWeight: 'bold', padding: 10 , color: 'black'}}> روز - وعده </Text>
+          </View>
+          <View style = {{flex: 1, backgroundColor: '#494949', justifyContent: 'center'}}>
             <Button onPress = {() => this.setState({selectedFoodCode: this.state.food1Code})}>
               {/*TODO: set te name of the food in the fields */}
-              <Text> {this.state.food1} </Text>
+              <Text style = {{color: 'white', fontSize: 18}}> {this.state.food1} </Text>
             </Button>
           </View>
-          <View style = {{flex: 1, backgroundColor: 'lightGreen', justifyContent: 'center'}}>
+          <View style = {{flex: 1, backgroundColor: '#2D2D2D', justifyContent: 'center'}}>
             <Button onPress = {() => this.setState({selectedFoodCode: this.state.food2Code})}>
               {/*TODO: set te name of the food in the fields */}
-              <Text> {this.state.food2} </Text>
+              <Text style = {{color: 'white', fontSize: 18}}> {this.state.food2} </Text>
             </Button>
           </View>
-          <View>
-            <Button onPress = {this.submitButton}>
-                تایید
+          <View style = {{flex:1}}>
+            <Button style = {{flex:1, paddingTop:10, paddingBottom: 10, fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10, color: 'white', alignItems: 'center', justifyContent: 'center', backgroundColor: 'red'}} onPress = {this.submitButton}>
+                ثبت
             </Button>
           </View>
         </View>
@@ -227,11 +245,13 @@ DayOfAWeek.currentPageSource = '';
 /*renders one day of a week*/
 var Day = React.createClass({
   render(){
-    DayOfAWeek
     return(
       <View style = {styles.singleDayContainer}>
         {/*show the day name on top of each day content*/}
-        <Text style = {styles.weekDayName}>{this.props.weekDay}</Text>
+        <View style = {{backgroundColor: '#716F70', padding: 10, paddingRight: 5}}>
+          <Text style = {styles.weekDayName}>{this.props.weekDay}</Text>
+          <Text style = {{color: 'white', fontSize: 14}}> تاریخ </Text>
+        </View>
         <View>
           <View style = {styles.mealButton}>
             {/*fires up when a meal is selected*/}
@@ -242,7 +262,7 @@ var Day = React.createClass({
           </View>
           <View style = {styles.mealButton}>
             <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 1, 1)}>
-                <Text style = {styles.mealText}> ناهار </Text>
+                <Text style = {[styles.mealText, {backgroundColor: "#CECECE"}]}> ناهار </Text>
             </Button>
           </View>
           <View style = {styles.mealButton}>
@@ -256,7 +276,6 @@ var Day = React.createClass({
   },
 });
 DayOfAWeek.requestFoodList = function(mealIndex, selfPage){
-  /*we can change the selfName to index along the way to be more like what sess does*/
   var request = new XMLHttpRequest();
   DayOfAWeek.requestMealIndex = mealIndex;
   /*getting the edDate and edMeal (.value not working after converting so a bit of extra work happend here )*/

@@ -72,39 +72,41 @@ var SMSPanelView = React.createClass({
   return (
      <View style = {styles.selfServiceContainer}
      automaticallyAdjustContentInsets={false}>
-      <View style = {styles.selfServiceHeader}>
-        <Text style = { styles.selfServiceHeaderTitle }> ارسال پیامک </Text>
-        <Button style = {styles.backButton} onPress = {this._backButtonPressed}> بازگشت </Button>
-      </View>
+     <View style = {styles.selfServiceHeader}>
+       <Text style = { styles.selfServiceHeaderTitle }> ارسال پیامک </Text>
+     </View>
+
+     <View style = {styles.underHeader}>
+       <View style = {styles.backButton}>
+         <Button style = {{color: "white", fontSize: 22}} onPress = {this._backButtonPressed}>
+             بازگشت
+         </Button>
+       </View>
+     </View>
       <ScrollView style = {styles.selfServiceFooter}
       automaticallyAdjustContentInsets={false}>
         {this.showList()}
       </ScrollView>
-      <Modal style={[styles.modal, styles.modalView]} position={"center"} ref={"modalView"}>
-              <Text> فراموشی </Text>
-              <View style = {{flex: 5, backgroundColor: 'lightblue', borderRadius: 5, borderColor: 'white'}}>
+      <Modal style={[styles.modal, styles.modalView, {backgroundColor: '#B8B4B3'}]} position={"center"} ref={"modalView"}>
 
-                <View style = {{flex: 1, alignItems: 'center', flexDirection: 'row', borderWidth: 1, borderColor: 'grey'}}>
-                  <Button style = {{flex: 1}} onPress = {() => this.selectionChanged("forgottenFirstFood")}>   {this.state.forgottenFirstFood}  </Button>
-                  <Text style = {{flex: 1, fontSize: 18, fontWeight: 'bold'}}> غذای یک </Text>
+              <View style = {{flex: 5, backgroundColor: '#41459C', marginBottom: 10}}>
+                <View style = {{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                  <Button style = {{flex: 1, alignItems: 'center'}} onPress = {() => this.selectionChanged("jetonViaSMS")}> <Text style = {{flex: 1, fontSize: 24, fontWeight: 'bold', color: 'white'}}>  بدون کارت </Text> </Button>
                 </View>
-
-                <View style = {{flex: 1, alignItems: 'center', flexDirection: 'row', borderWidth: 1, borderColor: 'grey'}}>
-                  <Button style = {{flex: 1}} onPress = {() => this.selectionChanged("forgottenSecondFood")}>   {this.state.forgottenSecondFood}  </Button>
-                  <Text style = {{flex: 1, fontSize: 18, fontWeight: 'bold'}}> غذای دو </Text>
-                </View>
-
               </View>
-              <Text> سایر گزینه ها </Text>
-              <View style = {{flex: 5, backgroundColor: 'lightblue', borderRadius: 5, borderColor: 'white'}}>
-                <View style = {{flex: 1, alignItems: 'flex-start', flexDirection: 'row', borderWidth: 1, borderColor: 'grey'}}>
-                  <Button style = {{flex: 1}} onPress = {() => this.selectionChanged("jetonViaSMS")}>   {this.state.jetonViaSMS}  </Button>
-                  <Text style = {{flex: 1, fontSize: 18, fontWeight: 'bold'}}>  بدون کارت </Text>
+
+              <View style = {{flex: 5,flexDirection: 'row', marginBottom: 10}}>
+                <View style = {{flex: 1,backgroundColor: 'green', alignItems: 'center', justifyContent: 'center'}}>
+                  <Button style = {{flex: 1}} onPress = {() => this.selectionChanged("forgottenFirstFood")}><Text style = {{flex: 1, fontSize: 18, fontWeight: 'bold', color:'white', fontSize: 18}}> غذای فراموشی یک </Text></Button>
                 </View>
 
+                <View style = {{flex: 1,backgroundColor: 'red', alignItems: 'center', justifyContent: 'center'}}>
+                  <Button style = {{flex: 1}} onPress = {() => this.selectionChanged("forgottenSecondFood")}>   <Text style = {{flex: 1, fontSize: 18, fontWeight: 'bold', color:'white', fontSize: 18}}> غذای فراموشی دو </Text>  </Button>
+                </View>
               </View>
-              <View style = {{ justifyContent:'center', flex:1, backgroundColor: '#CDBA96', borderWidth: 2, borderColor: '#EED8AE'}}>
-                  <Button style = {{flex: 1,}} onPress = {this.sendButtonOnPress}> ارسال </Button>
+
+              <View style = {{ justifyContent:'center', flex:1, backgroundColor: '#292929', borderWidth: 2, borderColor: '#EED8AE'}}>
+                  <Button style = {{flex: 1, color: 'white'}} onPress = {this.sendButtonOnPress}> ارسال </Button>
               </View>
       </Modal>
     </View>

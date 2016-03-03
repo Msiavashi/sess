@@ -101,32 +101,35 @@ var IndexView = React.createClass({
     if(!this.state.viewOne) return <MainPage changeView={ () => {this.login()} } />
     return(
       <View style = {styles.loginViewContainer}>
-      {/*<ActionButton/> */}
+      {/*<ActionButton/>*/}
         <View style = {styles.loginViewHeader}>
             <View style = {styles.logoView} >
-              <ResponsiveImage source={{uri: logoURL}} initWidth="150" initHeight="150"/>
+              <ResponsiveImage source={{uri: logoURL}} initWidth="220" initHeight="220"/>
             </View>
         </View>
         <View style = {styles.loginViewFooter}>
-            <View style = {styles.loginViewInputsView}>
+          <View style = {styles.userNameInput}>
             <TextInput
-              placeholderTextColor = {'white'}
+              placeholderTextColor = {'red'}
               ref = {"username"}
               placeholder = {'نام کاربری'}
               onChangeText = {(text) => username = text}
+              style = {{fontSize: 18}}
             />
-
+          </View>
+          <View style = {styles.passwordInput}>
             <TextInput
-              placeholderTextColor = {'white'}
+              placeholderTextColor = {'red'}
               ref = {"password"}
               placeholder = {'رمز عبور'}
               onChangeText = {(text) => password = text}
+              style = {{fontSize:18}}
             />
 
-            </View>
+          </View>
             <View style = {styles.ButtonsSection}>
               <View style = {styles.loginButtonView}><Button style = {styles.loginButton} onPress={ () => this.login() }> <Text style = {styles.loginButtonText}> ورود</Text>  </Button></View>
-              <View style = {styles.smsButtonView}><Button style = {styles.smsButton} onPress = { () => this.changeViewToSMSPanel() }> <Text style = {styles.smsButtonText}>پیامک</Text> </Button></View>
+              <View><Button onPress = { () => this.changeViewToSMSPanel() }> <ResponsiveImage source={{uri: "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-12/512/SMS-Message-icon.png"}} initWidth="64" initHeight="64"/> </Button></View>
             </View>
         </View>
         <Spinner visible={this.state.visible} />

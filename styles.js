@@ -10,7 +10,7 @@ module.exports = StyleSheet.create({
   loginViewContainer:{
     flex : 1,
     alignItems: 'stretch',
-    backgroundColor: '4099FF',
+    backgroundColor: '#D0D0D0',
 
   },
   loginViewHeader:{
@@ -23,19 +23,24 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
   },
   loginViewFooter:{
-    flex : 2,
+    flex : 1,
   },
-  loginViewInputsView:{
-    flex: 1,
-    marginLeft: 50,
-    marginRight: 50,
+  userNameInput:{
+    flex:1,
+    marginLeft: 40,
+    marginRight: 40,
+  },
+  passwordInput:{
+    flex:1,
+    marginLeft: 40,
+    marginRight: 40,
   },
   ButtonsSection:{
-    flex: 1,
+    flex: 2,
     alignItems: 'center',
   },
   loginButtonView:{
-    backgroundColor: 'ff4040',
+    backgroundColor: '#373BB9',
     marginBottom: 10,
   },
   loginButtonText:{
@@ -44,22 +49,9 @@ module.exports = StyleSheet.create({
     color: 'white',
   },
   loginButton:{
-    backgroundColor: 'ff4040',
-    height:40,
-    width: 80,
-  },
-  smsButtonView:{
-    backgroundColor: '#ffa500',
-  },
-  smsButton:{
-    backgroundColor: '#ffa500',
-    height: 40,
-    width: 80,
-  },
-  smsButtonText:{
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 20,
+    backgroundColor: '#373BB9',
+    height:50,
+    width: 120,
   },
   controlPanelHeader:{
     flex: 1,
@@ -71,43 +63,78 @@ module.exports = StyleSheet.create({
   },
   selfServiceContainer:{
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#43459C',
   },
   selfServiceWeekDays:{
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingRight: 20,
     height: 50,
-    borderColor: '#FFCF75',
+    borderColor: '#43459C',
     borderWidth: 1,
     borderTopRightRadius: 10,
-    backgroundColor: '#4099FF',
+    backgroundColor: '#D9D9D9',
     alignItems: 'flex-end',
     justifyContent: 'center',
+
   },
   selfServiceWeekDayName:{
     fontSize:18,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#43459C',
   },
   backButton:{
-
-    fontWeight: 'bold',
-    alignSelf: 'flex-end',
-    alignItems: 'flex-end',
-    fontSize: 16,
+    flex:1,
+    borderWidth:1,
+    borderRadius:5,
+    justifyContent: 'center',
+    backgroundColor: '#43459C',
+    paddingLeft: 30,
+    paddingRight:30,
+    margin:5
+  },
+  underHeader:{
+    flex: 1,
+    marginTop: 20,
+    marginBottom: 40,
+    backgroundColor: 'white',
+    alignItems: 'flex-end'
   },
   selfServiceHeaderTitle:{
     flex:1,
     textAlign: 'center',
     fontSize:22,
-    color: 'white',
+    color: 'black',
     fontWeight: 'bold',
   },
   selfServiceHeader:{
     flex : 1,
-    backgroundColor: 'FF6600',
-    justifyContent: 'center',
+    backgroundColor: '#EDEDED',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  selfServiceCreditView:{
+    alignItems: "center",
+    flex: 1,
+    borderWidth: 1,
+    marginLeft: 10,
+  },
+  creditText:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin:10,
+    color: 'black',
+  },
+  backButtonView:{
+    flex: 1,
+    marginTop: 20,
+    marginBottom: 40,
+    backgroundColor: 'white',
+    alignItems: 'flex-end',
+    justifyContent: "center",
   },
   selfServiceFooter:{
-    flex: 11,
+    flex: 9,
     backgroundColor: '#333333',
   },
   scrollView: {
@@ -223,9 +250,10 @@ module.exports = StyleSheet.create({
   },
 
   modalView: {
+    padding: 10,
     alignItems: 'stretch',
-    height: 300,
-    width: 300,
+    height: 350,
+    width: 350,
     backgroundColor: '#FFFAF0',
   },
   sendButtonView: {
@@ -235,40 +263,40 @@ module.exports = StyleSheet.create({
   },
   daysHeader:{
     flex : 1,
-    backgroundColor: 'FF6600',
+    backgroundColor: '#FF6600',
     justifyContent: 'center',
   },
   daysContainer:{
     flex: 1,
-    backgroundColor: '#999999',
+    backgroundColor: '#43459C',
   },
   daysFooter:{
-    flex: 11,
+    flex: 6,
   },
   mealButton:{
-    backgroundColor: 'F5FAFA',
-    padding: 5,
-    borderWidth: 1,
-    borderColor: 'A2A9AF',
+    backgroundColor: '#DEDEDE',
+    justifyContent: 'center'
+    // borderWidth: 1,
+    // borderColor: '#A2A9AF',
   },
   weekDayName:{
      marginRight: 5,
      color: 'white',
-     fontSize: 16,
+     fontSize: 24,
      fontWeight: 'bold',
   },
   singleDayContainer:{
     flex: 1,
-    paddingTop: 30,
   },
   mealText:{
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
+    color: 'black',
   },
   mealModalView:{
     alignItems: 'stretch',
-    height: 300,
-    width: 300,
+    height: 350,
+    width: 350,
     backgroundColor: '#FFFAF0',
   },
 });

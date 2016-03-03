@@ -4,6 +4,7 @@ var Button = require('react-native-button');
 var DOMParser = require('xmldom').DOMParser;
 var DayOfAWeek = require('./DayOfAWeek');
 var selfPage = '';
+var SelfServiceHeader = require('./SelfServiceHeader');
 
 var {
   Text,
@@ -15,7 +16,7 @@ var {
 
 // var selfServices = ['مهندسی نفت و گاز', 'مرکزی', 'ارم', 'خوابگاه شهید دستغیب', 'دانشکده هنر و معماری', 'دانشکده کشاورزی', 'بوفه ارم', 'بوفه مرکزی', 'بوفه خوابگاه مفتح', 'دانشکده دامپزشکی', 'خوابگاه دامپزشکی', 'دانشکده علوم'];
 var selfServices = [ {name: "ارم", code: "3" }, {name: "دانشکده هنر و معماری", code: "0"}, {name: "خوابگاه شهید دستغیب", code: "0"}, {name: "دانشکده علوم", code: "0"}, {name: "دانشکده مهندسی نفت و گاز", code: "7" }, {name : "مرکزی" , code: "8"}, {name: "دانشکده کشاورزی", code: "0"}, {name: "دانشکده دامپزشکی", code: "0"}, {name: "بوفه ارم", code: "0"}, {name: "بوفه مرکزی", code: "0"}, {name: "بوفه خوابگاه مفتح", code: "0"}, {name: "خوابگاه دامپزشکی", code: "0"} ];
-var selfServicesCodes = [7, 8, 3, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]; //the index of each Code should be correspond to the selft Name Index in the selfServices array TODO: add the others COdes
+var selfServicesCodes = [7, 8, 3, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]; //the index of each Code should be correspond to the selft Name Index in the selfServices array TODO: add the others COdes
 
 var setSelfPage = function(pageSource){
   selfPage = pageSource;
@@ -32,15 +33,28 @@ var convertSelfSourceToXMLDom = function(pageSource){
 var ReserveMealView = React.createClass({
   render(){
     return (
-       <View style = {styles.selfServiceContainer}
-       automaticallyAdjustContentInsets={false}>
-        <View style = {styles.selfServiceHeader}>
-          <Text style = { styles.selfServiceHeaderTitle }> لیست سلف ها </Text>
+       <View style = {styles.selfServiceContainer}>
+          <SelfServiceHeader selfPage = {selfPage}/>
+        <View style = {styles.underHeader}>
+          <View style = {styles.backButton}>
+            <Button style = {{color: "white", fontSize: 22}}>
+                بازگشت
+            </Button>
+          </View>
         </View>
         <ScrollView style = {styles.selfServiceFooter}
         automaticallyAdjustContentInsets={false}>
           {this.showList()}
+
+          {/*making gaps*/}
+          <View style = {{backgroundColor: '#EDEDED'}}>
+          <Text>    </Text>
+          <Text>    </Text>
+          </View>
+          {/*making gap*/}
+
         </ScrollView>
+
       </View>
     )
   },
