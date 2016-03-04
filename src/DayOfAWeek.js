@@ -2,6 +2,8 @@ var React = require('react-native');
 var styles = require('.././styles');
 var Button = require('react-native-button');
 var Modal = require('react-native-modalbox');
+import Spinner from 'react-native-loading-spinner-overlay';
+var loading = null;
 var {
   Text,
   View,
@@ -9,45 +11,42 @@ var {
   Alert,
   Navigator,
 } = React;
-var currentPageSource = '';
+var selfService = require('./selfService');
 var listOfFoods = [];
-var weekDays = ['شنبه', 'یک شنبه', 'دو شنبه','سه شنبه', 'چهار شنبه', 'پنج شنبه', 'جمعه'];
+var weekDays = ['شنبـه', 'یک شنبـه', 'دو شنبـه','سه شنبـه', 'چهار شنبـه', 'پنج شنبـه', 'جمعه'];
 
-function requestFoodList(mealIndex, selfPage){
-  /*we can change the selfName to index along the way to be more like what sess does*/
-  var request = new XMLHttpRequest();
-  requestFoodList.requestMealIndex = ++requestFoodList.requestMealIndex || 0;
-  /*getting the edDate and edMeal (.value not working after converting so a bit of extra work happend here )*/
-  var mealElement = String(selfPage.getElementById("Meal" + requestFoodList.requestMealIndex));
-  var value = mealElement.substring(mealElement.search("onclick"));
-  value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
-  var edDate = value[0];
-  var edMeal = value[1];
-  request.onreadystatechange = (e) => {
-    if ( request.readyState !== 4 ){
-      return;
-    }
-    if (request.status === 200 && requestFoodList.requestMealIndex < 20) {
-      listOfFoods[requestFoodList.requestMealIndex] = request.responseText;
-      requestFoodList(0, selfPage);
-      return;
-    }
-    else {
-      console.log('error' + ' ' + request.status);
-    }
-  };
-  request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
-  request.send();
-}
 
-function submitReservation(selfCode, foodCode, edDate, edMeal){
+
+function updateFoodList(edMeal, mealIndexInWeek, edDate){
   var request = new XMLHttpRequest();
+  updateFoodList.mealIndexInWeek = mealIndexInWeek;
   request.onreadystatechange = (e) => {
     if ( request.readyState !== 4 ){
       return;
     }
     if (request.status === 200) {
-      //TODO: do something here
+      listOfFoods[updateFoodList.mealIndexInWeek] = request.responseText;
+      selfService.ReserveMealView.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null, loading);
+    }
+  };
+  console.log("http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984");
+  request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+  request.send();
+
+}
+
+function submitReservation(selfCode, foodCode, edDate, edMeal, mealIndexInWeek){
+  loading();
+  var request = new XMLHttpRequest();
+  submitReservation.mealIndexInWeek = mealIndexInWeek;
+  submitReservation.edDate = edDate;
+  submitReservation.edMeal = edMeal;
+  request.onreadystatechange = (e) => {
+    if ( request.readyState !== 4 ){
+      return;
+    }
+    if (request.status === 200) {
+      updateFoodList(submitReservation.edMeal, submitReservation.mealIndexInWeek, submitReservation.edDate);
     }
     else {
       console.log('error' + ' ' + request.status);
@@ -57,25 +56,28 @@ function submitReservation(selfCode, foodCode, edDate, edMeal){
   request.send();
 }
 
-function deleteMeal(date, code, mealIndex){
+function deleteMeal(date, code, mealIndexInDay, mealIndexInWeek){
+  loading();
   var request = new XMLHttpRequest();
+  deleteMeal.mealIndexInWeek = mealIndexInWeek;
+  deleteMeal.mealIndexInDay = mealIndexInDay;
+  deleteMeal.date = date;
   request.onreadystatechange = (e) => {
     if ( request.readyState !== 4 ){
       return;
     }
     if (request.status === 200) {
-      console.log(request.responseText);
+        updateFoodList(deleteMeal.mealIndexInDay, deleteMeal.mealIndexInWeek, deleteMeal.date);
     }
     else {
       console.log('error' + ' ' + request.status);
     }
   };
-  request.open('GET', 'http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=DeleteMeal&IdentChip=1%3A' + code + '%3A' + date + '%3A' + mealIndex +'%3A1&Rand=0.7137566171586514', true);
+  request.open('GET', 'http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=DeleteMeal&IdentChip=1%3A' + code + '%3A' + date + '%3A' + mealIndexInDay +'%3A1&Rand=0.7137566171586514', true);
   request.send();
 }
-
 var DayOfAWeek = React.createClass({
-  getInitialState: function() { //they are used for Modal view
+  getInitialState(){ //they are used for Modal view
     return {
       /*modal variables*/
       isOpen: false,
@@ -89,14 +91,26 @@ var DayOfAWeek = React.createClass({
       food2Code: '',
       selectedFoodCode: '',
       selectedMealIndexInWeek: '',
+
+      /*loading*/
+      visible: false,
     };
+  },
+  loading(){
+      this.setState({visible: !this.state.visible});
+  },
+  componentDidMount(){
+    this.loading();
+    loading = this.loading;
+    DayOfAWeek.requestFoodList(0, DayOfAWeek.currentPageSource);
   },
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
   openmodalView(weekDay, mealIndexInWeek, mealIndexInDay){
     var foods = listOfFoods[mealIndexInWeek];
+    console.log(foods);
     if (foods.indexOf("ErrorMessage") > -1){    //it contains an error mean that the Meal is already reserved
-      var mealElement = String(currentPageSource.getElementById("Meal" + mealIndexInWeek));
-      var value = mealElement.substring(mealElement.search("value"));
+      var mealElement = String(DayOfAWeek.currentPageSource.getElementById("Meal" + mealIndexInWeek));
+      var value = mealElement.substring(mealElement.search("title"));   //TODO: fix this (if any element added after title)
       value = value.substring(value.search("\"") + 1, value.lastIndexOf("\"")) + '\t' + "(حذف)";    //TODO: remove this extra String and replace it by more beautiful solution
       this.setState({food1: value, food2: '', selectedMealIndexInWeek: mealIndexInWeek});
     }
@@ -121,7 +135,6 @@ var DayOfAWeek = React.createClass({
         food2Info = '';
         code1 = foods[0];   //for breakfasts the number should be for the food 1
       }
-
       var obj = {food1: food1Info, food2: food2Info, food2Code: code2, food1Code: code1, selectedMealIndexInWeek: mealIndexInWeek };
       this.setState(obj);
     }
@@ -129,7 +142,7 @@ var DayOfAWeek = React.createClass({
   },
   submitButton(){
     //finding the edDate
-    var mealElement = String(currentPageSource.getElementById("Meal" + this.state.selectedMealIndexInWeek));
+    var mealElement = String(DayOfAWeek.currentPageSource.getElementById("Meal" + this.state.selectedMealIndexInWeek));
     var value = mealElement.substring(mealElement.search("onclick"));
     if (value.indexOf("DeleteMeal") > -1){    //if the food is already reserved
       value = value.substring(value.search('\'') + 1, value.lastIndexOf('\''))
@@ -137,14 +150,14 @@ var DayOfAWeek = React.createClass({
       var date = value[2];
       var code = value[1];
       var mealIndex = value[3];
-      deleteMeal(date, code, mealIndex);
+      deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek);
     }
     else{     //if the food is not reserved
       value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
       var edDate = value[0];
       var edMeal = value[1];
       //sending the request
-      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal);
+      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek);
     }
   },
   _handlePress(){
@@ -154,39 +167,71 @@ var DayOfAWeek = React.createClass({
     var counter = -3; //TODO: replace it with a better approach to be started from 0
     return weekDays.map((dayName) => <Day weekDay = {dayName} modalView = {modal} mealIndex = {counter += 3}  />)
   },
-
+  nextWeek(){
+    loading();
+    selfService.ReserveMealView.changeWeek("next", loading);
+  },
+  previousWeek(){
+    loading();
+    selfService.ReserveMealView.changeWeek("previous", loading);
+  },
   render(){
+    /*****this.nextweek, this._handleOnPres, this.previousWeek*****/
     // getListOfFoodsForCurrentWeek(this.props.selfPage);
     return(
     <View style = {styles.daysContainer}>
       {/*navbar*/}
-      <View style={styles.daysHeader}>
-        <Button onPress = {this._handlePress} style = {{fontSize: 20, color: 'white', alignSelf: 'flex-end', marginRight: 5}}>
-          بازگشت
-        </Button>
+      <View styles = {{flex:1}}>
+        <View style = {styles.selfServiceHeader}>
+          <View style = {styles.selfServiceCreditView}>
+            <Text style = {styles.creditText}>اعتبار</Text>
+          </View>
+          <Text style = { styles.selfServiceHeaderTitle }> محمد سیاوشی </Text>
+        </View>
+        <Text style = {{marginRight: 5, fontSize: 22, fontWeight: "bold", color: 'white'}}> {this.props.selectedSelfName} </Text>
+        <View style = {[styles.selfServiceHeader, {marginTop: 20}]}>
+          <View style = {{flex:1, flexDirection: 'row'}}>
+            <View style = {{backgroundColor: '#D2D2D2'}}>
+              <Button style = {styles.creditText} onPress = {this.previousWeek}>هفته قبلی</Button>
+            </View>
+            <View style = {{backgroundColor: '#D2D2D2', marginLeft: 5}}>
+              <Button style = {styles.creditText} onPress = {this.nextWeek}>هفته بعدی</Button>
+            </View>
+          </View>
+          <View style = {{marginRight:5, padding: 5, alignItems: 'center',borderWidth:1, borderRadius: 5, backgroundColor: '#43459C'}}>
+            <Button style = { [styles.selfServiceHeaderTitle, {color: 'white'}] } onPress = {this._handlePress}> بازگشت </Button>
+          </View>
+        </View>
       </View>
 
       {/*content*/}
       <ScrollView style = {styles.daysFooter}>
         {this.showDays(this.openmodalView)}
+        {/*make gaps*/}
+        <Text>   </Text>
+        <Text>   </Text>
       </ScrollView>
-      <Modal style={[styles.modal, styles.mealModalView]} position={"center"} ref={"modalView"}>
-        <View style = {{flex: 1}}>
-          <View style = {{flex: 1, backgroundColor: 'pink', justifyContent: 'center'}}>
+      <Spinner visible = {this.state.visible}/>
+      <Modal style={[styles.modal, styles.mealModalView, { backgroundColor: '#D6D6D6' }]} position={"center"} ref={"modalView"}>
+        <View style = {{flex: 1, marginLeft: 10, marginRight: 10}}>
+          <View style = {{marginTop: 10}}>
+            <Text style = {{fontSize: 22, fontWeight: 'bold', padding: 10 , color: 'black'}}> روز - وعده </Text>
+          </View>
+          <View style = {{flex: 1, backgroundColor: '#494949', justifyContent: 'center'}}>
             <Button onPress = {() => this.setState({selectedFoodCode: this.state.food1Code})}>
               {/*TODO: set te name of the food in the fields */}
-              <Text> {this.state.food1} </Text>
+              <Text style = {{color: 'white', fontSize: 18}}> {this.state.food1} </Text>
             </Button>
           </View>
-          <View style = {{flex: 1, backgroundColor: 'lightGreen', justifyContent: 'center'}}>
+          <View style = {{flex: 1, backgroundColor: '#2D2D2D', justifyContent: 'center'}}>
             <Button onPress = {() => this.setState({selectedFoodCode: this.state.food2Code})}>
               {/*TODO: set te name of the food in the fields */}
-              <Text> {this.state.food2} </Text>
+              <Text style = {{color: 'white', fontSize: 18}}> {this.state.food2} </Text>
             </Button>
           </View>
-          <View>
-            <Button onPress = {this.submitButton}>
-                تایید
+          <View style = {{flex:1}}>
+            <Button style = {{flex:1, paddingTop:10, paddingBottom: 10, fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10, color: 'white', alignItems: 'center', justifyContent: 'center', backgroundColor: 'red'}} onPress = {this.submitButton}>
+                ثبت
             </Button>
           </View>
         </View>
@@ -196,19 +241,17 @@ var DayOfAWeek = React.createClass({
   }
 });
 
-DayOfAWeek.getListOfFoodsForCurrentWeek = function(selfPage){
-  var totalNumberOfMealsPerWeek = 20;
-  currentPageSource = selfPage;
-  requestFoodList(totalNumberOfMealsPerWeek,selfPage);
-}
-
+DayOfAWeek.currentPageSource = '';
 /*renders one day of a week*/
 var Day = React.createClass({
   render(){
     return(
       <View style = {styles.singleDayContainer}>
         {/*show the day name on top of each day content*/}
-        <Text style = {styles.weekDayName}>{this.props.weekDay}</Text>
+        <View style = {{backgroundColor: '#716F70', padding: 10, paddingRight: 5}}>
+          <Text style = {styles.weekDayName}>{this.props.weekDay}</Text>
+          <Text style = {{color: 'white', fontSize: 14}}> تاریخ </Text>
+        </View>
         <View>
           <View style = {styles.mealButton}>
             {/*fires up when a meal is selected*/}
@@ -219,7 +262,7 @@ var Day = React.createClass({
           </View>
           <View style = {styles.mealButton}>
             <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 1, 1)}>
-                <Text style = {styles.mealText}> ناهار </Text>
+                <Text style = {[styles.mealText, {backgroundColor: "#CECECE"}]}> ناهار </Text>
             </Button>
           </View>
           <View style = {styles.mealButton}>
@@ -232,6 +275,34 @@ var Day = React.createClass({
     );
   },
 });
-
+DayOfAWeek.requestFoodList = function(mealIndex, selfPage){
+  var request = new XMLHttpRequest();
+  DayOfAWeek.requestMealIndex = mealIndex;
+  /*getting the edDate and edMeal (.value not working after converting so a bit of extra work happend here )*/
+  var mealElement = String(selfPage.getElementById("Meal" + DayOfAWeek.requestMealIndex));
+  var value = mealElement.substring(mealElement.search("onclick"));
+  value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
+  var edDate = value[0];
+  var edMeal = value[1];
+  request.onreadystatechange = (e) => {
+    if ( request.readyState !== 4 ){
+      return;
+    }
+    if (request.status === 200 && DayOfAWeek.requestMealIndex < 20) {
+      listOfFoods[DayOfAWeek.requestMealIndex] = request.responseText;
+      /*breaks the loading*/
+      if (DayOfAWeek.requestMealIndex === 19){
+        loading();
+      }
+      DayOfAWeek.requestFoodList(++mealIndex, selfPage);
+      return;
+    }
+    else {
+      console.log('error' + ' ' + request.status);
+    }
+  };
+  request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+  request.send();
+}
 module.exports = DayOfAWeek;
 // exports.getListOfFoodsForCurrentWeek = getListOfFoodsForCurrentWeek;

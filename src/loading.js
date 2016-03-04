@@ -9,9 +9,9 @@ var {
   Platform
 } = React;
 
-var Loading = React.createClass({
+module.exports = React.createClass({
 
-  spinner() {
+  spinner(){
     if (Platform.OS === 'android') {
       return (
         <ProgressBarAndroid
@@ -34,12 +34,9 @@ var Loading = React.createClass({
   render() {
     return (
       <View>
-        {this.Spinner()}
+        {this.spinner()}
       </View>
     );
   },
 
 });
-
-
-module.exports = Loading;
