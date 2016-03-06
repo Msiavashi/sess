@@ -34,7 +34,7 @@ var ReserveMealView = React.createClass({
   render(){
     return (
        <View style = {styles.selfServiceContainer}>
-          <SelfServiceHeader selfPage = {selfPage}/>
+          <SelfServiceHeader selfPage = {selfPage} shouldParseSelfPage = {true}/>
         <View style = {styles.underHeader}>
           <View style = {styles.backButton}>
             <Button style = {{color: "white", fontSize: 22}}>

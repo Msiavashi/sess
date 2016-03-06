@@ -3,6 +3,7 @@ var styles = require('.././styles');
 var Button = require('react-native-button');
 var Modal = require('react-native-modalbox');
 import Spinner from 'react-native-loading-spinner-overlay';
+var SelfServiceHeader = require('./SelfServiceHeader');
 var loading = null;
 var {
   Text,
@@ -83,6 +84,8 @@ var DayOfAWeek = React.createClass({
       isOpen: false,
       isDisabled: false,
       swipeToClose: true,
+      selectedDay: '',
+      selectedMealName: '',
 
       /*foods to be shown in modal view*/
       food1: '',
@@ -105,9 +108,9 @@ var DayOfAWeek = React.createClass({
     DayOfAWeek.requestFoodList(0, DayOfAWeek.currentPageSource);
   },
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
-  openmodalView(weekDay, mealIndexInWeek, mealIndexInDay){
+  openmodalView(weekDay, mealIndexInWeek, mealIndexInDay, mealName){
     var foods = listOfFoods[mealIndexInWeek];
-    console.log(foods);
+    this.setState({selectedDay: weekDay, selectedMealName: mealName});
     if (foods.indexOf("ErrorMessage") > -1){    //it contains an error mean that the Meal is already reserved
       var mealElement = String(DayOfAWeek.currentPageSource.getElementById("Meal" + mealIndexInWeek));
       var value = mealElement.substring(mealElement.search("title"));   //TODO: fix this (if any element added after title)
@@ -182,12 +185,7 @@ var DayOfAWeek = React.createClass({
     <View style = {styles.daysContainer}>
       {/*navbar*/}
       <View styles = {{flex:1}}>
-        <View style = {styles.selfServiceHeader}>
-          <View style = {styles.selfServiceCreditView}>
-            <Text style = {styles.creditText}>اعتبار</Text>
-          </View>
-          <Text style = { styles.selfServiceHeaderTitle }> محمد سیاوشی </Text>
-        </View>
+        <SelfServiceHeader selfPage = {this.props.selfPage} shouldParseSelfPage = {false}/>
         <Text style = {{marginRight: 5, fontSize: 22, fontWeight: "bold", color: 'white'}}> {this.props.selectedSelfName} </Text>
         <View style = {[styles.selfServiceHeader, {marginTop: 20}]}>
           <View style = {{flex:1, flexDirection: 'row'}}>
@@ -215,7 +213,7 @@ var DayOfAWeek = React.createClass({
       <Modal style={[styles.modal, styles.mealModalView, { backgroundColor: '#D6D6D6' }]} position={"center"} ref={"modalView"}>
         <View style = {{flex: 1, marginLeft: 10, marginRight: 10}}>
           <View style = {{marginTop: 10}}>
-            <Text style = {{fontSize: 22, fontWeight: 'bold', padding: 10 , color: 'black'}}> روز - وعده </Text>
+            <Text style = {{fontSize: 22, fontWeight: 'bold', padding: 10 , color: 'black'}}>{this.state.selectedDay} - {this.state.selectedMealName}</Text>
           </View>
           <View style = {{flex: 1, backgroundColor: '#494949', justifyContent: 'center'}}>
             <Button onPress = {() => this.setState({selectedFoodCode: this.state.food1Code})}>
@@ -255,18 +253,18 @@ var Day = React.createClass({
         <View>
           <View style = {styles.mealButton}>
             {/*fires up when a meal is selected*/}
-            <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex, 0)}>
+            <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex, 0, "صبحانه")}>
                 <Text style = {styles.mealText}> صبحانه </Text>
                 {/*TODO: add a on/off button here for all the buttons below */}
             </Button>
           </View>
           <View style = {styles.mealButton}>
-            <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 1, 1)}>
+            <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 1, 1, "نهار")}>
                 <Text style = {[styles.mealText, {backgroundColor: "#CECECE"}]}> ناهار </Text>
             </Button>
           </View>
           <View style = {styles.mealButton}>
-            <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 2, 2)}>
+            <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 2, 2, "شام")}>
                 <Text style = {styles.mealText}> شام </Text>
             </Button>
           </View>
@@ -288,11 +286,12 @@ DayOfAWeek.requestFoodList = function(mealIndex, selfPage){
     if ( request.readyState !== 4 ){
       return;
     }
-    if (request.status === 200 && DayOfAWeek.requestMealIndex < 20) {
+    if (request.status === 200 && DayOfAWeek.requestMealIndex <= 20) {
       listOfFoods[DayOfAWeek.requestMealIndex] = request.responseText;
       /*breaks the loading*/
-      if (DayOfAWeek.requestMealIndex === 19){
+      if (DayOfAWeek.requestMealIndex === 20){
         loading();
+        
       }
       DayOfAWeek.requestFoodList(++mealIndex, selfPage);
       return;
