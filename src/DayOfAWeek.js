@@ -4,6 +4,7 @@ var Button = require('react-native-button');
 var Modal = require('react-native-modalbox');
 import Spinner from 'react-native-loading-spinner-overlay';
 var SelfServiceHeader = require('./SelfServiceHeader');
+var DOMParser = require('xmldom').DOMParser;
 var loading = null;
 var {
   Text,
@@ -15,9 +16,7 @@ var {
 var selfService = require('./selfService');
 var listOfFoods = [];
 var weekDays = ['شنبـه', 'یک شنبـه', 'دو شنبـه','سه شنبـه', 'چهار شنبـه', 'پنج شنبـه', 'جمعه'];
-
-
-
+var dates = [];
 function updateFoodList(edMeal, mealIndexInWeek, edDate){
   var request = new XMLHttpRequest();
   updateFoodList.mealIndexInWeek = mealIndexInWeek;
@@ -25,7 +24,7 @@ function updateFoodList(edMeal, mealIndexInWeek, edDate){
     if ( request.readyState !== 4 ){
       return;
     }
-    if (request.status === 200) {
+    else if (request.status === 200) {
       listOfFoods[updateFoodList.mealIndexInWeek] = request.responseText;
       selfService.ReserveMealView.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null, loading);
     }
@@ -103,18 +102,43 @@ var DayOfAWeek = React.createClass({
       this.setState({visible: !this.state.visible});
   },
   componentDidMount(){
-    this.loading();
     loading = this.loading;
+    this.loading();
+    /**getting list of foods**/
     DayOfAWeek.requestFoodList(0, DayOfAWeek.currentPageSource);
   },
+  getDates(){
+    var parser = new DOMParser();
+    DayOfAWeek.currentPageSource = parser.parseFromString(String(DayOfAWeek.currentPageSource), "text/xml");   //converts the response Text to document
+    for (let i = 0; i < 7; ++i){
+      let date = String(DayOfAWeek.currentPageSource.getElementById("edDay" + i));
+      let tmp = date.substring(date.indexOf('<td') + 1, date.lastIndexOf('</td>'));
+      tmp = tmp.split(" ");
+      dates[i] = tmp[tmp.length - 1];
+    }
+  },
+  componentWillMount(){
+    this.getDates();
+  },
+  shouldComponentUpdate(){
+    this.getDates();
+    return true;
+  },
+
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
   openmodalView(weekDay, mealIndexInWeek, mealIndexInDay, mealName){
     var foods = listOfFoods[mealIndexInWeek];
     this.setState({selectedDay: weekDay, selectedMealName: mealName});
     if (foods.indexOf("ErrorMessage") > -1){    //it contains an error mean that the Meal is already reserved
       var mealElement = String(DayOfAWeek.currentPageSource.getElementById("Meal" + mealIndexInWeek));
-      var value = mealElement.substring(mealElement.search("title"));   //TODO: fix this (if any element added after title)
-      value = value.substring(value.search("\"") + 1, value.lastIndexOf("\"")) + '\t' + "(حذف)";    //TODO: remove this extra String and replace it by more beautiful solution
+      var value = mealElement.substring(mealElement.search("value"));
+      value = value.substring(value.search("\"") + 1);
+      if (value === "برنامه ریزی نشده"){
+          value = value.substring(0, value.indexOf("\""));
+      }
+      else{
+        value = value.substring(0, value.indexOf("\"")) + '\t' + "(حذف)";
+      }
       this.setState({food1: value, food2: '', selectedMealIndexInWeek: mealIndexInWeek});
     }
     else{   //the Meal is not Reserved Yet
@@ -168,7 +192,7 @@ var DayOfAWeek = React.createClass({
   },
   showDays(modal){
     var counter = -3; //TODO: replace it with a better approach to be started from 0
-    return weekDays.map((dayName) => <Day weekDay = {dayName} modalView = {modal} mealIndex = {counter += 3}  />)
+    return weekDays.map((dayName) => <Day weekDay = {dayName} date = {dates[weekDays.indexOf(dayName)]} modalView = {modal} mealIndex = {counter += 3}  />)
   },
   nextWeek(){
     loading();
@@ -248,7 +272,7 @@ var Day = React.createClass({
         {/*show the day name on top of each day content*/}
         <View style = {{backgroundColor: '#716F70', padding: 10, paddingRight: 5}}>
           <Text style = {styles.weekDayName}>{this.props.weekDay}</Text>
-          <Text style = {{color: 'white', fontSize: 14}}> تاریخ </Text>
+          <Text style = {{color: 'white', fontSize: 14}}> {this.props.date} </Text>
         </View>
         <View>
           <View style = {styles.mealButton}>
@@ -278,6 +302,7 @@ DayOfAWeek.requestFoodList = function(mealIndex, selfPage){
   DayOfAWeek.requestMealIndex = mealIndex;
   /*getting the edDate and edMeal (.value not working after converting so a bit of extra work happend here )*/
   var mealElement = String(selfPage.getElementById("Meal" + DayOfAWeek.requestMealIndex));
+
   var value = mealElement.substring(mealElement.search("onclick"));
   value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
   var edDate = value[0];
@@ -288,10 +313,10 @@ DayOfAWeek.requestFoodList = function(mealIndex, selfPage){
     }
     if (request.status === 200 && DayOfAWeek.requestMealIndex <= 20) {
       listOfFoods[DayOfAWeek.requestMealIndex] = request.responseText;
+
       /*breaks the loading*/
       if (DayOfAWeek.requestMealIndex === 20){
         loading();
-        
       }
       DayOfAWeek.requestFoodList(++mealIndex, selfPage);
       return;

@@ -14,50 +14,50 @@ var SelfServiceHeader = React.createClass({
   getInitialState(){
     return{
       userName: '',
-      edCredit: '',
-
+      edCredit: 1
     }
   },
   componentDidMount(){
     this.setHeaderValues();
   },
-  setHeaderValues(){
-    if(this.props.shouldParseSelfPage === true){
-      var parser = new DOMParser();
-      this.props.selfPage = parser.parseFromString(this.props.selfPage, "text/xml");   //converts the response Text to document
+  setHeaderValues(nextProps){
+    // if(this.props.shouldParseSelfPage === true){
+    var parser = new DOMParser();
+    if(nextProps){
+      this.props.selfPage = parser.parseFromString(String(nextProps.selfPage), "text/xml");   //converts the response Text to document
+    }
+    else{
+      this.props.selfPage = parser.parseFromString(String(this.props.selfPage), "text/xml");   //converts the response Text to document
     }
     var header = String(this.props.selfPage.getElementById('Toolbar1_lblUserName'));
     header = header.substring(header.indexOf('>') + 1, header.lastIndexOf('</'))
     header = header.split(':');
     var credit = String(this.props.selfPage.getElementById('edCredit'));
     credit = credit.substring(credit.indexOf('>') + 1, credit.lastIndexOf('</'));
-    this.setState({userName: header[1], edCredit: credit});   //set the user name and credit on the header
-  },
+    SelfServiceHeader.credit = credit;
+    this.setState({userName: header[1]});   //set the user name and credit on the header
 
-  /******this fucntion is only for test******/
-  shouldComponentUpdate: function(nextProps, nextState) {
+  },
+  componentWillReceiveProps(nextProps){
     if (String(this.props.selfPage) !== String(nextProps.selfPage))
     {
-      var parser = new DOMParser();
-      this.props.selfPage = parser.parseFromString(String(nextProps.selfPage), "text/xml");   //converts the response Text to document
-      var header = String(this.props.selfPage.getElementById('Toolbar1_lblUserName'));
-      header = header.substring(header.indexOf('>') + 1, header.lastIndexOf('</'))
-      header = header.split(':');
-      var credit = String(this.props.selfPage.getElementById('edCredit'));
-      credit = credit.substring(credit.indexOf('>') + 1, credit.lastIndexOf('</'));
-      this.setState({userName: header[1], edCredit: credit});   //set the user name and credit on the header
+      this.setHeaderValues(nextProps);
     }
+  },
+  /******this fucntion is only for test******/
+  shouldComponentUpdate: function(nextProps, nextState) {
     return true;
   },
   render(){
     return(
       <View style = {styles.selfServiceHeader}>
         <View style = {styles.selfServiceCreditView}>
-          <Text style = {styles.creditText}>{this.state.edCredit}</Text>
+          <Text style = {styles.creditText}>{SelfServiceHeader.credit}</Text>
         </View>
         <Text style = { styles.selfServiceHeaderTitle }> {this.state.userName} </Text>
       </View>
     );
   },
 });
+SelfServiceHeader.credit;
 module.exports = SelfServiceHeader;
