@@ -12,8 +12,7 @@ var {
   Navigator,
 } = React;
 
-var selfServices = ['مهندسی نفت و گاز', 'مرکزی', 'ارم', 'خوابگاه شهید دستغیب', 'دانشکده هنر و معماری', 'دانشکده کشاورزی', 'بوفه ارم', 'بوفه مرکزی', 'بوفه خوابگاه مفتح', 'دانشکده دامپزشکی', 'خوابگاه دامپزشکی', 'دانشکده علوم'];
-var selfNumbers = {selfMarkazi: '09170428700', };
+var selfServices = [ {name: "ارم", BNumber: "+989183406229" }, {name: "دانشکده هنر و معماری", BNumber: "0"}, {name: "خوابگاه شهید دستغیب", BNumber: "0"}, {name: "دانشکده علوم", BNumber: "0"}, {name: "دانشکده مهندسی نفت و گاز", BNumber: "7" }, {name : "مرکزی" , BNumber: "+989183406229"}, {name: "دانشکده کشاورزی", BNumber: "0"}, {name: "دانشکده دامپزشکی", BNumber: "0"}, {name: "بوفه ارم", BNumber: "0"}, {name: "بوفه مرکزی", BNumber: "0"}, {name: "بوفه خوابگاه مفتح", BNumber: "0"}, {name: "خوابگاه دامپزشکی", BNumber: "0"} ];
 var commands = {jetonViaSMS: '#1#', };    //the commands that are used in sms's should be add to here
 
 var SMSPanelView = React.createClass({
@@ -32,7 +31,7 @@ var SMSPanelView = React.createClass({
       forgottenFirstFood: 'off',
       forgottenSecondFood: 'off',
       jetonViaSMS: 'off',
-      selectedSelfIndex: '',
+      selectedSelf: '',
       selectedOption: '',
     };
   },
@@ -45,7 +44,7 @@ var SMSPanelView = React.createClass({
     this.setState(state);
   },
   sendButtonOnPress(){
-    var phoneNumber = selfNumbers[this.state.selectedSelfIndex];   //TODO: handle the different self numbers here (girls , boys ,etc)
+    var phoneNumber = this.state.selectedSelf.BNumber;   //TODO: handle the different self numbers here (girls , boys)
     var smsText = commands[this.state.selectedOption];
     SmsAndroid.sms(
       phoneNumber, // phone number to send sms to
@@ -64,8 +63,8 @@ var SMSPanelView = React.createClass({
   openmodalView(){
     this.refs.modalView.open();
   },
-  _selfServicePresHandler(selectedName){
-    this.setState({selectedSelfIndex: selfServices.indexOf(selectedName)});
+  _selfServicePresHandler(selected){
+    this.setState({selectedSelf: selected});
     this.openmodalView();
   },
   render(){
@@ -114,7 +113,7 @@ var SMSPanelView = React.createClass({
 },
   showList(){
     return (
-      selfServices.map((selfName) => <ViewNames name={selfName} navigator={this.props.navigator} open = {this._selfServicePresHandler} />)
+      selfServices.map((self) => <ViewNames name={self.name} selectedSelf = {self} navigator={this.props.navigator} open = {this._selfServicePresHandler} />)
   );
 },
 });
@@ -122,7 +121,7 @@ var SMSPanelView = React.createClass({
 var ViewNames = React.createClass({
   render(){
     return(
-      <Button onPress={() => this.props.open(this.props.name)}>
+      <Button onPress={() => this.props.open(this.props.selectedSelf)}>
         <View style = {styles.selfServiceWeekDays}>
             <Text style = {styles.selfServiceWeekDayName}>
               {this.props.name}

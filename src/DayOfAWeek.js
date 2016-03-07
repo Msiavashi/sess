@@ -185,7 +185,7 @@ var DayOfAWeek = React.createClass({
         food2Info = '';
         code1 = foods[0];   //for breakfasts the number should be for the food 1
       }
-      var obj = {food1: food1Info, food2: food2Info, food2Code: code2, food1Code: code1, selectedMealIndexInWeek: mealIndexInWeek };
+      var obj = {food1: food1Info, food2: food2Info, food2Code: code2, food1Code: code1, selectedMealIndexInWeek: mealIndexInWeek};
       this.setState(obj);
     }
     this.refs.modalView.open();
@@ -203,14 +203,14 @@ var DayOfAWeek = React.createClass({
       var date = value[2];
       var code = value[1];
       var mealIndex = value[3];
-      deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response));
+      deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response)).then(() => this.refs.modalView.close());
     }
     else{     //if the food is not reserved
       value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
       var edDate = value[0];
       var edMeal = value[1];
       //sending the request
-      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response));
+      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response)).then(() => this.refs.modalView.close());
     }
   },
   _handlePress(){
