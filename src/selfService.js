@@ -16,7 +16,6 @@ var {
 
 // var selfServices = ['مهندسی نفت و گاز', 'مرکزی', 'ارم', 'خوابگاه شهید دستغیب', 'دانشکده هنر و معماری', 'دانشکده کشاورزی', 'بوفه ارم', 'بوفه مرکزی', 'بوفه خوابگاه مفتح', 'دانشکده دامپزشکی', 'خوابگاه دامپزشکی', 'دانشکده علوم'];
 var selfServices = [ {name: "ارم", code: "3" }, {name: "دانشکده هنر و معماری", code: "0"}, {name: "خوابگاه شهید دستغیب", code: "0"}, {name: "دانشکده علوم", code: "0"}, {name: "دانشکده مهندسی نفت و گاز", code: "7" }, {name : "مرکزی" , code: "8"}, {name: "دانشکده کشاورزی", code: "0"}, {name: "دانشکده دامپزشکی", code: "0"}, {name: "بوفه ارم", code: "0"}, {name: "بوفه مرکزی", code: "0"}, {name: "بوفه خوابگاه مفتح", code: "0"}, {name: "خوابگاه دامپزشکی", code: "0"} ];
-var selfServicesCodes = [7, 8, 3, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]; //the index of each Code should be correspond to the selft Name Index in the selfServices array TODO: add the others COdes
 
 var setSelfPage = function(pageSource){
   selfPage = pageSource;
@@ -38,7 +37,7 @@ var ReserveMealView = React.createClass({
         <View style = {styles.underHeader}>
           <View style = {styles.backButton}>
             <Button style = {{color: "white", fontSize: 22}}>
-                بازگشت
+                پیامک
             </Button>
           </View>
         </View>
@@ -89,34 +88,34 @@ ReserveMealView.changeWeek = function(moveTo, loading){
     request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=SfxPrevWeek&Rand=0.3835966335609555", true);
     request.send();
   }
-
-
 }
+
 ReserveMealView.openURL = function(url, indexPage , loading){
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = (e) => {
-    if ( request.readyState !== 4 ){
-      return;
-    }
-    if (request.status === 200 && request.responseText) {
-      setSelfPage(request.responseText);
-      if (indexPage !== null){
-        indexPage.changeView();
+  return new Promise((resolve, reject) => {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = (e) => {
+      if ( request.readyState !== 4 ){
+        return;
       }
-      //update the content of app
-      else{
-        var parser = new DOMParser();
-        selfPage = parser.parseFromString(selfPage, "text/xml");   //converts the response Text to document
-        DayOfAWeek.currentPageSource = selfPage;
-        DayOfAWeek.requestFoodList(0, selfPage);
+      if (request.status === 200 && request.responseText) {
+        setSelfPage(request.responseText);
+        if (indexPage !== null){
+          indexPage.changeView();
+        }
+        //update the content of app
+        else{
+          var parser = new DOMParser();
+          selfPage = parser.parseFromString(selfPage, "text/xml");   //converts the response Text to document
+          DayOfAWeek.currentPageSource = selfPage;
+          DayOfAWeek.requestFoodList(0, selfPage);
+          resolve(selfPage);
+        }
       }
-    }
-    else {
-      console.log('error' + ' ' + request.status);
-    }
-  };
-  request.open('GET', url, true);
-  request.send();
+    };
+    request.open('GET', url, true);
+    request.send();
+  })
+
 }
 
 /*produce a single button for a single self service provided in the selfServices array*/

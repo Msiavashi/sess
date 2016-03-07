@@ -36,18 +36,17 @@ var SelfServiceHeader = React.createClass({
     credit = credit.substring(credit.indexOf('>') + 1, credit.lastIndexOf('</'));
     SelfServiceHeader.credit = credit;
     this.setState({userName: header[1]});   //set the user name and credit on the header
-
   },
   componentWillReceiveProps(nextProps){
-    if (String(this.props.selfPage) !== String(nextProps.selfPage))
+    if (this.props.selfPage !== nextProps.selfPage)
     {
-      this.setHeaderValues(nextProps);
+        this.setHeaderValues(nextProps);
     }
   },
   /******this fucntion is only for test******/
-  shouldComponentUpdate: function(nextProps, nextState) {
-    return true;
-  },
+  // shouldComponentUpdate: function(nextProps, nextState) {
+  //   return true;
+  // },
   render(){
     return(
       <View style = {styles.selfServiceHeader}>
@@ -59,5 +58,5 @@ var SelfServiceHeader = React.createClass({
     );
   },
 });
-SelfServiceHeader.credit;
+SelfServiceHeader.credit = null;
 module.exports = SelfServiceHeader;

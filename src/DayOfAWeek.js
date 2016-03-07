@@ -18,63 +18,73 @@ var listOfFoods = [];
 var weekDays = ['شنبـه', 'یک شنبـه', 'دو شنبـه','سه شنبـه', 'چهار شنبـه', 'پنج شنبـه', 'جمعه'];
 var dates = [];
 function updateFoodList(edMeal, mealIndexInWeek, edDate){
-  var request = new XMLHttpRequest();
-  updateFoodList.mealIndexInWeek = mealIndexInWeek;
-  request.onreadystatechange = (e) => {
-    if ( request.readyState !== 4 ){
-      return;
-    }
-    else if (request.status === 200) {
-      listOfFoods[updateFoodList.mealIndexInWeek] = request.responseText;
-      selfService.ReserveMealView.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null, loading);
-    }
-  };
-  console.log("http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984");
-  request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
-  request.send();
-
+  return new Promise((resolve, reject) => {
+    var request = new XMLHttpRequest();
+    updateFoodList.mealIndexInWeek = mealIndexInWeek;
+    request.onreadystatechange = (e) => {
+      if ( request.readyState !== 4 ){
+        return;
+      }
+      else if (request.status === 200) {
+        listOfFoods[updateFoodList.mealIndexInWeek] = request.responseText;
+        resolve(selfService.ReserveMealView.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null, loading));
+      }
+    };
+    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+    request.send();
+  })
 }
 
 function submitReservation(selfCode, foodCode, edDate, edMeal, mealIndexInWeek){
   loading();
-  var request = new XMLHttpRequest();
-  submitReservation.mealIndexInWeek = mealIndexInWeek;
-  submitReservation.edDate = edDate;
-  submitReservation.edMeal = edMeal;
-  request.onreadystatechange = (e) => {
-    if ( request.readyState !== 4 ){
-      return;
-    }
-    if (request.status === 200) {
-      updateFoodList(submitReservation.edMeal, submitReservation.mealIndexInWeek, submitReservation.edDate);
-    }
-    else {
-      console.log('error' + ' ' + request.status);
-    }
-  };
-  request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=BuyChipsWeek&Restaurant=" + selfCode + "&ProgDate=" + edDate + "&Meal=" + edMeal + "&Food=" + foodCode + "&Dessert=&Rand=0.47429", true);
-  request.send();
+  return new Promise((resolve, reject) => {
+    var request = new XMLHttpRequest();
+    submitReservation.mealIndexInWeek = mealIndexInWeek;
+    submitReservation.edDate = edDate;
+    submitReservation.edMeal = edMeal;
+    request.onreadystatechange = (e) => {
+      if ( request.readyState !== 4 ){
+        return;
+      }
+      if (request.status === 200) {
+        if (request.responseText.indexOf("مبلغ اعتبار شما کافی نیست") !== -1){
+          Alert.alert("خطا", "مبلغ اعتبار شما کافی نیست");
+          reject(request.responseText);
+          loading();
+        }
+        else{
+          resolve(updateFoodList(submitReservation.edMeal, submitReservation.mealIndexInWeek, submitReservation.edDate));
+        }
+      }
+      else {
+        console.log('error' + ' ' + request.status);
+      }
+    };
+    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=BuyChipsWeek&Restaurant=" + selfCode + "&ProgDate=" + edDate + "&Meal=" + edMeal + "&Food=" + foodCode + "&Dessert=&Rand=0.47429", true);
+    request.send();
+
+  })
 }
 
 function deleteMeal(date, code, mealIndexInDay, mealIndexInWeek){
   loading();
-  var request = new XMLHttpRequest();
-  deleteMeal.mealIndexInWeek = mealIndexInWeek;
-  deleteMeal.mealIndexInDay = mealIndexInDay;
-  deleteMeal.date = date;
-  request.onreadystatechange = (e) => {
-    if ( request.readyState !== 4 ){
-      return;
-    }
-    if (request.status === 200) {
-        updateFoodList(deleteMeal.mealIndexInDay, deleteMeal.mealIndexInWeek, deleteMeal.date);
-    }
-    else {
-      console.log('error' + ' ' + request.status);
-    }
-  };
-  request.open('GET', 'http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=DeleteMeal&IdentChip=1%3A' + code + '%3A' + date + '%3A' + mealIndexInDay +'%3A1&Rand=0.7137566171586514', true);
-  request.send();
+  return new Promise((resolve, reject) => {
+    var request = new XMLHttpRequest();
+    deleteMeal.mealIndexInWeek = mealIndexInWeek;
+    deleteMeal.mealIndexInDay = mealIndexInDay;
+    deleteMeal.date = date;
+    request.onreadystatechange = (e) => {
+      if ( request.readyState !== 4 ){
+        return;
+      }
+      if (request.status === 200) {
+          resolve(updateFoodList(deleteMeal.mealIndexInDay, deleteMeal.mealIndexInWeek, deleteMeal.date));
+      }
+    };
+    request.open('GET', 'http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=DeleteMeal&IdentChip=1%3A' + code + '%3A' + date + '%3A' + mealIndexInDay +'%3A1&Rand=0.7137566171586514', true);
+    request.send();
+  })
+
 }
 var DayOfAWeek = React.createClass({
   getInitialState(){ //they are used for Modal view
@@ -96,6 +106,7 @@ var DayOfAWeek = React.createClass({
 
       /*loading*/
       visible: false,
+      refresh: false,
     };
   },
   loading(){
@@ -120,9 +131,21 @@ var DayOfAWeek = React.createClass({
   componentWillMount(){
     this.getDates();
   },
-  shouldComponentUpdate(){
+  shouldComponentUpdate(nextProps, nextState){
+
     this.getDates();
     return true;
+  },
+
+  setHeaderValues(source){
+    var parser = new DOMParser();
+    source = parser.parseFromString(String(source), "text/xml");   //converts the response Text to document
+    var header = String(source.getElementById('Toolbar1_lblUserName'));
+    header = header.substring(header.indexOf('>') + 1, header.lastIndexOf('</'))
+    header = header.split(':');
+    var credit = String(source.getElementById('edCredit'));
+    credit = credit.substring(credit.indexOf('>') + 1, credit.lastIndexOf('</'));
+    SelfServiceHeader.credit = credit;
   },
 
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
@@ -134,7 +157,7 @@ var DayOfAWeek = React.createClass({
       var value = mealElement.substring(mealElement.search("value"));
       value = value.substring(value.search("\"") + 1);
       if (value === "برنامه ریزی نشده"){
-          value = value.substring(0, value.indexOf("\""));
+          value = value.substring(0, value.indexOf("\""));      //TODO: fix this
       }
       else{
         value = value.substring(0, value.indexOf("\"")) + '\t' + "(حذف)";
@@ -167,6 +190,9 @@ var DayOfAWeek = React.createClass({
     }
     this.refs.modalView.open();
   },
+  forceUpdate(){
+    SelfServiceHeader.credit;
+  },
   submitButton(){
     //finding the edDate
     var mealElement = String(DayOfAWeek.currentPageSource.getElementById("Meal" + this.state.selectedMealIndexInWeek));
@@ -177,14 +203,14 @@ var DayOfAWeek = React.createClass({
       var date = value[2];
       var code = value[1];
       var mealIndex = value[3];
-      deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek);
+      deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response));
     }
     else{     //if the food is not reserved
       value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
       var edDate = value[0];
       var edMeal = value[1];
       //sending the request
-      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek);
+      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response));
     }
   },
   _handlePress(){
@@ -209,7 +235,7 @@ var DayOfAWeek = React.createClass({
     <View style = {styles.daysContainer}>
       {/*navbar*/}
       <View styles = {{flex:1}}>
-        <SelfServiceHeader selfPage = {this.props.selfPage} shouldParseSelfPage = {false}/>
+        <SelfServiceHeader selfPage = {this.props.selfPage} shouldParseSelfPage = {false} parentState = {this.setState}/>
         <Text style = {{marginRight: 5, fontSize: 22, fontWeight: "bold", color: 'white'}}> {this.props.selectedSelfName} </Text>
         <View style = {[styles.selfServiceHeader, {marginTop: 20}]}>
           <View style = {{flex:1, flexDirection: 'row'}}>
