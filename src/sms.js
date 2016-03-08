@@ -36,7 +36,6 @@ var SMSPanelView = React.createClass({
     };
   },
 
-  /*TODO: find a shortcut for this radio-like buttons (this function is only for test & not yet effecient to use ) */
   selectionChanged(selected){
     var state = { forgottenFirstFood: 'off', forgottenSecondFood: 'off', jetonViaSMS: 'off' };
     state.selectedOption = selected;
@@ -58,7 +57,6 @@ var SMSPanelView = React.createClass({
         }
       }
     );
-
   },
   openmodalView(){
     this.refs.modalView.open();

@@ -2,6 +2,8 @@
  /**
  * https://github.com/facebook/react-native
  */
+import DB from './src/database';
+var CheckBox = require('react-native-checkbox');
 var Button = require('react-native-button');
 var React = require('react-native');
 var ResponsiveImage = require('react-native-responsive-image');
@@ -77,12 +79,24 @@ var IndexView = React.createClass({
       visible: false,
       viewOne: true,
       pageNumber: 0,
+      /*checkbox status indicator*/
+      checkedStatus: false
     }
   },
-
+  componentWillMount(){
+    /*if there was a account saved in database log in automatically*/
+    DB.user.find().then(resp => {
+      if (resp){
+        username = resp[0].username;
+        password = resp[0].password;
+        console.log(username);
+        this.login();
+      }
+    });
+  },
   login(){
     this.setState({visible: true});
-    Login.login(username, password, this);
+    Login.login(username, password, this, this.state.checkedStatus);
   },
 
   changeView(){
@@ -125,7 +139,14 @@ var IndexView = React.createClass({
               onChangeText = {(text) => password = text}
               style = {{fontSize:18}}
             />
-
+          </View>
+          <View style = {{flex:1, alignItems: 'flex-end',marginLeft: 40, marginRight:40}}>
+            <CheckBox
+              label='ذخیره کردن رمز'
+              checked={this.state.checkedStatus}
+              labelBefore = {true}
+              onChange={(checked) => this.setState({checkedStatus: checked})}
+            />
           </View>
             <View style = {styles.ButtonsSection}>
               <View style = {styles.loginButtonView}><Button style = {styles.loginButton} onPress={ () => this.login() }> <Text style = {styles.loginButtonText}> ورود</Text>  </Button></View>

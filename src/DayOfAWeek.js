@@ -17,6 +17,7 @@ var selfService = require('./selfService');
 var listOfFoods = [];
 var weekDays = ['شنبـه', 'یک شنبـه', 'دو شنبـه','سه شنبـه', 'چهار شنبـه', 'پنج شنبـه', 'جمعه'];
 var dates = [];
+var color
 function updateFoodList(edMeal, mealIndexInWeek, edDate){
   return new Promise((resolve, reject) => {
     var request = new XMLHttpRequest();
@@ -79,6 +80,9 @@ function deleteMeal(date, code, mealIndexInDay, mealIndexInWeek){
       }
       if (request.status === 200) {
           resolve(updateFoodList(deleteMeal.mealIndexInDay, deleteMeal.mealIndexInWeek, deleteMeal.date));
+      }
+      else if (request.status === 404){
+        reject(request.responseText);
       }
     };
     request.open('GET', 'http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=DeleteMeal&IdentChip=1%3A' + code + '%3A' + date + '%3A' + mealIndexInDay +'%3A1&Rand=0.7137566171586514', true);
@@ -203,14 +207,14 @@ var DayOfAWeek = React.createClass({
       var date = value[2];
       var code = value[1];
       var mealIndex = value[3];
-      deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response)).then(() => this.refs.modalView.close());
+      deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response)).then(() => this.refs.modalView.close()).catch(resp => console.log(resp));
     }
     else{     //if the food is not reserved
       value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
       var edDate = value[0];
       var edMeal = value[1];
       //sending the request
-      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response)).then(() => this.refs.modalView.close());
+      submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response)).then(() => this.refs.modalView.close()).catch(resp => console.log(resp));
     }
   },
   _handlePress(){

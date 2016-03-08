@@ -6,17 +6,30 @@ var selfService = require('./selfService');
 var url = "http://sups.shirazu.ac.ir/SfxWeb/Gate/Login.aspx";
 var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Emp/MemInfo.aspx";
 var weeklyReservationURL = "http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx";
-/*TODO: remove this part*/
-var username = "s9332045";
-var password = "mohammad95";
+/*TODO: remove this data*/
+// var username = "s9332045";
+// var password = "mohammad95";
 
 var Login = {
-  login : function (usernamee, passworde, indexPage){
+
+
+  login : function (username, password, indexPage, rememberMeStatus){
     //do the login things here
-    this.getRKey(String(usernamee), String(passworde), indexPage);
+    if (rememberMeStatus){
+        this.saveInfoInDataBase(username, password)
+    }
+    this.getRKey(String(username), String(password), indexPage);
   },
 
-  getRKey : function(usernamee, passworde, indexPage){
+  saveInfoInDataBase : function(user, pass){
+    console.log("un save t db : "+ user);
+      DB.user.add({
+        username:user,
+        password:pass
+      });
+  },
+
+  getRKey : function(username, password, indexPage){
       var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
       xhr.onreadystatechange = (e) => { //when succesfully got the RKey on the last time its time to Hash the password
