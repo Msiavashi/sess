@@ -3,9 +3,13 @@ var styles = require('.././styles');
 var Button = require('react-native-button');
 var Modal = require('react-native-modalbox');
 import Spinner from 'react-native-loading-spinner-overlay';
+var ResponsiveImage = require('react-native-responsive-image');
 var SelfServiceHeader = require('./SelfServiceHeader');
 var DOMParser = require('xmldom').DOMParser;
 var loading = null;
+var reservedIcon = 'http://icons.iconarchive.com/icons/double-j-design/childish/128/Tick-icon.png';
+var notReservedIcon = 'http://icons.iconarchive.com/icons/everaldo/crystal-clear/128/App-x-icon.png';
+var notPlannedIcon = 'http://icons.iconarchive.com/icons/gakuseisean/ivista-2/256/Alarm-Warning-icon.png';
 var {
   Text,
   View,
@@ -27,7 +31,13 @@ function updateFoodList(edMeal, mealIndexInWeek, edDate){
         return;
       }
       else if (request.status === 200) {
-        listOfFoods[updateFoodList.mealIndexInWeek] = request.responseText;
+        // if the food is already reserved the status is true (for reserved)
+        // if (request.responseText.indexOf('Error') !== -1){
+        //     listOfFoods[updateFoodList.mealIndexInWeek] = {food: request.responseText, status: true};
+        // }
+        // else{
+        //     listOfFoods[updateFoodList.mealIndexInWeek] = {food: request.responseText, status: false};
+        // }
         resolve(selfService.ReserveMealView.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null, loading));
       }
     };
@@ -110,7 +120,6 @@ var DayOfAWeek = React.createClass({
 
       /*loading*/
       visible: false,
-      refresh: false,
     };
   },
   loading(){
@@ -136,7 +145,6 @@ var DayOfAWeek = React.createClass({
     this.getDates();
   },
   shouldComponentUpdate(nextProps, nextState){
-
     this.getDates();
     return true;
   },
@@ -154,13 +162,13 @@ var DayOfAWeek = React.createClass({
 
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
   openmodalView(weekDay, mealIndexInWeek, mealIndexInDay, mealName){
-    var foods = listOfFoods[mealIndexInWeek];
+    var foods = listOfFoods[mealIndexInWeek].food;
     this.setState({selectedDay: weekDay, selectedMealName: mealName});
     if (foods.indexOf("ErrorMessage") > -1){    //it contains an error mean that the Meal is already reserved
       var mealElement = String(DayOfAWeek.currentPageSource.getElementById("Meal" + mealIndexInWeek));
       var value = mealElement.substring(mealElement.search("value"));
       value = value.substring(value.search("\"") + 1);
-      if (value === "برنامه ریزی نشده"){
+      if (value.substring(0, value.search('\"')) === "برنامه ریزی نشده"){
           value = value.substring(0, value.indexOf("\""));      //TODO: fix this
       }
       else{
@@ -169,7 +177,7 @@ var DayOfAWeek = React.createClass({
       this.setState({food1: value, food2: '', selectedMealIndexInWeek: mealIndexInWeek});
     }
     else{   //the Meal is not Reserved Yet
-      foods = listOfFoods[mealIndexInWeek].split('^');
+      foods = listOfFoods[mealIndexInWeek].food.split('^');
       var food1Info = '';
       var food2Info =  '';
       var code1 = '';
@@ -237,6 +245,7 @@ var DayOfAWeek = React.createClass({
     // getListOfFoodsForCurrentWeek(this.props.selfPage);
     return(
     <View style = {styles.daysContainer}>
+
       {/*navbar*/}
       <View styles = {{flex:1}}>
         <SelfServiceHeader selfPage = {this.props.selfPage} shouldParseSelfPage = {false} parentState = {this.setState}/>
@@ -296,6 +305,22 @@ var DayOfAWeek = React.createClass({
 DayOfAWeek.currentPageSource = '';
 /*renders one day of a week*/
 var Day = React.createClass({
+  findIcon(mealIndex){
+    try{
+      if (listOfFoods[mealIndex].status === 'reserved'){
+        return reservedIcon;
+      }
+      else if (listOfFoods[mealIndex].status === 'notReserved'){
+        return notReservedIcon;
+      }
+      else if(listOfFoods[mealIndex].status === 'notPlanned'){
+        return notPlannedIcon;
+      }
+    }
+    catch(err){
+      return null;
+    }
+  },
   render(){
     return(
       <View style = {styles.singleDayContainer}>
@@ -308,18 +333,20 @@ var Day = React.createClass({
           <View style = {styles.mealButton}>
             {/*fires up when a meal is selected*/}
             <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex, 0, "صبحانه")}>
-                <Text style = {styles.mealText}> صبحانه </Text>
-                {/*TODO: add a on/off button here for all the buttons below */}
+                <ResponsiveImage source={{uri: this.findIcon(this.props.mealIndex)}} initWidth="18" initHeight="18"/>
+                <Text style = {[styles.mealText, {flex:1}]}> صبحانه </Text>
             </Button>
           </View>
-          <View style = {styles.mealButton}>
-            <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 1, 1, "نهار")}>
-                <Text style = {[styles.mealText, {backgroundColor: "#CECECE"}]}> ناهار </Text>
+          <View style = {[styles.mealButton, {backgroundColor: "#CECECE"}]}>
+            <Button  onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 1, 1, "نهار")}>
+                <ResponsiveImage source={{uri: this.findIcon(this.props.mealIndex + 1)}} initWidth="20" initHeight="20"/>
+                <Text style = {[styles.mealText, {flex:1}]}> ناهار </Text>
             </Button>
           </View>
           <View style = {styles.mealButton}>
             <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 2, 2, "شام")}>
-                <Text style = {styles.mealText}> شام </Text>
+                <ResponsiveImage source={{uri: this.findIcon(this.props.mealIndex + 2)}} initWidth="18" initHeight="18"/>
+                <Text style = {[styles.mealText, {flex:1}]}> شام </Text>
             </Button>
           </View>
         </View>
@@ -342,8 +369,24 @@ DayOfAWeek.requestFoodList = function(mealIndex, selfPage){
       return;
     }
     if (request.status === 200 && DayOfAWeek.requestMealIndex <= 20) {
-      listOfFoods[DayOfAWeek.requestMealIndex] = request.responseText;
-
+      /*if the the response contains an error*/
+      if (request.responseText.indexOf("در تاریخ وارد شده سال معتبر نیست") !== -1){
+        var mealElement = String(DayOfAWeek.currentPageSource.getElementById("Meal" + DayOfAWeek.requestMealIndex));
+        var value = mealElement.substring(mealElement.search("value"));
+        value = value.substring(value.search("\"") + 1);
+        /*the meal is not planned*/
+        if (value.substring(0, value.search('\"')) === "برنامه ریزی نشده"){
+          listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "notPlanned"};
+        }
+        else{
+          listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "reserved"};
+        }
+      }
+      /*otherwise the food is not reserved*/
+      else{
+          listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "notReserved"};
+      }
+      // listOfFoods[DayOfAWeek.requestMealIndex] = request.responseText;
       /*breaks the loading*/
       if (DayOfAWeek.requestMealIndex === 20){
         loading();

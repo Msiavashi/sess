@@ -19,7 +19,7 @@ var {
 } = React;
 import Spinner from 'react-native-loading-spinner-overlay';
 var SMSPanelView = require('./src/sms');
-var logoURL = 'http://shirazu.ac.ir/sites/default/files/logo-bluehq.png';
+var logoURL = 'http://www.dominiontentsandshelter.com/images/dining-icon-300x300.png';
 var username = null;
 var password = null;
 
@@ -85,14 +85,14 @@ var IndexView = React.createClass({
   },
   componentWillMount(){
     /*if there was a account saved in database log in automatically*/
-    DB.user.find().then(resp => {
-      if (resp){
-        username = resp[0].username;
-        password = resp[0].password;
-        console.log(username);
-        this.login();
-      }
-    });
+    // DB.user.find().then(resp => {
+    //   if (resp){
+    //     username = resp[0].username;
+    //     password = resp[0].password;
+    //     console.log(username);
+    //     this.login();
+    //   }
+    // });
   },
   login(){
     this.setState({visible: true});
@@ -118,7 +118,7 @@ var IndexView = React.createClass({
       {/*<ActionButton/>*/}
         <View style = {styles.loginViewHeader}>
             <View style = {styles.logoView} >
-              <ResponsiveImage source={{uri: logoURL}} initWidth="220" initHeight="220"/>
+              <ResponsiveImage source={{uri: logoURL}} initWidth="260" initHeight="260"/>
             </View>
         </View>
         <View style = {styles.loginViewFooter}>
