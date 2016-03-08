@@ -85,14 +85,14 @@ var IndexView = React.createClass({
   },
   componentWillMount(){
     /*if there was a account saved in database log in automatically*/
-    // DB.user.find().then(resp => {
-    //   if (resp){
-    //     username = resp[0].username;
-    //     password = resp[0].password;
-    //     console.log(username);
-    //     this.login();
-    //   }
-    // });
+    DB.user.find().then(resp => {
+      if (resp){
+        username = resp[0].username;
+        password = resp[0].password;
+        console.log(username);
+        this.login();
+      }
+    });
   },
   login(){
     this.setState({visible: true});

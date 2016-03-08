@@ -6,9 +6,7 @@ var selfService = require('./selfService');
 var url = "http://sups.shirazu.ac.ir/SfxWeb/Gate/Login.aspx";
 var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Emp/MemInfo.aspx";
 var weeklyReservationURL = "http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx";
-/*TODO: remove this data*/
-// var username = "s9332045";
-// var password = "mohammad95";
+
 
 var Login = {
 
