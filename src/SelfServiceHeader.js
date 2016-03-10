@@ -23,6 +23,7 @@ var SelfServiceHeader = React.createClass({
   setHeaderValues(nextProps){
     // if(this.props.shouldParseSelfPage === true){
     var parser = new DOMParser();
+    //TODO: remove the strings 
     if(nextProps){
       this.props.selfPage = parser.parseFromString(String(nextProps.selfPage), "text/xml");   //converts the response Text to document
     }

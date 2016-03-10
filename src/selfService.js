@@ -61,7 +61,7 @@ var ReserveMealView = React.createClass({
   /*the function should load the next page <ViewNames> on second response from server thats why that counter is there*/
   showList(){
         convertSelfSourceToXMLDom(selfPage);
-        DayOfAWeek.currentPageSource = selfPage;
+        DayOfAWeek.pageSource = selfPage;
         return (
           selfServices.map((selfName) => <ViewNames name = {selfName.name} navigator = {this.props.navigator} pageSource = {selfPage} />)
       );
@@ -107,8 +107,8 @@ ReserveMealView.openURL = function(url, indexPage){
         else{
           var parser = new DOMParser();
           selfPage = parser.parseFromString(selfPage, "text/xml");   //converts the response Text to document
-          DayOfAWeek.currentPageSource = selfPage;
-          DayOfAWeek.requestFoodList(0, selfPage);
+          DayOfAWeek.pageSource = selfPage;
+          DayOfAWeek.requestFoodList(0);
           resolve(selfPage);
         }
       }
@@ -122,7 +122,7 @@ ReserveMealView.openURL = function(url, indexPage){
 /*produce a single button for a single self service provided in the selfServices array*/
 var ViewNames = React.createClass({
   _handlePress(selectedValue){
-    DayOfAWeek.currentPageSource = this.props.pageSource;
+    DayOfAWeek.pageSource = this.props.pageSource;
     var code = '';
     for (i = 0; i < selfServices.length; ++i){
       if (selfServices[i].name == selectedValue){

@@ -34,12 +34,9 @@ var Login = {
             return;
           }
           if (xhr.status === 200) {
-            let pageSource =  xhr.responseText; //gets the response of the request
             let parser = new DOMParser();
-            doc = parser.parseFromString(pageSource, "text/xml");   //converts the response Text to document
-            var RKeyElement = String(doc.getElementById("_RKey"));
-            var RKey = RKeyElement.substring(RKeyElement.search("value"));  //gets the element of from the document
-            RKey = RKey.substring(RKey.search("\"")+1, RKey.lastIndexOf("\"")); //getting the 32-digit-long _RKey
+            doc = parser.parseFromString(xhr.responseText, "text/xml");   //converts the response Text to document
+            var RKey = doc.getElementById("_RKey").getAttribute('value');
             DoLogin(username, password , '', RKey, indexPage);
           }
           else {
