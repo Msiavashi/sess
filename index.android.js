@@ -3,11 +3,10 @@
  * https://github.com/facebook/react-native
  */
 import DB from './src/database';
-var CheckBox = require('react-native-checkbox');
 var Button = require('react-native-button');
 var React = require('react-native');
 var ResponsiveImage = require('react-native-responsive-image');
-// var GiftedSpinner = require('react-native-gifted-spinner');
+var smsIcon = require('./icons/SMS-Message-icon.png');
 var {
   AppRegistry,
   Text,
@@ -19,7 +18,7 @@ var {
 } = React;
 import Spinner from 'react-native-loading-spinner-overlay';
 var SMSPanelView = require('./src/sms');
-var logoURL = 'http://www.dominiontentsandshelter.com/images/dining-icon-300x300.png';
+var logoImage = require('./icons/dining-icon-300x300.png');
 var username = null;
 var password = null;
 
@@ -69,9 +68,7 @@ var sess = React.createClass({
       );
     }
   },
-
 });
-
 
 var IndexView = React.createClass({
   getInitialState(){
@@ -89,36 +86,39 @@ var IndexView = React.createClass({
       if (resp){
         username = resp[0].username;
         password = resp[0].password;
-        console.log(username);
         this.login();
+      }
+      else{
+        this.setState({checkedStatus: true});
       }
     });
   },
   login(){
-    this.setState({visible: true});
-    Login.login(username, password, this, this.state.checkedStatus);
+      this.setState({visible: true});
+      Login.login(username, password, this, this.state.checkedStatus);
   },
 
   changeView(){
-    if (this.state.pageNumber === 0){
-    this.setState({
-      viewOne: !this.state.viewOne
-    });
-    ++this.state.pageNumber;
-  }
+      if (this.state.pageNumber === 0){
+      this.setState({
+        viewOne: !this.state.viewOne,
+        visible: false
+      });
+      // ++this.state.pageNumber;
+    }
   },
 
   changeViewToSMSPanel(){
     this.props.navigator.push({id: 'SMSPanelView'})
   },
   render(){
-    if(!this.state.viewOne) return <MainPage changeView={ () => {this.login()} } />
+    if(!this.state.viewOne) return <MainPage changeView = {this.changeView}/>
     return(
       <View style = {styles.loginViewContainer}>
       {/*<ActionButton/>*/}
         <View style = {styles.loginViewHeader}>
             <View style = {styles.logoView} >
-              <ResponsiveImage source={{uri: logoURL}} initWidth="260" initHeight="260"/>
+              <ResponsiveImage source={logoImage} initWidth="260" initHeight="260"/>
             </View>
         </View>
         <View style = {styles.loginViewFooter}>
@@ -140,18 +140,10 @@ var IndexView = React.createClass({
               style = {{fontSize:18}}
             />
           </View>
-          <View style = {{flex:1, alignItems: 'flex-end',marginLeft: 40, marginRight:40}}>
-            <CheckBox
-              label='ذخیره کردن رمز'
-              checked={this.state.checkedStatus}
-              labelBefore = {true}
-              onChange={(checked) => this.setState({checkedStatus: checked})}
-            />
+          <View style = {styles.ButtonsSection}>
+            <View style = {styles.loginButtonView}><Button style = {styles.loginButton} onPress={ () => this.login() }> <Text style = {styles.loginButtonText}> ورود</Text>  </Button></View>
+            <View><Button onPress = { () => this.changeViewToSMSPanel() }> <ResponsiveImage source={smsIcon} initWidth="64" initHeight="64"/> </Button></View>
           </View>
-            <View style = {styles.ButtonsSection}>
-              <View style = {styles.loginButtonView}><Button style = {styles.loginButton} onPress={ () => this.login() }> <Text style = {styles.loginButtonText}> ورود</Text>  </Button></View>
-              <View><Button onPress = { () => this.changeViewToSMSPanel() }> <ResponsiveImage source={{uri: "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-12/512/SMS-Message-icon.png"}} initWidth="64" initHeight="64"/> </Button></View>
-            </View>
         </View>
         <Spinner visible={this.state.visible} />
       </View>
@@ -255,6 +247,7 @@ var MainPage = React.createClass({
           acceptDoubleTap={this.state.acceptDoubleTap}
           acceptPan={this.state.acceptPan}
           rightSide={this.state.rightSide}
+          changeView = {this.props.changeView}
           />
       </Drawer>
     );

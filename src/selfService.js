@@ -5,7 +5,8 @@ var DOMParser = require('xmldom').DOMParser;
 var DayOfAWeek = require('./DayOfAWeek');
 var selfPage = '';
 var SelfServiceHeader = require('./SelfServiceHeader');
-
+var ResponsiveImage = require('react-native-responsive-image');
+var logoutIcon = 'http://www.iconarchive.com/show/100-flat-2-icons-by-graphicloads/switch-turn-off-icon.html';
 var {
   Text,
   View,
@@ -36,8 +37,8 @@ var ReserveMealView = React.createClass({
           <SelfServiceHeader selfPage = {selfPage} shouldParseSelfPage = {true}/>
         <View style = {styles.underHeader}>
           <View style = {styles.backButton}>
-            <Button style = {{color: "white", fontSize: 22}}>
-                پیامک
+            <Button style = {{color: "white", fontSize: 22}} onPress = {() => this.props.changeView()}>
+                خروج
             </Button>
           </View>
         </View>

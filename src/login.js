@@ -9,8 +9,6 @@ var weeklyReservationURL = "http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.asp
 
 
 var Login = {
-
-
   login : function (username, password, indexPage, rememberMeStatus){
     //do the login things here
     if (rememberMeStatus){
@@ -45,7 +43,7 @@ var Login = {
             DoLogin(username, password , '', RKey, indexPage);
           }
           else {
-            Alert.alert("error");
+            Alert.alert("خطا", "مشکل در اتصال به اینترنت");
           }
         };
 

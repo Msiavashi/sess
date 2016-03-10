@@ -43,10 +43,6 @@ var SelfServiceHeader = React.createClass({
         this.setHeaderValues(nextProps);
     }
   },
-  /******this fucntion is only for test******/
-  // shouldComponentUpdate: function(nextProps, nextState) {
-  //   return true;
-  // },
   render(){
     return(
       <View style = {styles.selfServiceHeader}>

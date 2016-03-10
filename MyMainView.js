@@ -37,7 +37,7 @@ var MyMainView = React.createClass({
       var routeId = route.id;
       if (routeId === 'ReserveMealView') {
           return (
-            <ReserveMealView.ReserveMealView navigator = {navigator}/>
+            <ReserveMealView.ReserveMealView navigator = {navigator} changeView = {this.props.changeView}/>
           );
       }
       else if ( routeId === 'DayOfAWeek'){
