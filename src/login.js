@@ -12,12 +12,19 @@ var Login = {
   login : function (username, password, indexPage, rememberMeStatus){
     //do the login things here
     if (rememberMeStatus){
+      Alert.alert("s");
         this.getRKey(username, password, indexPage)
-          .then(this.saveInfoInDataBase(username, password))
+          .then(RKey => DoLogin(username, password, '', RKey, indexPage))
+          .then(() => fetchSelf(indexPage))
+          .then(() => this.saveInfoInDataBase(username, password))
+          .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
           .catch(error => Alert.alert("خطا", "مشکل در اتصال به اینترنت"));
     }
     else{
-        this.getRKey(username,password, indexPage);
+      this.getRKey(username, password, indexPage)
+        .then(RKey => DoLogin(username, password, '', RKey, indexPage))
+        .then(() => fetchSelf(indexPage))
+        .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage));
     }
 
   },
@@ -43,7 +50,7 @@ var Login = {
             let parser = new DOMParser();
             doc = parser.parseFromString(xhr.responseText, "text/xml");   //converts the response Text to document
             var RKey = doc.getElementById("_RKey").getAttribute('value');
-            resolve(DoLogin(username, password, '', RKey, indexPage));
+            resolve(RKey);
           }
           else if (xhr.status !== 200){
             reject(request.responseText);
@@ -206,12 +213,10 @@ function str2binl(str) {
     blks[nblk * 16 - 2] = str.length * 8
     return blks
 }
-
 function Md5High(Key, Value) {
     var s = Key + binl2hex(coreMD5(str2binl(Value)));
     return binl2hex(coreMD5(str2binl(s)));
 }
-
 function fetchSelf(indexPage){
   return new Promise((resolve, reject) => {
     var req = new XMLHttpRequest();
@@ -219,10 +224,9 @@ function fetchSelf(indexPage){
       if (req.readyState !== 4) {
         return;
       }
-
       if (req.status === 200) {
         /*after getting the main page of the self then it time to change the VIEW after */
-        resolve(selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage));
+        resolve(req.responseText);
       }
       else if (req.status !== 200){
         reject(req.responseText);
@@ -234,7 +238,6 @@ function fetchSelf(indexPage){
 }
 
 function DoLogin(iId, iPass, iCode, RKey, indexPage){
-
     var Inc = Md5High(RKey, iPass); /*hash the password*/
     return new Promise((resolve, reject) => {
       var Request = new XMLHttpRequest();
@@ -244,7 +247,7 @@ function DoLogin(iId, iPass, iCode, RKey, indexPage){
         }
         if (Request.status === 200) {
         /*if succesfully loged in to sups*/
-         resolve(fetchSelf(indexPage));
+         resolve(Request.responseText);
         }
         else if (Request.status !== 200){
           reject(Request.responseText);
