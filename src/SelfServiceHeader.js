@@ -23,13 +23,14 @@ var SelfServiceHeader = React.createClass({
   setHeaderValues(nextProps){
     // if(this.props.shouldParseSelfPage === true){
     var parser = new DOMParser();
-    //TODO: remove the strings 
+    //TODO: remove the strings
     if(nextProps){
       this.props.selfPage = parser.parseFromString(String(nextProps.selfPage), "text/xml");   //converts the response Text to document
     }
     else{
       this.props.selfPage = parser.parseFromString(String(this.props.selfPage), "text/xml");   //converts the response Text to document
     }
+
     var header = String(this.props.selfPage.getElementById('Toolbar1_lblUserName'));
     header = header.substring(header.indexOf('>') + 1, header.lastIndexOf('</'))
     header = header.split(':');

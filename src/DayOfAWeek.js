@@ -379,54 +379,55 @@ var Day = React.createClass({
   },
 });
 DayOfAWeek.requestFoodList = function(mealIndex){
-  var request = new XMLHttpRequest();
-  DayOfAWeek.requestMealIndex = mealIndex;
-  /*getting the edDate and edMeal (.value not working after converting so a bit of extra work happend here )*/
-  try{
+  return new Promise((resolve, reject) => {
+    var request = new XMLHttpRequest();
+    DayOfAWeek.requestMealIndex = mealIndex;
+    /*getting the edDate and edMeal (.value not working after converting so a bit of extra work happend here )*/
+
     var value = DayOfAWeek.pageSource.getElementById("Meal" + DayOfAWeek.requestMealIndex).getAttribute('onclick');
     value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
-    var edDate = value[0];
-    var edMeal = value[1];
-  }
-  catch(err){
-    console.error(err);
-  }
-  request.onreadystatechange = (e) => {
-    if ( request.readyState !== 4 ){
-      return;
-    }
-    /*on network failure*/
-    if (request.status !== 200){
-      Alert.alert('خطا', 'اشکال در دریافت اطلاعات');
-    }
-    else if (request.status === 200 && DayOfAWeek.requestMealIndex <= 20) {
-      /*if the the response contains an error*/
-      if (request.responseText.indexOf("در تاریخ وارد شده سال معتبر نیست") !== -1){
-        var value = DayOfAWeek.pageSource.getElementById("Meal" + DayOfAWeek.requestMealIndex).getAttribute('value');
-        /*the meal is not planned*/
-        if (value === "برنامه ریزی نشده"){
-          listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "notPlanned"};
+    var edDate = value && value[0];
+    var edMeal = value && value[1];
+    request.onreadystatechange = (e) => {
+      if ( request.readyState !== 4 ){
+        return;
+      }
+      /*on network failure*/
+      if (request.status !== 200){
+        Alert.alert('خطا', 'اشکال در دریافت اطلاعات');
+        reject(request.responseText);
+      }
+      else if (request.status === 200 && DayOfAWeek.requestMealIndex <= 20) {
+        /*if the the response contains an error*/
+        if (request.responseText.indexOf("در تاریخ وارد شده سال معتبر نیست") !== -1){
+          var value = DayOfAWeek.pageSource.getElementById("Meal" + DayOfAWeek.requestMealIndex).getAttribute('value');
+          /*the meal is not planned*/
+          if (value === "برنامه ریزی نشده"){
+            listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "notPlanned"};
+          }
+          else{
+            listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "reserved"};
+          }
         }
+        /*otherwise the food is not reserved*/
         else{
-          listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "reserved"};
+            listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "notReserved"};
         }
+        /*breaks the DayOfAWeek.loading*/
+        if (DayOfAWeek.requestMealIndex === 20){
+          DayOfAWeek.loading();
+          resolve(request.responseText);
+        }
+        DayOfAWeek.requestFoodList(++mealIndex);
+        return;
       }
-      /*otherwise the food is not reserved*/
-      else{
-          listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "notReserved"};
+      else {
+        console.error('error' + ' ' + request.status);
       }
-      /*breaks the DayOfAWeek.loading*/
-      if (DayOfAWeek.requestMealIndex === 20){
-        DayOfAWeek.loading();
-      }
-      DayOfAWeek.requestFoodList(++mealIndex);
-      return;
-    }
-    else {
-      console.error('error' + ' ' + request.status);
-    }
-  };
-  request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
-  request.send();
+    };
+    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+    request.send();
+
+  });
 }
 module.exports = DayOfAWeek;

@@ -13,17 +13,17 @@ var Login = {
     //do the login things here
     if (rememberMeStatus){
       Alert.alert("s");
-        this.getRKey(username, password, indexPage)
-          .then(RKey => DoLogin(username, password, '', RKey, indexPage))
-          .then(() => fetchSelf(indexPage))
+        this.getRKey()
+          .then(RKey => DoLogin(username, password, '', RKey))
+          .then(() => fetchSelf())
           .then(() => this.saveInfoInDataBase(username, password))
           .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
           .catch(error => Alert.alert("خطا", "مشکل در اتصال به اینترنت"));
     }
     else{
-      this.getRKey(username, password, indexPage)
-        .then(RKey => DoLogin(username, password, '', RKey, indexPage))
-        .then(() => fetchSelf(indexPage))
+      this.getRKey()
+        .then(RKey => DoLogin(username, password, '', RKey))
+        .then(() => fetchSelf())
         .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage));
     }
 
@@ -37,7 +37,7 @@ var Login = {
       });
   },
 
-  getRKey: function(username, password, indexPage){
+  getRKey: function(){
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
@@ -217,7 +217,7 @@ function Md5High(Key, Value) {
     var s = Key + binl2hex(coreMD5(str2binl(Value)));
     return binl2hex(coreMD5(str2binl(s)));
 }
-function fetchSelf(indexPage){
+function fetchSelf(){
   return new Promise((resolve, reject) => {
     var req = new XMLHttpRequest();
     req.onreadystatechange = (e) => {
@@ -237,7 +237,7 @@ function fetchSelf(indexPage){
   });
 }
 
-function DoLogin(iId, iPass, iCode, RKey, indexPage){
+function DoLogin(iId, iPass, iCode, RKey){
     var Inc = Md5High(RKey, iPass); /*hash the password*/
     return new Promise((resolve, reject) => {
       var Request = new XMLHttpRequest();

@@ -6,7 +6,6 @@ var DayOfAWeek = require('./DayOfAWeek');
 var selfPage = '';
 var SelfServiceHeader = require('./SelfServiceHeader');
 var ResponsiveImage = require('react-native-responsive-image');
-var logoutIcon = 'http://www.iconarchive.com/show/100-flat-2-icons-by-graphicloads/switch-turn-off-icon.html';
 var {
   Text,
   View,
@@ -14,8 +13,6 @@ var {
   Alert,
   Navigator,
 } = React;
-
-// var selfServices = ['مهندسی نفت و گاز', 'مرکزی', 'ارم', 'خوابگاه شهید دستغیب', 'دانشکده هنر و معماری', 'دانشکده کشاورزی', 'بوفه ارم', 'بوفه مرکزی', 'بوفه خوابگاه مفتح', 'دانشکده دامپزشکی', 'خوابگاه دامپزشکی', 'دانشکده علوم'];
 var selfServices = [ {name: "ارم", code: "3" }, {name: "دانشکده هنر و معماری", code: "0"}, {name: "خوابگاه شهید دستغیب", code: "0"}, {name: "دانشکده علوم", code: "0"}, {name: "دانشکده مهندسی نفت و گاز", code: "7" }, {name : "مرکزی" , code: "8"}, {name: "دانشکده کشاورزی", code: "0"}, {name: "دانشکده دامپزشکی", code: "0"}, {name: "بوفه ارم", code: "0"}, {name: "بوفه مرکزی", code: "0"}, {name: "بوفه خوابگاه مفتح", code: "0"}, {name: "خوابگاه دامپزشکی", code: "0"} ];
 
 var setSelfPage = function(pageSource){
