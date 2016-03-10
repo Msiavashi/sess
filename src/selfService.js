@@ -115,7 +115,7 @@ ReserveMealView.openURL = function(url, indexPage){
     };
     request.open('GET', url, true);
     request.send();
-  })
+  });
 
 }
 

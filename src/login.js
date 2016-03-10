@@ -12,9 +12,14 @@ var Login = {
   login : function (username, password, indexPage, rememberMeStatus){
     //do the login things here
     if (rememberMeStatus){
-        this.saveInfoInDataBase(username, password)
+        this.getRKey(username, password, indexPage)
+          .then(this.saveInfoInDataBase(username, password))
+          .catch(error => Alert.alert("خطا", "مشکل در اتصال به اینترنت"));
     }
-    this.getRKey(String(username), String(password), indexPage);
+    else{
+        this.getRKey(username,password, indexPage);
+    }
+
   },
 
   saveInfoInDataBase : function(user, pass){
@@ -25,7 +30,8 @@ var Login = {
       });
   },
 
-  getRKey : function(username, password, indexPage){
+  getRKey: function(username, password, indexPage){
+    return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
       xhr.onreadystatechange = (e) => { //when succesfully got the RKey on the last time its time to Hash the password
@@ -37,17 +43,15 @@ var Login = {
             let parser = new DOMParser();
             doc = parser.parseFromString(xhr.responseText, "text/xml");   //converts the response Text to document
             var RKey = doc.getElementById("_RKey").getAttribute('value');
-            DoLogin(username, password , '', RKey, indexPage);
+            resolve(DoLogin(username, password, '', RKey, indexPage));
           }
-          else {
-            Alert.alert("خطا", "مشکل در اتصال به اینترنت");
+          else if (xhr.status !== 200){
+            reject(request.responseText);
           }
         };
-
       xhr.open('GET', url, true);
       xhr.send(null);
-      //xhr.addEventListener("readystatechange", processRequest, true);
-
+    });
   },
 }
 
@@ -209,45 +213,45 @@ function Md5High(Key, Value) {
 }
 
 function fetchSelf(indexPage){
-  var req = new XMLHttpRequest();
-  req.onreadystatechange = (e) => {
-    if (req.readyState !== 4) {
-      return;
-    }
+  return new Promise((resolve, reject) => {
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = (e) => {
+      if (req.readyState !== 4) {
+        return;
+      }
 
-    if (req.status === 200) {
-      /*after getting the main page of the self then it time to change the VIEW after */
-      selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage);
-    }
-
-    else {
-      console.log('error' + ' ' + req.status);
-    }
-  };
-
-req.open('GET', selfURL, true);
-req.send();
+      if (req.status === 200) {
+        /*after getting the main page of the self then it time to change the VIEW after */
+        resolve(selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage));
+      }
+      else if (req.status !== 200){
+        reject(req.responseText);
+      }
+    };
+    req.open('GET', selfURL, true);
+    req.send();
+  });
 }
 
 function DoLogin(iId, iPass, iCode, RKey, indexPage){
 
     var Inc = Md5High(RKey, iPass); /*hash the password*/
-
-    var Request = new XMLHttpRequest();
-    Request.onreadystatechange = (e) => {
-      if (Request.readyState !== 4) {
-        return;
-      }
-
-      if (Request.status === 200) {
-      /*if succesfully loged in to sups*/
-       fetchSelf(indexPage);
-      }
-      else {
-        console.log('error' + ' ' + Request.status);
-      }
-    };
-  Request.open('GET', "http://sups.shirazu.ac.ir" + "/SfxWeb/Script/AjaxEnvironment.aspx?Act=MakeMember&WebApp=1&Id=" + iId + "&Pass=" + Inc + "&rnd=" + Math.random(), true);
-  Request.send();
+    return new Promise((resolve, reject) => {
+      var Request = new XMLHttpRequest();
+      Request.onreadystatechange = (e) => {
+        if (Request.readyState !== 4) {
+          return;
+        }
+        if (Request.status === 200) {
+        /*if succesfully loged in to sups*/
+         resolve(fetchSelf(indexPage));
+        }
+        else if (Request.status !== 200){
+          reject(Request.responseText);
+        }
+      };
+    Request.open('GET', "http://sups.shirazu.ac.ir" + "/SfxWeb/Script/AjaxEnvironment.aspx?Act=MakeMember&WebApp=1&Id=" + iId + "&Pass=" + Inc + "&rnd=" + Math.random(), true);
+    Request.send();
+  });
 }
 module.exports = Login;
