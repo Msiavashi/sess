@@ -63,19 +63,19 @@ var ReserveMealView = React.createClass({
         convertSelfSourceToXMLDom(selfPage);
         DayOfAWeek.currentPageSource = selfPage;
         return (
-          selfServices.map((selfName) => <ViewNames name = {selfName.name} navigator = {this.props.navigator} pageSource = {selfPage} loading = {this.loading}/>)
+          selfServices.map((selfName) => <ViewNames name = {selfName.name} navigator = {this.props.navigator} pageSource = {selfPage} />)
       );
   },
 });
 
-ReserveMealView.changeWeek = function(moveTo, loading){
+ReserveMealView.changeWeek = function(moveTo){
   var request = new XMLHttpRequest();
   request.onreadystatechange = (e) => {
     if ( request.readyState !== 4 ){
       return;
     }
     if (request.status === 200) {
-      this.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null, loading);
+      this.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null);
     }
     else {
       console.log('error' + ' ' + request.status);
@@ -91,7 +91,7 @@ ReserveMealView.changeWeek = function(moveTo, loading){
   }
 }
 
-ReserveMealView.openURL = function(url, indexPage , loading){
+ReserveMealView.openURL = function(url, indexPage){
   return new Promise((resolve, reject) => {
     var request = new XMLHttpRequest();
     request.onreadystatechange = (e) => {
@@ -121,7 +121,7 @@ ReserveMealView.openURL = function(url, indexPage , loading){
 
 /*produce a single button for a single self service provided in the selfServices array*/
 var ViewNames = React.createClass({
-  _handlePress(selectedValue, loading){
+  _handlePress(selectedValue){
     DayOfAWeek.currentPageSource = this.props.pageSource;
     var code = '';
     for (i = 0; i < selfServices.length; ++i){
@@ -134,7 +134,7 @@ var ViewNames = React.createClass({
   },
   render(){
     return(
-    <Button onPress={() => this._handlePress(this.props.name, this.props.loading)}>
+    <Button onPress={() => this._handlePress(this.props.name)}>
       <View style = {styles.selfServiceWeekDays}>
           <Text style = {styles.selfServiceWeekDayName}>
             {this.props.name}

@@ -6,7 +6,6 @@ import Spinner from 'react-native-loading-spinner-overlay';
 var ResponsiveImage = require('react-native-responsive-image');
 var SelfServiceHeader = require('./SelfServiceHeader');
 var DOMParser = require('xmldom').DOMParser;
-var loading = null;
 var reservedIcon = require('.././icons/ic_done_all_black_24dp.png');
 var notReservedIcon = require('.././icons/ic_remove_circle_outline_black_24dp.png');
 var notPlannedIcon = require('.././icons/ic_clear_black_24dp.png');
@@ -32,14 +31,10 @@ function updateFoodList(edMeal, mealIndexInWeek, edDate){
         return;
       }
       else if (request.status === 200) {
-        // if the food is already reserved the status is true (for reserved)
-        // if (request.responseText.indexOf('Error') !== -1){
-        //     listOfFoods[updateFoodList.mealIndexInWeek] = {food: request.responseText, status: true};
-        // }
-        // else{
-        //     listOfFoods[updateFoodList.mealIndexInWeek] = {food: request.responseText, status: false};
-        // }
-        resolve(selfService.ReserveMealView.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null, loading));
+        resolve(selfService.ReserveMealView.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null));
+      }
+      else if (request.status === 404){
+        reject(request.responseText);
       }
     };
     request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
@@ -48,7 +43,7 @@ function updateFoodList(edMeal, mealIndexInWeek, edDate){
 }
 
 function submitReservation(selfCode, foodCode, edDate, edMeal, mealIndexInWeek){
-  loading();
+  DayOfAWeek.loading();
   return new Promise((resolve, reject) => {
     var request = new XMLHttpRequest();
     submitReservation.mealIndexInWeek = mealIndexInWeek;
@@ -62,14 +57,14 @@ function submitReservation(selfCode, foodCode, edDate, edMeal, mealIndexInWeek){
         if (request.responseText.indexOf("مبلغ اعتبار شما کافی نیست") !== -1){
           Alert.alert("خطا", "مبلغ اعتبار شما کافی نیست");
           reject(request.responseText);
-          loading();
+          DayOfAWeek.loading();
         }
         else{
           resolve(updateFoodList(submitReservation.edMeal, submitReservation.mealIndexInWeek, submitReservation.edDate));
         }
       }
-      else {
-        console.log('error' + ' ' + request.status);
+      else if (request.status === 404){
+        reject(request.responseText);
       }
     };
     request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=BuyChipsWeek&Restaurant=" + selfCode + "&ProgDate=" + edDate + "&Meal=" + edMeal + "&Food=" + foodCode + "&Dessert=&Rand=0.47429", true);
@@ -79,7 +74,7 @@ function submitReservation(selfCode, foodCode, edDate, edMeal, mealIndexInWeek){
 }
 
 function deleteMeal(date, code, mealIndexInDay, mealIndexInWeek){
-  loading();
+  DayOfAWeek.loading();
   return new Promise((resolve, reject) => {
     var request = new XMLHttpRequest();
     deleteMeal.mealIndexInWeek = mealIndexInWeek;
@@ -103,7 +98,8 @@ function deleteMeal(date, code, mealIndexInDay, mealIndexInWeek){
 }
 var DayOfAWeek = React.createClass({
   statics:{
-    fromDateToDate : ''
+    fromDateToDate : '',
+    loading: null
   },
   getInitialState(){ //they are used for Modal view
     return {
@@ -138,8 +134,8 @@ var DayOfAWeek = React.createClass({
       this.setState({visible: !this.state.visible});
   },
   componentDidMount(){
-    loading = this.loading;
-    this.loading();
+    DayOfAWeek.loading = this.loading;
+    DayOfAWeek.loading();
     /**getting list of foods**/
     DayOfAWeek.requestFoodList(0, DayOfAWeek.currentPageSource);
   },
@@ -231,7 +227,8 @@ var DayOfAWeek = React.createClass({
       var date = value[2];
       var code = value[1];
       var mealIndex = value[3];
-      deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek).then(response => this.setHeaderValues(response)).then(() => this.refs.modalView.close()).catch(resp => console.log(resp));
+      deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek)
+        .then(response => this.setHeaderValues(response)).then(() => this.refs.modalView.close()).catch(resp => console.log(resp));
     }
     else{     //if the food is not reserved
       value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
@@ -249,12 +246,12 @@ var DayOfAWeek = React.createClass({
     return weekDays.map((dayName) => <Day weekDay = {dayName} date = {dates[weekDays.indexOf(dayName)]} modalView = {modal} mealIndex = {counter += 3}  />)
   },
   nextWeek(){
-    loading();
-    selfService.ReserveMealView.changeWeek("next", loading);
+    DayOfAWeek.loading();
+    selfService.ReserveMealView.changeWeek("next");
   },
   previousWeek(){
-    loading();
-    selfService.ReserveMealView.changeWeek("previous", loading);
+    DayOfAWeek.loading();
+    selfService.ReserveMealView.changeWeek("previous");
   },
   foodSelectionHandler(foodCode){
     this.setState({selectedFoodCode: foodCode});
@@ -422,9 +419,9 @@ DayOfAWeek.requestFoodList = function(mealIndex, selfPage){
           listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "notReserved"};
       }
       // listOfFoods[DayOfAWeek.requestMealIndex] = request.responseText;
-      /*breaks the loading*/
+      /*breaks the DayOfAWeek.loading*/
       if (DayOfAWeek.requestMealIndex === 20){
-        loading();
+        DayOfAWeek.loading();
       }
       DayOfAWeek.requestFoodList(++mealIndex, selfPage);
       return;
