@@ -224,7 +224,7 @@ var DayOfAWeek = React.createClass({
       submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek)
         .then(response => this.setHeaderValues(response))
         .then(() => this.refs.modalView.close())
-        .catch(resp => console.log(resp));
+        .catch(resp => console.error(resp));
     }
   },
   _handlePress(){
@@ -327,20 +327,9 @@ DayOfAWeek.pageSource = '';
 /*renders one day of a week*/
 var Day = React.createClass({
   findIcon(mealIndex){
-    try{
-      if (listOfFoods[mealIndex].status === 'reserved'){
-        return reservedIcon;
-      }
-      else if (listOfFoods[mealIndex].status === 'notReserved'){
-        return notReservedIcon;
-      }
-      else if(listOfFoods[mealIndex].status === 'notPlanned'){
-        return notPlannedIcon;
-      }
-    }
-    catch(err){
-      return null;
-    }
+    var icons = { reserved : reservedIcon, notReserved: notReservedIcon, notPlanned : notPlannedIcon };
+    var status = listOfFoods[mealIndex] && listOfFoods[mealIndex].status;
+    return status && icons[status];
   },
   render(){
     return(
