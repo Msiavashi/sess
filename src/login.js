@@ -24,7 +24,8 @@ var Login = {
       this.getRKey()
         .then(RKey => DoLogin(username, password, '', RKey))
         .then(() => fetchSelf())
-        .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage));
+        .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
+        .catch(error => Alert.alert("خطا", "مشکل در اتصال به اینترنت"));
     }
 
   },

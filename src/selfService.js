@@ -100,6 +100,9 @@ ReserveMealView.openURL = function(url, indexPage){
         if (indexPage !== null){
           indexPage.changeView();
         }
+        else if (request.status !== 200){
+          reject(request.responseText);
+        }
         //update the content of app
         else{
           var parser = new DOMParser();
