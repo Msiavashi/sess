@@ -12,7 +12,6 @@ var Login = {
   login : function (username, password, indexPage, rememberMeStatus){
     //do the login things here
     if (rememberMeStatus){
-      Alert.alert("s");
         this.getRKey()
           .then(RKey => DoLogin(username, password, '', RKey))
           .then(() => fetchSelf())
@@ -31,7 +30,6 @@ var Login = {
   },
 
   saveInfoInDataBase : function(user, pass){
-    console.log("un save t db : "+ user);
       DB.user.add({
         username:user,
         password:pass
