@@ -202,9 +202,6 @@ var DayOfAWeek = React.createClass({
     }
     this.refs.modalView.open();
   },
-  forceUpdate(){
-    SelfServiceHeader.credit;
-  },
   submitButton(){
     //finding the edDate
     var value = DayOfAWeek.pageSource.getElementById("Meal" + this.state.selectedMealIndexInWeek).getAttribute('onclick');
