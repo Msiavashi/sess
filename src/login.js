@@ -3,6 +3,7 @@ var Alert = React.Alert;
 import DB from './database';
 var DOMParser = require('xmldom').DOMParser;
 var selfService = require('./selfService');
+var DayOfAWeek = require('./DayOfAWeek');
 var url = "http://sups.shirazu.ac.ir/SfxWeb/Gate/Login.aspx";
 var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Emp/MemInfo.aspx";
 var weeklyReservationURL = "http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx";
@@ -16,14 +17,20 @@ var Login = {
           .then(() => fetchSelf())
           .then(() => this.saveInfoInDataBase(username, password))
           .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
-          .catch(error => Alert.alert("خطا", "مشکل در اتصال به اینترنت"));
+          .catch(error => {
+            Alert.alert("خطا", "مشکل در اتصال به اینترنت");
+            DayOfAWeek.loading();
+          });
     }
     else{
       this.getRKey()
         .then(RKey => DoLogin(username, password, '', RKey))
         .then(() => fetchSelf())
         .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
-        .catch(error => Alert.alert("خطا", "مشکل در اتصال به اینترنت"));
+        .catch(error => {
+          Alert.alert("خطا", "مشکل در اتصال به اینترنت");
+          DayOfAWeek.loading();
+        })
     }
 
   },

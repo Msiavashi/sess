@@ -52,7 +52,7 @@ var sess = React.createClass({
             if (route.sceneConfig) {
               return route.sceneConfig;
             }
-            return Navigator.SceneConfigs.FloatFromLeft;
+            return Navigator.SceneConfigs.FloatFromRight;
           }} />
     );
   },
@@ -106,7 +106,6 @@ var IndexView = React.createClass({
         viewOne: !this.state.viewOne,
         visible: false
       });
-      // ++this.state.pageNumber;
     }
   },
 

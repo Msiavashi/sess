@@ -297,13 +297,11 @@ var DayOfAWeek = React.createClass({
           </View>
           <View style = {{flex: 1, backgroundColor: '#009ECE', justifyContent: 'center'}}>
             <Button onPress = {() => this.foodSelectionHandler(this.state.food1Code)}>
-              {/*TODO: set te name of the food in the fields */}
               <Text style = {{color: this.state.food1TextColor, fontSize: 18}}> {this.state.food1} </Text>
             </Button>
           </View>
           <View style = {{flex: 1, backgroundColor: '#FF9E00', justifyContent: 'center'}}>
             <Button onPress = {() => this.foodSelectionHandler(this.state.food2Code)}>
-              {/*TODO: set te name of the food in the fields */}
               <Text style = {{color: this.state.food2TextColor, fontSize: 18}}> {this.state.food2} </Text>
             </Button>
           </View>
@@ -338,25 +336,25 @@ var Day = React.createClass({
     return(
       <View style = {styles.singleDayContainer}>
         {/*show the day name on top of each day content*/}
-        <View style = {{backgroundColor: '#716F70', padding: 10, paddingRight: 5}}>
+        <View style = {{backgroundColor: '#716F70', paddingLeft: 5, paddingRight: 5}}>
           <Text style = {styles.weekDayName}>{this.props.weekDay}</Text>
           <Text style = {{color: 'white', fontSize: 14}}> {this.props.date} </Text>
         </View>
-        <View>
-          <View style = {styles.mealButton}>
+        <View style = {{padding:10, backgroundColor: 'rgba(200,200,200,0.6)', borderRadius: 10}}>
+          <View style = {[styles.mealButton, {borderRadius: 10,marginBottom: 3}]}>
             {/*fires up when a meal is selected*/}
             <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex, 0, "صبحانه")}>
                 <ResponsiveImage source={this.findIcon(this.props.mealIndex)} initWidth="18" initHeight="18"/>
                 <Text style = {[styles.mealText, {flex:1}]}> صبحانه </Text>
             </Button>
           </View>
-          <View style = {[styles.mealButton, {backgroundColor: "#CECECE"}]}>
+          <View style = {[styles.mealButton, {backgroundColor: "#B8B8B8", borderRadius: 10, marginBottom: 3}]}>
             <Button  onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 1, 1, "نهار")}>
                 <ResponsiveImage source={this.findIcon(this.props.mealIndex + 1)} initWidth="20" initHeight="20"/>
                 <Text style = {[styles.mealText, {flex:1}]}> ناهار </Text>
             </Button>
           </View>
-          <View style = {styles.mealButton}>
+          <View style = {[styles.mealButton, {borderRadius: 10}]}>
             <Button onPress = {() => this.props.modalView(this.props.weekDay, this.props.mealIndex + 2, 2, "شام")}>
                 <ResponsiveImage source={this.findIcon(this.props.mealIndex + 2)} initWidth="18" initHeight="18"/>
                 <Text style = {[styles.mealText, {flex:1}]}> شام </Text>

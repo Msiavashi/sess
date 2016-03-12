@@ -42,11 +42,13 @@ module.exports = StyleSheet.create({
   },
   controlPanelHeader:{
     flex: 1,
-    backgroundColor: 'blue',
+    alignItems: 'center',
   },
   controlPanelFooter:{
     flex: 2,
-    alignItems: 'flex-start',
+    backgroundColor: '#444444',
+    alignItems: 'flex-end',
+    padding: 5
   },
   selfServiceContainer:{
     flex: 1,
@@ -58,7 +60,7 @@ module.exports = StyleSheet.create({
     height: 50,
     borderColor: '#444444',
     borderWidth: 1,
-    borderRadius:50,
+    borderRadius:12,
     borderTopRightRadius: 10,
     backgroundColor: '#666666',
     alignItems: 'center',
@@ -134,8 +136,10 @@ module.exports = StyleSheet.create({
     flex: 1,
     backgroundColor:'#A9A9A9',
   },
-  controlPanelText: {
-    color:'white',
+  controlPanelOption:{
+    color: 'white',
+    fontSize: 18,
+    flex:1,
   },
   welcome: {
     fontSize: 20,

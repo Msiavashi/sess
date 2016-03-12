@@ -7,6 +7,7 @@ var selfPage = '';
 var SelfServiceHeader = require('./SelfServiceHeader');
 var ResponsiveImage = require('react-native-responsive-image');
 var logoutIcon = require('.././icons/switch-turn-off-icon.png');
+
 var {
   Text,
   View,
@@ -38,14 +39,12 @@ var ReserveMealView = React.createClass({
           {this.showList()}
 
           {/*making gaps*/}
-          <View style = {{backgroundColor: '#EDEDED'}}>
+          <View style = {{backgroundColor: '#444444'}}>
           <Text>    </Text>
           <Text>    </Text>
           </View>
           {/*making gap*/}
-
         </ScrollView>
-
       </View>
     )
   },
