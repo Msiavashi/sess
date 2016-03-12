@@ -6,7 +6,7 @@ import com.facebook.react.shell.MainReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
-
+import com.BV.LinearGradient.LinearGradientPackage; // <--- This!
 public class MainActivity extends ReactActivity {
 
     /**

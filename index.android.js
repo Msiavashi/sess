@@ -4,10 +4,12 @@
  */
 import DB from './src/database';
 var Button = require('react-native-button');
+var RoundedButton = require('apsl-react-native-button');
 var React = require('react-native');
 var ResponsiveImage = require('react-native-responsive-image');
 var smsIcon = require('./icons/SMS-Message-icon.png');
 var {
+  Image,
   AppRegistry,
   Text,
   Linking,
@@ -18,7 +20,7 @@ var {
 } = React;
 import Spinner from 'react-native-loading-spinner-overlay';
 var SMSPanelView = require('./src/sms');
-var logoImage = require('./icons/dining-icon-300x300.png');
+var logoImage = require('./icons/vector_soup_food_logo.png');
 var username = null;
 var password = null;
 
@@ -114,39 +116,45 @@ var IndexView = React.createClass({
   render(){
     if(!this.state.viewOne) return <MainPage changeView = {this.changeView}/>
     return(
-      <View style = {styles.loginViewContainer}>
-      {/*<ActionButton/>*/}
-        <View style = {styles.loginViewHeader}>
-            <View style = {styles.logoView} >
-              <ResponsiveImage source={logoImage} initWidth="260" initHeight="260"/>
+        <View style = {styles.loginViewContainer}>
+          <View style = {styles.loginViewHeader}>
+              <View style = {styles.logoView} >
+                <Image style = {{ flex:1 }} source={logoImage}/>
+              </View>
+          </View>
+          <View style = {styles.loginViewFooter}>
+            <View style = {{flex:1, borderRadius: 20, backgroundColor:'rgba(80, 80, 80, 0.8)', marginBottom:30, marginLeft: 10, marginRight:10, padding: 30, justifyContent: 'center', alignItems: 'center'}}>
+              <View style = {styles.userNameInput}>
+                <TextInput
+                  placeholderTextColor = {'white'}
+                  ref = {"username"}
+                  placeholder = {'نام کاربری'}
+                  onChangeText = {(text) => username = text}
+                  style = {{fontSize: 14, color: 'white'}}
+                />
+              </View>
+              <View style = {styles.passwordInput}>
+                <TextInput
+                  placeholderTextColor = {'white'}
+                  ref = {"password"}
+                  placeholder = {'رمز عبور'}
+                  onChangeText = {(text) => password = text}
+                  style = {{fontSize:14, color: 'white'}}
+                />
+              </View>
             </View>
+            <View style = {styles.ButtonsSection}>
+              <View style = {styles.loginButtonView}>
+                <RoundedButton style = {styles.loginButton} onPress={ () => this.login() }> <Text style = {styles.loginButtonText}> ورود</Text> </RoundedButton>
+              </View>
+              <View>
+                <Button onPress = { () => this.changeViewToSMSPanel() }> <ResponsiveImage source={smsIcon} initWidth="64" initHeight="64"/> </Button>
+              </View>
+            </View>
+          </View>
+          <Spinner visible={this.state.visible} />
         </View>
-        <View style = {styles.loginViewFooter}>
-          <View style = {styles.userNameInput}>
-            <TextInput
-              placeholderTextColor = {'red'}
-              ref = {"username"}
-              placeholder = {'نام کاربری'}
-              onChangeText = {(text) => username = text}
-              style = {{fontSize: 18}}
-            />
-          </View>
-          <View style = {styles.passwordInput}>
-            <TextInput
-              placeholderTextColor = {'red'}
-              ref = {"password"}
-              placeholder = {'رمز عبور'}
-              onChangeText = {(text) => password = text}
-              style = {{fontSize:18}}
-            />
-          </View>
-          <View style = {styles.ButtonsSection}>
-            <View style = {styles.loginButtonView}><Button style = {styles.loginButton} onPress={ () => this.login() }> <Text style = {styles.loginButtonText}> ورود</Text>  </Button></View>
-            <View><Button onPress = { () => this.changeViewToSMSPanel() }> <ResponsiveImage source={smsIcon} initWidth="64" initHeight="64"/> </Button></View>
-          </View>
-        </View>
-        <Spinner visible={this.state.visible} />
-      </View>
+
     )
   },
 });

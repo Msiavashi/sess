@@ -7,7 +7,6 @@ var url = "http://sups.shirazu.ac.ir/SfxWeb/Gate/Login.aspx";
 var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Emp/MemInfo.aspx";
 var weeklyReservationURL = "http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx";
 
-
 var Login = {
   login : function (username, password, indexPage, rememberMeStatus){
     //do the login things here
@@ -52,7 +51,7 @@ var Login = {
             resolve(RKey);
           }
           else if (xhr.status !== 200){
-            reject(request.responseText);
+            reject(xhr.responseText);
           }
         };
       xhr.open('GET', url, true);

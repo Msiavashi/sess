@@ -9,8 +9,9 @@ var DOMParser = require('xmldom').DOMParser;
 var reservedIcon = require('.././icons/ic_done_all_black_24dp.png');
 var notReservedIcon = require('.././icons/ic_remove_circle_outline_black_24dp.png');
 var notPlannedIcon = require('.././icons/ic_clear_black_24dp.png');
-var previousWeekIcon = require('.././icons/go-back-icon.png');
-var nextWeekIcon = require('.././icons/go-into-icon.png');
+var previousWeekIcon = require('.././icons/ic_chevron_left_white_24dp.png');
+var nextWeekIcon = require('.././icons/ic_chevron_right_white_24dp.png');
+var backButtonIcon = require('.././icons/ic_arrow_forward_white_24dp.png');
 var {
   Text,
   View,
@@ -141,8 +142,10 @@ var DayOfAWeek = React.createClass({
   },
   getDates(){
     var element = String(DayOfAWeek.pageSource.getElementById('edDesc'));
-    DayOfAWeek.fromDateToDate = element.substring(element.indexOf('>') + 1, element.lastIndexOf('</'));
-
+    element = element.substring(element.indexOf('>') + 1, element.lastIndexOf('</')).split(' ');
+    var start = element[6]
+    var end = element[10]
+    DayOfAWeek.fromDateToDate = start + ' - ' + end;
     for (let i = 0; i < 7; ++i){
       let date = String(DayOfAWeek.pageSource.getElementById("edDay" + i));
       let tmp = date.substring(date.indexOf('<td') + 1, date.lastIndexOf('</td>'));
@@ -260,22 +263,22 @@ var DayOfAWeek = React.createClass({
       {/*navbar*/}
       <View styles = {{flex:1}}>
         <SelfServiceHeader selfPage = {this.props.selfPage} shouldParseSelfPage = {false} parentState = {this.setState}/>
-        <View style = {{flex:1, flexDirection: 'row', alignItems: 'stretch'}}>
-          <Text style = {{flex:3, marginRight: 5, fontSize: 16, color: 'white'}}>{DayOfAWeek.fromDateToDate}</Text>
-          <Text style = {{flex:1, marginRight: 5, fontSize: 22, fontWeight: "bold", color: 'white'}}>{this.props.selectedSelfName}</Text>
+        <View style = {{flex:1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+          <View>
+            <Button style = {styles.creditText} onPress = {this.previousWeek}><ResponsiveImage source={previousWeekIcon} initWidth="60" initHeight="60"/></Button>
+          </View>
+          <View style = {{flex:1, marginTop:10, marginBottom: 10, alignItems: 'center', justifyContent:'center'}}>
+            <Text style = {{flex:1, fontSize: 16, color: 'white'}}>{DayOfAWeek.fromDateToDate}</Text>
+            <Text style = {{flex:1, fontSize: 22, fontWeight: "bold", color: 'white'}}>{this.props.selectedSelfName}</Text>
+          </View>
+          <View >
+            <Button style = {styles.creditText} onPress = {this.nextWeek}><ResponsiveImage source={nextWeekIcon} initWidth="60" initHeight="60"/></Button>
+          </View>
         </View>
-        <View style = {[styles.selfServiceHeader, {marginTop: 20}]}>
-          <View style = {{flex:1, flexDirection: 'row'}}>
-            <View style = {{marginLeft: 10}}>
-              <Button style = {styles.creditText} onPress = {this.previousWeek}><ResponsiveImage source={previousWeekIcon} initWidth="60" initHeight="60"/></Button>
-            </View>
-            <View style = {{marginLeft: 10}}>
-              <Button style = {styles.creditText} onPress = {this.nextWeek}><ResponsiveImage source={nextWeekIcon} initWidth="60" initHeight="60"/></Button>
-            </View>
-          </View>
-          <View style = {{marginRight:5, padding: 5, alignItems: 'center',borderWidth:1, borderRadius: 5, backgroundColor: '#43459C'}}>
-            <Button style = { [styles.selfServiceHeaderTitle, {color: 'white'}] } onPress = {this._handlePress}> بازگشت </Button>
-          </View>
+        <View style = {[styles.selfServiceHeader, {flexDirection:'column', alignItems: 'flex-end', backgroundColor: '#7777'}]}>
+            <Button style = { [styles.selfServiceHeaderTitle, {color: 'white'}] } onPress = {this._handlePress}>
+              <ResponsiveImage source ={backButtonIcon} initWidth = '40' initHeight = '40' />
+            </Button>
         </View>
       </View>
 

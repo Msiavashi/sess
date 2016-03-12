@@ -6,6 +6,7 @@ var DayOfAWeek = require('./DayOfAWeek');
 var selfPage = '';
 var SelfServiceHeader = require('./SelfServiceHeader');
 var ResponsiveImage = require('react-native-responsive-image');
+var logoutIcon = require('.././icons/switch-turn-off-icon.png');
 var {
   Text,
   View,
@@ -31,14 +32,7 @@ var ReserveMealView = React.createClass({
   render(){
     return (
        <View style = {styles.selfServiceContainer}>
-          <SelfServiceHeader selfPage = {selfPage} shouldParseSelfPage = {true}/>
-        <View style = {styles.underHeader}>
-          <View style = {styles.backButton}>
-            <Button style = {{color: "white", fontSize: 22}} onPress = {() => this.props.changeView()}>
-                خروج
-            </Button>
-          </View>
-        </View>
+        <SelfServiceHeader selfPage = {selfPage} shouldParseSelfPage = {true}/>
         <ScrollView style = {styles.selfServiceFooter}
         automaticallyAdjustContentInsets={false}>
           {this.showList()}
