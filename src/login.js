@@ -1,5 +1,12 @@
 var React = require('react-native');
-var Alert = React.Alert;
+var {
+  StyleSheet,
+  Text,
+  ToastAndroid,
+  TouchableWithoutFeedback,
+  Alert,
+  ToastAndroid
+} = React;
 import DB from './database';
 var DOMParser = require('xmldom').DOMParser;
 var selfService = require('./selfService');
@@ -18,8 +25,8 @@ var Login = {
           .then(() => this.saveInfoInDataBase(username, password))
           .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
           .catch(error => {
-            Alert.alert("خطا", "مشکل در اتصال به اینترنت");
-            DayOfAWeek.loading();
+            ToastAndroid.show("مشکل در اتصال به اینترنت", ToastAndroid.SHORT);
+            DayOfAWeek.loading();     //TODO: move the loading to index.android.js
           });
     }
     else{
@@ -28,7 +35,7 @@ var Login = {
         .then(() => fetchSelf())
         .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
         .catch(error => {
-          Alert.alert("خطا", "مشکل در اتصال به اینترنت");
+          ToastAndroid.show("مشکل در اتصال به اینترنت", ToastAndroid.SHORT);
           DayOfAWeek.loading();
         })
     }

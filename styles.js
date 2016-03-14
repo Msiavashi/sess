@@ -60,8 +60,7 @@ module.exports = StyleSheet.create({
     height: 50,
     borderColor: '#444444',
     borderWidth: 1,
-    borderRadius:12,
-    borderTopRightRadius: 10,
+    borderRadius:5,
     backgroundColor: '#666666',
     alignItems: 'center',
     justifyContent: 'center',
@@ -103,15 +102,15 @@ module.exports = StyleSheet.create({
   selfServiceCreditView:{
     alignItems: "center",
     flex: 1,
-    borderRadius: 10,
-    backgroundColor: '#cccccc',
+    borderRadius: 100,
+    backgroundColor: 'rgba(113,113,198,0.4)',
     marginLeft: 10,
   },
   creditText:{
     fontSize: 20,
     fontWeight: 'bold',
     margin:5,
-    color: 'black',
+    color: '#ADFF2F',
   },
   backButtonView:{
     flex: 1,

@@ -21,7 +21,7 @@ var commands = {jetonViaSMS: '#1#', };    //the commands that are used in sms's 
 
 var SMSPanelView = React.createClass({
   _backButtonPressed(){
-    this.props.navigator.push({ id: "IndexView" });
+    this.props.navigator.pop();
   },
   getInitialState: function() { //they are used for Modal view
     return {
