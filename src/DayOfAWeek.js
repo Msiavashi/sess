@@ -18,6 +18,7 @@ var {
   ScrollView,
   Alert,
   Navigator,
+  ToastAndroid
 } = React;
 var selfService = require('./selfService');
 var listOfFoods = [];
@@ -56,13 +57,19 @@ function submitReservation(selfCode, foodCode, edDate, edMeal, mealIndexInWeek){
       }
       if (request.status === 200) {
         if (request.responseText.indexOf("مبلغ اعتبار شما کافی نیست") !== -1){
-          Alert.alert("خطا", "مبلغ اعتبار شما کافی نیست");
+          ToastAndroid.show("مبلغ اعتبار شما کافی نیست", ToastAndroid.SHORT);
+          reject(request.responseText);
+          DayOfAWeek.loading();
+        }
+        else if ( request.responseText.indexOf('این رستوران در این وعده فعال نیست') !== -1){
+          ToastAndroid.show("این رستوران در این وعده فعال نیست", ToastAndroid.SHORT);
           reject(request.responseText);
           DayOfAWeek.loading();
         }
         else{
           resolve(updateFoodList(submitReservation.edMeal, submitReservation.mealIndexInWeek, submitReservation.edDate));
         }
+        console.log(request.responseText);
       }
       else if (request.status === 404){
         reject(request.responseText);
@@ -107,7 +114,7 @@ var DayOfAWeek = React.createClass({
       /*modal variables*/
       isOpen: false,
       isDisabled: false,
-      swipeToClose: true,
+      swipeToClose: false,
       selectedDay: '',
       selectedMealName: '',
 
@@ -141,16 +148,13 @@ var DayOfAWeek = React.createClass({
     DayOfAWeek.requestFoodList(0);
   },
   getDates(){
-    var element = String(DayOfAWeek.pageSource.getElementById('edDesc'));
-    element = element.substring(element.indexOf('>') + 1, element.lastIndexOf('</')).split(' ');
+    var element = DayOfAWeek.pageSource.getElementById('edDesc').textContent.split(' ');
     var start = element[6]
     var end = element[10]
     DayOfAWeek.fromDateToDate = start + ' - ' + end;
     for (let i = 0; i < 7; ++i){
-      let date = String(DayOfAWeek.pageSource.getElementById("edDay" + i));
-      let tmp = date.substring(date.indexOf('<td') + 1, date.lastIndexOf('</td>'));
-      tmp = tmp.split(" ");
-      dates[i] = tmp[tmp.length - 1];
+      let date = DayOfAWeek.pageSource.getElementById("edDay" + i).textContent.split(' ');
+      dates[i] = date[date.length - 1];
     }
   },
   componentWillMount(){
@@ -162,9 +166,7 @@ var DayOfAWeek = React.createClass({
   },
 
   setHeaderValues(source){
-    var credit = String(source.getElementById('edCredit'));
-    credit = credit.substring(credit.indexOf('>') + 1, credit.lastIndexOf('</'));
-    SelfServiceHeader.credit = credit;
+    SelfServiceHeader.credit = source.getElementById('edCredit').textContent;
   },
 
   /*parameters: 1- selected weekDay name 2-mealIndex is the number of meal 1, 2 ,3 each for breakfast,lunch, dinner*/
@@ -173,7 +175,6 @@ var DayOfAWeek = React.createClass({
     this.setState({selectedDay: weekDay, selectedMealName: mealName});
     if (foods.indexOf("ErrorMessage") > -1){    //it contains an error mean that the Meal is already reserved
       value = DayOfAWeek.pageSource.getElementById("Meal" + mealIndexInWeek).getAttribute('value');
-      console.log(value);
       if (value !== "برنامه ریزی نشده"){
           value = value + "(حذف)";
       }
@@ -290,7 +291,7 @@ var DayOfAWeek = React.createClass({
         <Text>   </Text>
       </ScrollView>
       <Spinner visible = {this.state.visible}/>
-      <Modal style={[styles.modal, styles.mealModalView, { backgroundColor: '#D6D6D6' }]} position={"center"} ref={"modalView"} onClosed = {() => this.onModalClosed()}>
+      <Modal style={[styles.modal, styles.mealModalView, { backgroundColor: '#D6D6D6' }]} position={"center"} ref={"modalView"} onClosed = {() => this.onModalClosed()} swipeToClose = {this.state.swipeToClose}>
         <View style = {{flex: 1, marginLeft: 10, marginRight: 10}}>
           <View style = {{marginTop: 10}}>
             <Text style = {{fontSize: 22, fontWeight: 'bold', padding: 10 , color: 'black'}}>{this.state.selectedDay} - {this.state.selectedMealName}</Text>

@@ -27,13 +27,10 @@ module.exports = React.createClass({
     var parser = new DOMParser();
     var selfPage = parser.parseFromString(DayOfAWeek.pageSource, "text/xml");
     /*edName*/
-    var header = String(selfPage.getElementById('Toolbar1_lblUserName'));
-    header = header.substring(header.indexOf('>') + 1, header.lastIndexOf('</'))
-    header = header.split(':');
+    var header = selfPage.getElementById('Toolbar1_lblUserName').textContent.split(':');
 
     /*edUserType*/
-    var userType = String(selfPage.getElementById('edUserType'));
-    userType = userType.substring(userType.indexOf('>') + 1, userType.lastIndexOf('</'))
+    var userType = selfPage.getElementById('edUserType').textContent;
 
     this.setState({edName: header[1], edUserType: userType});
   },
@@ -63,7 +60,7 @@ module.exports = React.createClass({
             <ResponsiveImage style = {{marginTop:4, marginLeft: 10}} source = {contactUsIcon} initWidth = '20' initHeight = '20'/>
           </View>
           <View style = {{flexDirection: 'row', margin: 10}}>
-            <Button style = {styles.controlPanelOption}> خروج </Button>
+            <Button onPress = {() => this.props.changeView()} style = {styles.controlPanelOption}> خروج </Button>
             <ResponsiveImage style = {{marginTop:4, marginLeft: 10}} source = {logoutIcon} initWidth = '25' initHeight = '25'/>
           </View>
         </View>

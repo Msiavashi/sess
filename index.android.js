@@ -101,12 +101,12 @@ var IndexView = React.createClass({
   },
 
   changeView(){
-      if (this.state.pageNumber === 0){
+      // if (this.state.pageNumber === 0){
       this.setState({
         viewOne: !this.state.viewOne,
         visible: false
       });
-    }
+    // }
   },
 
   changeViewToSMSPanel(){
@@ -136,6 +136,7 @@ var IndexView = React.createClass({
                 <TextInput
                   placeholderTextColor = {'white'}
                   ref = {"password"}
+                  secureTextEntry = {true}
                   placeholder = {'رمز عبور'}
                   onChangeText = {(text) => password = text}
                   style = {{fontSize:14, color: 'white'}}
@@ -164,20 +165,20 @@ var MainPage = React.createClass({
       drawerType: 'overlay',
       openDrawerOffset:100,
       closedDrawerOffset:0,
-      panOpenMask: .1,
-      panCloseMask: .9,
+      panOpenMask: 0.1,
+      panCloseMask: 0.9,
       relativeDrag: false,
       panStartCompensation: true,
-      openDrawerThreshold: .25,
+      openDrawerThreshold: 0.25,
       tweenHandlerOn: false,
       tweenDuration: 350,
       tweenEasing: 'linear',
       disabled: false,
       tweenHandlerPreset: null,
-      acceptDoubleTap: true,
+      acceptDoubleTap: false,
       acceptTap: false,
       acceptPan: true,
-      rightSide: false,
+      rightSide: true,
     }
   },
 
@@ -207,7 +208,7 @@ var MainPage = React.createClass({
   },
 
   render() {
-    var controlPanel = <MyControlPanel closeDrawer={() => {this.refs.drawer.close()}} />
+    var controlPanel = <MyControlPanel changeView = {this.props.changeView} closeDrawer={() => {this.refs.drawer.close()}} />
     return (
       <Drawer
         ref="drawer"
@@ -254,7 +255,6 @@ var MainPage = React.createClass({
           acceptDoubleTap={this.state.acceptDoubleTap}
           acceptPan={this.state.acceptPan}
           rightSide={this.state.rightSide}
-          changeView = {this.props.changeView}
           />
       </Drawer>
     );

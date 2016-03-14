@@ -6,7 +6,6 @@ var DayOfAWeek = require('./DayOfAWeek');
 var selfPage = '';
 var SelfServiceHeader = require('./SelfServiceHeader');
 var ResponsiveImage = require('react-native-responsive-image');
-var logoutIcon = require('.././icons/switch-turn-off-icon.png');
 
 var {
   Text,

@@ -31,12 +31,8 @@ var SelfServiceHeader = React.createClass({
       this.props.selfPage = parser.parseFromString(String(this.props.selfPage), "text/xml");   //converts the response Text to document
     }
 
-    var header = String(this.props.selfPage.getElementById('Toolbar1_lblUserName'));
-    header = header.substring(header.indexOf('>') + 1, header.lastIndexOf('</'))
-    header = header.split(':');
-    var credit = String(this.props.selfPage.getElementById('edCredit'));
-    credit = credit.substring(credit.indexOf('>') + 1, credit.lastIndexOf('</'));
-    SelfServiceHeader.credit = credit;
+    var header = this.props.selfPage.getElementById('Toolbar1_lblUserName').textContent.split(':');
+    SelfServiceHeader.credit = this.props.selfPage.getElementById('edCredit').textContent;
     this.setState({userName: header[1]});   //set the user name and credit on the header
   },
   componentWillReceiveProps(nextProps){
