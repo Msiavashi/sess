@@ -176,9 +176,15 @@ var DayOfAWeek = React.createClass({
     if (foods.indexOf("ErrorMessage") > -1){    //it contains an error mean that the Meal is already reserved
       value = DayOfAWeek.pageSource.getElementById("Meal" + mealIndexInWeek).getAttribute('value');
       if (value !== "برنامه ریزی نشده"){
-          value = value + "(حذف)";
+          // value = value + "(حذف)";
+          this.setState({food1: value, food2: '', selectedMealIndexInWeek: mealIndexInWeek});
+          let title = "حذف";
+          let messege = value
+          Alert.alert(title, value, [{text: "انصراف"}, {text: "حذف", onPress:() => this.submitButton()}])
       }
-      this.setState({food1: value, food2: '', selectedMealIndexInWeek: mealIndexInWeek});
+      else{
+        ToastAndroid.show("برنامه ریزی نشده",ToastAndroid.SHORT);
+      }
     }
     else{   //the Meal is not Reserved Yet
       foods = listOfFoods[mealIndexInWeek].food.split('^');
@@ -203,8 +209,9 @@ var DayOfAWeek = React.createClass({
       }
       var obj = {food1: food1Info, food2: food2Info, food2Code: code2, food1Code: code1, selectedMealIndexInWeek: mealIndexInWeek};
       this.setState(obj);
+      this.refs.modalView.open();
     }
-    this.refs.modalView.open();
+
   },
   submitButton(){
     //finding the edDate
@@ -240,7 +247,7 @@ var DayOfAWeek = React.createClass({
   },
   nextWeek(){
     DayOfAWeek.loading();
-    selfService.ReserveMealView.changeWeek("next");
+    selfService.ReserveMealView.changeWeek("next").then(() => this.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null)).catch(() => alert("خطا", "مشکل در دریافت اطلاعات"));
   },
   previousWeek(){
     DayOfAWeek.loading();
@@ -263,7 +270,7 @@ var DayOfAWeek = React.createClass({
 
       {/*navbar*/}
       <View styles = {{flex:1}}>
-        <SelfServiceHeader selfPage = {this.props.selfPage} shouldParseSelfPage = {false} parentState = {this.setState}/>
+        <SelfServiceHeader selfPage = {this.props.selfPage} shouldParseSelfPage = {false}/>
         <View style = {{flex:1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <View>
             <Button style = {styles.creditText} onPress = {this.previousWeek}><ResponsiveImage source={previousWeekIcon} initWidth="40" initHeight="40"/></Button>
@@ -317,6 +324,7 @@ var DayOfAWeek = React.createClass({
           </View>
         </View>
       </Modal>
+
     </View>
   );
   }

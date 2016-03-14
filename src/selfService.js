@@ -111,7 +111,6 @@ var ReserveMealView = React.createClass({
 
     }
       },
-  /*the function should load the next page <ViewNames> on second response from server thats why that counter is there*/
   showList(){
         convertSelfSourceToXMLDom(selfPage);
         DayOfAWeek.pageSource = selfPage;
@@ -129,9 +128,6 @@ ReserveMealView.changeWeek = function(moveTo){
     }
     if (request.status === 200) {
       this.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null);
-    }
-    else {
-      console.log('error' + ' ' + request.status);
     }
   };
   if (moveTo === "next"){
