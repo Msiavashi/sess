@@ -2,15 +2,10 @@ var { StyleSheet, PixelRatio } = require('react-native')
 var deviceScreen = require('Dimensions').get('window')
 
 module.exports = StyleSheet.create({
-  actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
-    color: 'white',
-  },
   loginViewContainer:{
     flex : 1,
     alignItems: 'stretch',
-    backgroundColor: '#D0D0D0',
+    backgroundColor: '#444444',
 
   },
   loginViewHeader:{
@@ -19,28 +14,18 @@ module.exports = StyleSheet.create({
     alignItems: 'stretch',
   },
   logoView:{
+    flex:1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   loginViewFooter:{
-    flex : 1,
-  },
-  userNameInput:{
-    flex:1,
-    marginLeft: 40,
-    marginRight: 40,
-  },
-  passwordInput:{
-    flex:1,
-    marginLeft: 40,
-    marginRight: 40,
+    flex : 1.5,
   },
   ButtonsSection:{
-    flex: 2,
+    flex: 1,
     alignItems: 'center',
   },
   loginButtonView:{
-    backgroundColor: '#373BB9',
     marginBottom: 10,
   },
   loginButtonText:{
@@ -49,81 +34,83 @@ module.exports = StyleSheet.create({
     color: 'white',
   },
   loginButton:{
-    backgroundColor: '#373BB9',
+    flex:1,
+    backgroundColor: '#4099FF',
     height:50,
-    width: 120,
+    width: 250,
+
   },
   controlPanelHeader:{
     flex: 1,
-    backgroundColor: 'blue',
+    alignItems: 'center',
   },
   controlPanelFooter:{
     flex: 2,
-    alignItems: 'flex-start',
+    backgroundColor: '#444444',
+    alignItems: 'flex-end',
+    padding: 5
   },
   selfServiceContainer:{
     flex: 1,
-    backgroundColor: '#43459C',
+    backgroundColor: '#444444',
   },
   selfServiceWeekDays:{
     paddingTop: 5,
     paddingBottom: 5,
-    paddingRight: 20,
     height: 50,
-    borderColor: '#43459C',
+    borderColor: '#444444',
     borderWidth: 1,
-    borderTopRightRadius: 10,
-    backgroundColor: '#D9D9D9',
-    alignItems: 'flex-end',
+    borderRadius:5,
+    backgroundColor: '#666666',
+    alignItems: 'center',
     justifyContent: 'center',
 
   },
   selfServiceWeekDayName:{
     fontSize:18,
     fontWeight: 'bold',
-    color: '#43459C',
+    color: 'white',
   },
   backButton:{
     flex:1,
     borderWidth:1,
     borderRadius:5,
     justifyContent: 'center',
-    backgroundColor: '#43459C',
+    backgroundColor: '#444444',
     paddingLeft: 30,
     paddingRight:30,
     margin:5
   },
   underHeader:{
     flex: 1,
-    marginTop: 20,
-    marginBottom: 40,
-    backgroundColor: 'white',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
+    justifyContent: 'center'
   },
   selfServiceHeaderTitle:{
     flex:1,
     textAlign: 'center',
     fontSize:22,
-    color: 'black',
+    color: 'white',
     fontWeight: 'bold',
   },
   selfServiceHeader:{
     flex : 1,
-    backgroundColor: '#EDEDED',
+    backgroundColor: '#4099FF',
     flexDirection: 'row',
     alignItems: 'center',
   },
   selfServiceCreditView:{
     alignItems: "center",
     flex: 1,
-    borderWidth: 1,
+    borderRadius: 100,
+    backgroundColor: 'rgba(113,113,198,0.4)',
     marginLeft: 10,
   },
   creditText:{
     fontSize: 20,
     fontWeight: 'bold',
-    margin:10,
-    color: 'black',
+    margin:5,
+    color: '#ADFF2F',
   },
   backButtonView:{
     flex: 1,
@@ -148,8 +135,10 @@ module.exports = StyleSheet.create({
     flex: 1,
     backgroundColor:'#A9A9A9',
   },
-  controlPanelText: {
-    color:'white',
+  controlPanelOption:{
+    color: 'white',
+    fontSize: 18,
+    flex:1,
   },
   welcome: {
     fontSize: 20,
@@ -268,7 +257,7 @@ module.exports = StyleSheet.create({
   },
   daysContainer:{
     flex: 1,
-    backgroundColor: '#43459C',
+    backgroundColor: '#444444',
   },
   daysFooter:{
     flex: 6,

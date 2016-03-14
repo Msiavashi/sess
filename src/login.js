@@ -1,22 +1,56 @@
 var React = require('react-native');
-var Alert = React.Alert;
+var {
+  StyleSheet,
+  Text,
+  ToastAndroid,
+  TouchableWithoutFeedback,
+  Alert,
+  ToastAndroid
+} = React;
 import DB from './database';
 var DOMParser = require('xmldom').DOMParser;
 var selfService = require('./selfService');
+var DayOfAWeek = require('./DayOfAWeek');
 var url = "http://sups.shirazu.ac.ir/SfxWeb/Gate/Login.aspx";
 var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Emp/MemInfo.aspx";
 var weeklyReservationURL = "http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx";
-/*TODO: remove this part*/
-var username = "s9332045";
-var password = "mohammad95";
 
 var Login = {
-  login : function (usernamee, passworde, indexPage){
+  login : function (username, password, indexPage, rememberMeStatus){
     //do the login things here
-    this.getRKey(String(usernamee), String(passworde), indexPage);
+    if (rememberMeStatus){
+        this.getRKey()
+          .then(RKey => DoLogin(username, password, '', RKey))
+          .then(() => fetchSelf())
+          .then(() => this.saveInfoInDataBase(username, password))
+          .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
+          .catch(error => {
+            ToastAndroid.show("مشکل در اتصال به اینترنت", ToastAndroid.SHORT);
+            DayOfAWeek.loading();     //TODO: move the loading to index.android.js
+          });
+    }
+    else{
+      this.getRKey()
+        .then(RKey => DoLogin(username, password, '', RKey))
+        .then(() => fetchSelf())
+        .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
+        .catch(error => {
+          ToastAndroid.show("مشکل در اتصال به اینترنت", ToastAndroid.SHORT);
+          DayOfAWeek.loading();
+        })
+    }
+
   },
 
-  getRKey : function(usernamee, passworde, indexPage){
+  saveInfoInDataBase : function(user, pass){
+      DB.user.add({
+        username:user,
+        password:pass
+      });
+  },
+
+  getRKey: function(){
+    return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
       xhr.onreadystatechange = (e) => { //when succesfully got the RKey on the last time its time to Hash the password
@@ -25,23 +59,18 @@ var Login = {
             return;
           }
           if (xhr.status === 200) {
-            let pageSource =  xhr.responseText; //gets the response of the request
             let parser = new DOMParser();
-            doc = parser.parseFromString(pageSource, "text/xml");   //converts the response Text to document
-            var RKeyElement = String(doc.getElementById("_RKey"));
-            var RKey = RKeyElement.substring(RKeyElement.search("value"));  //gets the element of from the document
-            RKey = RKey.substring(RKey.search("\"")+1, RKey.lastIndexOf("\"")); //getting the 32-digit-long _RKey
-            DoLogin(username, password , '', RKey, indexPage);
+            doc = parser.parseFromString(xhr.responseText, "text/xml");   //converts the response Text to document
+            var RKey = doc.getElementById("_RKey").getAttribute('value');
+            resolve(RKey);
           }
-          else {
-            Alert.alert("error");
+          else if (xhr.status !== 200){
+            reject(xhr.responseText);
           }
         };
-
       xhr.open('GET', url, true);
       xhr.send(null);
-      //xhr.addEventListener("readystatechange", processRequest, true);
-
+    });
   },
 }
 
@@ -196,52 +225,48 @@ function str2binl(str) {
     blks[nblk * 16 - 2] = str.length * 8
     return blks
 }
-
 function Md5High(Key, Value) {
     var s = Key + binl2hex(coreMD5(str2binl(Value)));
     return binl2hex(coreMD5(str2binl(s)));
 }
-
-function fetchSelf(indexPage){
-  var req = new XMLHttpRequest();
-  req.onreadystatechange = (e) => {
-    if (req.readyState !== 4) {
-      return;
-    }
-
-    if (req.status === 200) {
-      /*after getting the main page of the self then it time to change the VIEW after */
-      selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage);
-    }
-
-    else {
-      console.log('error' + ' ' + req.status);
-    }
-  };
-
-req.open('GET', selfURL, true);
-req.send();
-}
-
-function DoLogin(iId, iPass, iCode, RKey, indexPage){
-
-    var Inc = Md5High(RKey, iPass); /*hash the password*/
-
-    var Request = new XMLHttpRequest();
-    Request.onreadystatechange = (e) => {
-      if (Request.readyState !== 4) {
+function fetchSelf(){
+  return new Promise((resolve, reject) => {
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = (e) => {
+      if (req.readyState !== 4) {
         return;
       }
-
-      if (Request.status === 200) {
-      /*if succesfully loged in to sups*/
-       fetchSelf(indexPage);
+      if (req.status === 200) {
+        /*after getting the main page of the self then it time to change the VIEW after */
+        resolve(req.responseText);
       }
-      else {
-        console.log('error' + ' ' + Request.status);
+      else if (req.status !== 200){
+        reject(req.responseText);
       }
     };
-  Request.open('GET', "http://sups.shirazu.ac.ir" + "/SfxWeb/Script/AjaxEnvironment.aspx?Act=MakeMember&WebApp=1&Id=" + iId + "&Pass=" + Inc + "&rnd=" + Math.random(), true);
-  Request.send();
+    req.open('GET', selfURL, true);
+    req.send();
+  });
+}
+
+function DoLogin(iId, iPass, iCode, RKey){
+    var Inc = Md5High(RKey, iPass); /*hash the password*/
+    return new Promise((resolve, reject) => {
+      var Request = new XMLHttpRequest();
+      Request.onreadystatechange = (e) => {
+        if (Request.readyState !== 4) {
+          return;
+        }
+        if (Request.status === 200) {
+        /*if succesfully loged in to sups*/
+         resolve(Request.responseText);
+        }
+        else if (Request.status !== 200){
+          reject(Request.responseText);
+        }
+      };
+    Request.open('GET', "http://sups.shirazu.ac.ir" + "/SfxWeb/Script/AjaxEnvironment.aspx?Act=MakeMember&WebApp=1&Id=" + iId + "&Pass=" + Inc + "&rnd=" + Math.random(), true);
+    Request.send();
+  });
 }
 module.exports = Login;
