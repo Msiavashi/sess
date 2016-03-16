@@ -67,9 +67,9 @@ function submitReservation(selfCode, foodCode, edDate, edMeal, mealIndexInWeek){
           DayOfAWeek.loading();
         }
         else{
-          resolve(updateFoodList(submitReservation.edMeal, submitReservation.mealIndexInWeek, submitReservation.edDate));
+          // resolve(updateFoodList(submitReservation.edMeal, submitReservation.mealIndexInWeek, submitReservation.edDate));
+          resolve(request.responseText);
         }
-        console.log(request.responseText);
       }
       else if (request.status === 404){
         reject(request.responseText);
@@ -93,7 +93,8 @@ function deleteMeal(date, code, mealIndexInDay, mealIndexInWeek){
         return;
       }
       if (request.status === 200) {
-          resolve(updateFoodList(deleteMeal.mealIndexInDay, deleteMeal.mealIndexInWeek, deleteMeal.date));
+          // resolve(updateFoodList(deleteMeal.mealIndexInDay, deleteMeal.mealIndexInWeek, deleteMeal.date));
+          resolve(request.responseText);
       }
       else if (request.status === 404){
         reject(request.responseText);
@@ -107,7 +108,8 @@ function deleteMeal(date, code, mealIndexInDay, mealIndexInWeek){
 var DayOfAWeek = React.createClass({
   statics:{
     fromDateToDate : '',
-    loading: null
+    loading: null,
+    pageSource: ''
   },
   getInitialState(){ //they are used for Modal view
     return {
@@ -213,6 +215,84 @@ var DayOfAWeek = React.createClass({
     }
 
   },
+
+  updateAfterReservation(mealIndex, response){
+    console.log(listOfFoods[mealIndex].status);
+    console.log(listOfFoods[mealIndex].food);
+    var oldElement = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex));
+    var element = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex).getAttribute('onclick'));
+    var oldValue = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex).getAttribute('value'));
+    var meal = response.split("!~!");
+    var newValue = meal[mealIndex].split("^");
+
+    newOnclick = "DeleteMeal" + "(" + "\'" + newValue[5] + "\'" + ")";
+    newValue = newValue[newValue.length - 1] + ' ' + newValue[newValue.length - 2] + '\n' + newValue[newValue.length - 3] + " " + "ریال";
+    /*replace the values*/
+    var newElement = oldElement;
+    newElement = newElement.replace(element, newOnclick);
+    newElement = newElement.replace(oldValue, newValue);
+    listOfFoods[mealIndex].status = "reserved";
+    listOfFoods[mealIndex].food = "ErrorMessage:: در تاریخ وارد شده سال معتبر نیست:0";
+    /*update credit*/
+    var oldCredit = String(DayOfAWeek.pageSource.getElementById('edCredit').textContent);
+    var newCredit = response.split("*")[1];
+    DayOfAWeek.pageSource = String(DayOfAWeek.pageSource).replace(oldCredit, newCredit);
+    /*commit the changes in page source*/
+    var parser = new DOMParser();
+    DayOfAWeek.pageSource = parser.parseFromString(DayOfAWeek.pageSource.replace(oldElement, newElement), "text/xml");
+  },
+  getSingleMealList(index, value){
+    alert(value);
+    return new Promise ((resolve, reject) => {
+      var request = new XMLHttpRequest();
+      DayOfAWeek.requestMealIndex = index;
+      value = value.split(":");
+      var edDate = value && value[0];
+      var edMeal = value && value[1];
+      request.onreadystatechange = (e) => {
+        if ( request.readyState !== 4 ){
+          return;
+        }
+        /*on network failure*/
+        if (request.status !== 200){
+          Alert.alert('خطا', 'اشکال در دریافت اطلاعات');
+          reject(request.responseText);
+        }
+        else if (request.status === 200) {
+          listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "notReserved"};
+
+          resolve(request.responseText);
+        }
+      };
+      request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+      request.send();
+    });
+  },
+
+  updateAfterDeletion(mealIndex, response){
+    var oldElement = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex));
+    var oldOnclick = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex).getAttribute('onclick'));
+    var oldValue = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex).getAttribute('value'));
+    var meal = response.split("!~!");
+    var newValue = meal[mealIndex].split("^");
+    var valueOfOnClick = newValue[4] + ":" + newValue[3];
+    newOnclick = "BuyMeal" + "(" + "\'" + valueOfOnClick + "\'" + ")";
+    newValue = "خرید ژتون";
+    /*replace the values*/
+    var newElement = oldElement;
+    newElement = newElement.replace(oldOnclick, newOnclick);
+    newElement = newElement.replace(oldValue, newValue);
+    /*update credit*/
+    var oldCredit = String(DayOfAWeek.pageSource.getElementById('edCredit').textContent);
+    var newCredit = meal[meal.length - 1].split("*");
+    newCredit = newCredit[newCredit.length - 2];
+    DayOfAWeek.pageSource = String(DayOfAWeek.pageSource).replace(oldCredit, newCredit);
+    /*commit the changes in page source*/
+    var parser = new DOMParser();
+    DayOfAWeek.pageSource = parser.parseFromString(DayOfAWeek.pageSource.replace(oldElement, newElement), "text/xml");
+    return(valueOfOnClick);
+  },
+
   submitButton(){
     //finding the edDate
     var value = DayOfAWeek.pageSource.getElementById("Meal" + this.state.selectedMealIndexInWeek).getAttribute('onclick');
@@ -223,9 +303,17 @@ var DayOfAWeek = React.createClass({
       var code = value[1];
       var mealIndex = value[3];
       deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek)
-        .then(response => this.setHeaderValues(response))
-        .then(() => this.refs.modalView.close())
-        .catch(resp => console.error(resp));
+      .then((response) => {
+        let newOnclick = this.updateAfterDeletion(this.state.selectedMealIndexInWeek, response);
+        this.getSingleMealList(this.state.selectedMealIndexInWeek, newOnclick)
+        .then(() => {
+          this.setHeaderValues(DayOfAWeek.pageSource);
+          this.refs.modalView.close();
+          DayOfAWeek.loading();
+        })
+        .catch(err => console.error(err))
+      })
+      .catch(err => console.error(err));
     }
     else{     //if the food is not reserved
       value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
@@ -233,8 +321,12 @@ var DayOfAWeek = React.createClass({
       var edMeal = value[1];
       //sending the request
       submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek)
-        .then(response => this.setHeaderValues(response))
-        .then(() => this.refs.modalView.close())
+        .then((response) => {
+          this.updateAfterReservation(this.state.selectedMealIndexInWeek, response);
+          this.setHeaderValues(DayOfAWeek.pageSource);
+          this.refs.modalView.close();
+          DayOfAWeek.loading();
+        })
         .catch(resp => console.error(resp));
     }
   },
@@ -247,7 +339,7 @@ var DayOfAWeek = React.createClass({
   },
   nextWeek(){
     DayOfAWeek.loading();
-    selfService.ReserveMealView.changeWeek("next").then(() => this.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null)).catch(() => alert("خطا", "مشکل در دریافت اطلاعات"));
+    selfService.ReserveMealView.changeWeek("next");
   },
   previousWeek(){
     DayOfAWeek.loading();
@@ -330,7 +422,6 @@ var DayOfAWeek = React.createClass({
   }
 });
 
-DayOfAWeek.pageSource = '';
 /*renders one day of a week*/
 var Day = React.createClass({
   findIcon(mealIndex){
