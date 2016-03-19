@@ -39,7 +39,7 @@ function updateFoodList(edMeal, mealIndexInWeek, edDate){
         reject(request.responseText);
       }
     };
-    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=" + Math.random(), true);
     request.send();
   })
 }
@@ -132,7 +132,6 @@ var DayOfAWeek = React.createClass({
       visible: false,
       food1TextColor: 'black',
       food2TextColor: 'black',
-      refresh: false,
       fromDateToDate: ''
     };
   },
@@ -216,29 +215,20 @@ var DayOfAWeek = React.createClass({
 
   },
   updateAfterReservation(mealIndex, response){
-    var oldElement = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex));
-    var element = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex).getAttribute('onclick'));
-    var oldValue = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex).getAttribute('value'));
-    var meal = response.split("!~!");
-    var newValue = meal[mealIndex].split("^");
-
-    newOnclick = "DeleteMeal" + "(" + "\'" + newValue[5] + "\'" + ")";
+    var newValue = response.split("!~!")[mealIndex].split("^");
+    /*set new attributes*/
+    DayOfAWeek.pageSource.getElementById('Meal' + mealIndex).setAttribute('onclick', "DeleteMeal" + "(" + "\'" + newValue[5] + "\'" + ")");
     newValue = newValue[newValue.length - 1] + ' ' + newValue[newValue.length - 2] + '\n' + newValue[newValue.length - 3] + " " + "ریال";
-    /*replace the values*/
-    var newElement = oldElement;
-    newElement = newElement.replace(element, newOnclick);
-    newElement = newElement.replace(oldValue, newValue);
+    DayOfAWeek.pageSource.getElementById('Meal' + mealIndex).setAttribute('value', newValue);
+
+    /*update the foodlist*/
     listOfFoods[mealIndex].status = "reserved";
     listOfFoods[mealIndex].food = "ErrorMessage:: در تاریخ وارد شده سال معتبر نیست:0";
+
     /*update credit*/
-    var oldCredit = String(DayOfAWeek.pageSource.getElementById('edCredit').textContent);
-    var newCredit = response.split("*")[1];
-    DayOfAWeek.pageSource = String(DayOfAWeek.pageSource).replace(oldCredit, newCredit);
-    /*commit the changes in page source*/
-    var parser = new DOMParser();
-    DayOfAWeek.pageSource = parser.parseFromString(DayOfAWeek.pageSource.replace(oldElement, newElement), "text/xml");
+    DayOfAWeek.pageSource.getElementById('edCredit').textContent = response.split('*')[1];
   },
-  getSingleMealList(index, value){
+  updateSingleMealList(index, value){
     return new Promise ((resolve, reject) => {
       var request = new XMLHttpRequest();
       DayOfAWeek.requestMealIndex = index;
@@ -259,39 +249,24 @@ var DayOfAWeek = React.createClass({
           resolve(request.responseText);
         }
       };
-      request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+      request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=" + Math.random(), true);
       request.send();
     });
   },
 
   updateAfterDeletion(mealIndex, response){
-    var oldElement = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex));
-    var oldOnclick = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex).getAttribute('onclick'));
-    var oldValue = String(DayOfAWeek.pageSource.getElementById('Meal'+mealIndex).getAttribute('value'));
-    var meal = response.split("!~!");
-    var newValue = meal[mealIndex].split("^");
+    var newValue = response.split("!~!")[mealIndex].split("^");
     var valueOfOnClick = newValue[4] + ":" + newValue[3];
-    newOnclick = "BuyMeal" + "(" + "\'" + valueOfOnClick + "\'" + ")";
-    newValue = "خرید ژتون";
-    /*replace the values*/
-    var newElement = oldElement;
-    newElement = newElement.replace(oldOnclick, newOnclick);
-    newElement = newElement.replace(oldValue, newValue);
+    DayOfAWeek.pageSource.getElementById('Meal' + mealIndex).setAttribute('onclick', "BuyMeal" + "(" + "\'" + valueOfOnClick + "\'" + ")");
+    DayOfAWeek.pageSource.getElementById('Meal' + mealIndex).setAttribute('value', "خرید ژتون");
     /*update credit*/
-    var oldCredit = String(DayOfAWeek.pageSource.getElementById('edCredit').textContent);
-    var newCredit = meal[meal.length - 1].split("*");
-    newCredit = newCredit[newCredit.length - 2];
-    DayOfAWeek.pageSource = String(DayOfAWeek.pageSource).replace(oldCredit, newCredit);
-    /*commit the changes in page source*/
-    var parser = new DOMParser();
-    DayOfAWeek.pageSource = parser.parseFromString(DayOfAWeek.pageSource.replace(oldElement, newElement), "text/xml");
-    return(valueOfOnClick);
+    DayOfAWeek.pageSource.getElementById('edCredit').textContent = response.split('*')[1];
+    return valueOfOnClick;
   },
 
   submitButton(){
     //finding the edDate
     var value = DayOfAWeek.pageSource.getElementById("Meal" + this.state.selectedMealIndexInWeek).getAttribute('onclick');
-
     if (value.indexOf("DeleteMeal") > -1){    //if the food is already reserved
       value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
       var date = value[2];
@@ -300,7 +275,7 @@ var DayOfAWeek = React.createClass({
       deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek)
       .then((response) => {
         let newOnclick = this.updateAfterDeletion(this.state.selectedMealIndexInWeek, response);
-        this.getSingleMealList(this.state.selectedMealIndexInWeek, newOnclick)
+        this.updateSingleMealList(this.state.selectedMealIndexInWeek, newOnclick)
         .then(() => {
           this.setHeaderValues(DayOfAWeek.pageSource);
           this.refs.modalView.close();
@@ -504,7 +479,7 @@ DayOfAWeek.requestFoodList = function(mealIndex){
         console.error('error' + ' ' + request.status);
       }
     };
-    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=" + Math.random(), true);
     request.send();
 
   });

@@ -10,6 +10,7 @@ var smsIcon = require('.././icons/ic_sms_white_24dp.png');
 var aboutUsIcon = require('.././icons/ic_description_white_24dp.png');
 var contactUsIcon = require('.././icons/ic_contact_mail_white_24dp.png');
 var logoutIcon = require('.././icons/logout.png');
+import DB from './database';
 
 var {
   Modal,
@@ -21,7 +22,6 @@ var {
   Navigator,
 } = React;
 var selfServices = [ {name: "ارم", code: "3" }, {name: "دانشکده هنر و معماری", code: "0"}, {name: "خوابگاه شهید دستغیب", code: "0"}, {name: "دانشکده علوم", code: "0"}, {name: "دانشکده مهندسی نفت و گاز", code: "7" }, {name : "مرکزی" , code: "8"}, {name: "دانشکده کشاورزی", code: "0"}, {name: "دانشکده دامپزشکی", code: "0"}, {name: "بوفه ارم", code: "0"}, {name: "بوفه مرکزی", code: "0"}, {name: "بوفه خوابگاه مفتح", code: "0"}, {name: "خوابگاه دامپزشکی", code: "0"} ];
-
 
 var convertSelfSourceToXMLDom = function(pageSource){
   convertSelfSourceToXMLDom.counter = ++convertSelfSourceToXMLDom.counter || 0;
@@ -55,6 +55,12 @@ var ReserveMealView = React.createClass({
   smsPressHandler(){
     this.props.navigator.push({id: 'sms'});
   },
+  logout(){
+    /*delete the user from database*/
+    DB.user.remove(DB.user.find());
+    /*chagne the view to login page */
+    this.props.changeView();
+  },
   render(){
     var controlPanel = (
       <View style={styles.controlPanel}>
@@ -81,7 +87,7 @@ var ReserveMealView = React.createClass({
             <ResponsiveImage style = {{marginTop:4, marginLeft: 10}} source = {contactUsIcon} initWidth = '20' initHeight = '20'/>
           </View>
           <View style = {{flexDirection: 'row', margin: 10}}>
-            <Button onPress = {() => this.props.changeView()} style = {styles.controlPanelOption}> خروج </Button>
+            <Button onPress = {() => this.logout()} style = {styles.controlPanelOption}> خروج </Button>
             <ResponsiveImage style = {{marginTop:4, marginLeft: 10}} source = {logoutIcon} initWidth = '25' initHeight = '25'/>
           </View>
         </View>
@@ -124,9 +130,7 @@ ReserveMealView.changeWeek = function(moveTo){
     }
     if (request.status === 200) {
       this.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null)
-        .then((response) => {
-          setPageSource(response);
-        })
+        .then((response) => setPageSource(response))
         .catch((err) => console.error(error));
     }
   };
