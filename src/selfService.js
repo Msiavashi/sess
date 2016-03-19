@@ -3,7 +3,6 @@ var styles = require('.././styles');
 var Button = require('react-native-button');
 var DOMParser = require('xmldom').DOMParser;
 var DayOfAWeek = require('./DayOfAWeek');
-var selfPage = '';
 var SelfServiceHeader = require('./SelfServiceHeader');
 var ResponsiveImage = require('react-native-responsive-image');
 var controlPanelImage = require('.././icons/cp.png');
@@ -23,9 +22,6 @@ var {
 } = React;
 var selfServices = [ {name: "ارم", code: "3" }, {name: "دانشکده هنر و معماری", code: "0"}, {name: "خوابگاه شهید دستغیب", code: "0"}, {name: "دانشکده علوم", code: "0"}, {name: "دانشکده مهندسی نفت و گاز", code: "7" }, {name : "مرکزی" , code: "8"}, {name: "دانشکده کشاورزی", code: "0"}, {name: "دانشکده دامپزشکی", code: "0"}, {name: "بوفه ارم", code: "0"}, {name: "بوفه مرکزی", code: "0"}, {name: "بوفه خوابگاه مفتح", code: "0"}, {name: "خوابگاه دامپزشکی", code: "0"} ];
 
-var setSelfPage = function(pageSource){
-  selfPage = pageSource;
-}
 
 var convertSelfSourceToXMLDom = function(pageSource){
   convertSelfSourceToXMLDom.counter = ++convertSelfSourceToXMLDom.counter || 0;
@@ -43,13 +39,12 @@ var ReserveMealView = React.createClass({
     }
   },
   componentDidMount(){
-    var parser = new DOMParser();
-    var selfPage = parser.parseFromString(DayOfAWeek.pageSource, "text/xml");
+    // var parser = new DOMParser();
+    // DayOfAWeek.pageSource = parser.parseFromString(DayOfAWeek.pageSource, "text/xml");
     /*edName*/
-    var header = selfPage.getElementById('Toolbar1_lblUserName').textContent.split(':');
-
+    var header = DayOfAWeek.pageSource.getElementById('Toolbar1_lblUserName').textContent.split(':');
     /*edUserType*/
-    var userType = selfPage.getElementById('edUserType').textContent;
+    var userType = DayOfAWeek.pageSource.getElementById('edUserType').textContent;
     this.setState({username: header[1], desc:userType});
   },
   aboutPressHandler(){
@@ -100,7 +95,7 @@ var ReserveMealView = React.createClass({
           drawerPosition={DrawerLayoutAndroid.positions.Left}
             renderNavigationView={() => controlPanel}>
          <View style = {styles.selfServiceContainer}>
-          <SelfServiceHeader selfPage = {selfPage} shouldParseSelfPage = {true}/>
+          <SelfServiceHeader selfPage = {DayOfAWeek.pageSource}/>
           <ScrollView style = {styles.selfServiceFooter}
           automaticallyAdjustContentInsets={false}>
             {this.showList()}
@@ -112,14 +107,15 @@ var ReserveMealView = React.createClass({
     }
       },
   showList(){
-        convertSelfSourceToXMLDom(selfPage);
-        DayOfAWeek.pageSource = selfPage;
         return (
-          selfServices.map((selfName) => <ViewNames name = {selfName.name} navigator = {this.props.navigator} pageSource = {selfPage} />)
+          selfServices.map((selfName) => <ViewNames name = {selfName.name} navigator = {this.props.navigator}/>)
       );
   },
 });
-
+function setPageSource(response){
+  var parser = new DOMParser();
+  DayOfAWeek.pageSource = parser.parseFromString(String(response), "text/xml");   //converts the response Text to document
+}
 ReserveMealView.changeWeek = function(moveTo){
   var request = new XMLHttpRequest();
   request.onreadystatechange = (e) => {
@@ -127,7 +123,11 @@ ReserveMealView.changeWeek = function(moveTo){
       return;
     }
     if (request.status === 200) {
-      this.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null);
+      this.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null)
+        .then((response) => {
+          setPageSource(response);
+        })
+        .catch((err) => console.error(error));
     }
   };
   if (moveTo === "next"){
@@ -148,8 +148,8 @@ ReserveMealView.openURL = function(url, indexPage){
         return;
       }
       if (request.status === 200 && request.responseText) {
-        setSelfPage(request.responseText);
         if (indexPage !== null){
+          setPageSource(request.responseText);
           indexPage.changeView();
         }
         else if (request.status !== 200){
@@ -157,24 +157,21 @@ ReserveMealView.openURL = function(url, indexPage){
         }
         //update the content of app
         else{
-          var parser = new DOMParser();
-          selfPage = parser.parseFromString(selfPage, "text/xml");   //converts the response Text to document
-          DayOfAWeek.pageSource = selfPage;
+          setPageSource(request.responseText);
           DayOfAWeek.requestFoodList(0);
-          resolve(selfPage);
+          resolve(request.responseText);
         }
       }
     };
     request.open('GET', url, true);
     request.send();
   });
-
 }
 
 /*produce a single button for a single self service provided in the selfServices array*/
 var ViewNames = React.createClass({
   _handlePress(selectedValue){
-    DayOfAWeek.pageSource = this.props.pageSource;
+    // DayOfAWeek.pageSource = this.props.pageSource;
     var code = '';
     for (i = 0; i < selfServices.length; ++i){
       if (selfServices[i].name == selectedValue){

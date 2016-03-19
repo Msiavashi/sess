@@ -39,12 +39,12 @@ var MyMainView = React.createClass({
       if (routeId === 'ReserveMealView') {
 
           return (
-            <ReserveMealView.ReserveMealView navigator = {navigator} selfPage = {route.selfPage} changeView = {this.props.changeView}/>
+            <ReserveMealView.ReserveMealView navigator = {navigator} changeView = {this.props.changeView}/>
           );
       }
       else if ( routeId === 'DayOfAWeek'){
         return (
-          <DayOfAWeek navigator = {navigator} selectedSelfName = {route.selectedSelfName} selfPage = {route.selfPage} selectedSelfCode = {route.selectedSelfCode}/>
+          <DayOfAWeek navigator = {navigator} selectedSelfName = {route.selectedSelfName} selectedSelfCode = {route.selectedSelfCode}/>
         );
       }
       else if ( routeId === 'sms'){

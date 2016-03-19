@@ -284,8 +284,8 @@ module.exports = StyleSheet.create({
   },
   mealModalView:{
     alignItems: 'stretch',
-    height: 350,
-    width: 350,
+    height: 300,
+    width: 320,
     backgroundColor: '#FFFAF0',
   },
 });
