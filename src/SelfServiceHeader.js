@@ -14,31 +14,23 @@ var SelfServiceHeader = React.createClass({
   getInitialState(){
     return{
       userName: '',
-      edCredit: 1
+      edCredit: '',
     }
   },
   componentDidMount(){
     this.setHeaderValues();
   },
-  setHeaderValues(nextProps){
-    // if(this.props.shouldParseSelfPage === true){
-    var parser = new DOMParser();
-    //TODO: remove the strings
-    if(nextProps){
-      this.props.selfPage = parser.parseFromString(String(nextProps.selfPage), "text/xml");   //converts the response Text to document
-    }
-    else{
-      this.props.selfPage = parser.parseFromString(String(this.props.selfPage), "text/xml");   //converts the response Text to document
-    }
-
+  setHeaderValues(){
     var header = this.props.selfPage.getElementById('Toolbar1_lblUserName').textContent.split(':');
     SelfServiceHeader.credit = this.props.selfPage.getElementById('edCredit').textContent;
     this.setState({userName: header[1]});   //set the user name and credit on the header
   },
   componentWillReceiveProps(nextProps){
-    if (this.props.selfPage !== nextProps.selfPage)
+
+    if (this.props.credit !== nextProps.credit)
     {
-        this.setHeaderValues(nextProps);
+        this.setHeaderValues();
+        SelfServiceHeader.credit = nextProps.credit;
     }
   },
   render(){

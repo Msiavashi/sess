@@ -36,8 +36,8 @@ var Login = {
         .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
         .catch(error => {
           ToastAndroid.show("مشکل در اتصال به اینترنت", ToastAndroid.SHORT);
-          DayOfAWeek.loading();
-        })
+          DayOfAWeek.loading();     //TODO: move the loading to index.android.js
+        });
     }
 
   },

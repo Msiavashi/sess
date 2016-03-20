@@ -124,7 +124,7 @@ var IndexView = React.createClass({
                 <TextInput
                   placeholderTextColor = {'white'}
                   ref = {"username"}
-                  placeholder = {'نام کاربری'}
+                  placeholder = {'username'}
                   onChangeText = {(text) => username = text}
                   style = {{fontSize: 14, color: 'white'}}
                 />
@@ -134,7 +134,7 @@ var IndexView = React.createClass({
                   placeholderTextColor = {'white'}
                   ref = {"password"}
                   secureTextEntry = {true}
-                  placeholder = {'رمز عبور'}
+                  placeholder = {'password'}
                   onChangeText = {(text) => password = text}
                   style = {{fontSize:14, color: 'white'}}
                 />
@@ -165,3 +165,4 @@ var MainPage = React.createClass({
 });
 
 AppRegistry.registerComponent('sess', () => sess);
+module.exports = sess;

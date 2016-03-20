@@ -11,7 +11,7 @@ var notReservedIcon = require('.././icons/ic_remove_circle_outline_black_24dp.pn
 var notPlannedIcon = require('.././icons/ic_clear_black_24dp.png');
 var previousWeekIcon = require('.././icons/ic_chevron_left_white_24dp.png');
 var nextWeekIcon = require('.././icons/ic_chevron_right_white_24dp.png');
-var backButtonIcon = require('.././icons/ic_arrow_forward_white_24dp.png');
+var backButtonIcon = require('.././icons/arrow-left.png');
 var {
   Text,
   View,
@@ -39,7 +39,7 @@ function updateFoodList(edMeal, mealIndexInWeek, edDate){
         reject(request.responseText);
       }
     };
-    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=" + Math.random(), true);
     request.send();
   })
 }
@@ -67,9 +67,9 @@ function submitReservation(selfCode, foodCode, edDate, edMeal, mealIndexInWeek){
           DayOfAWeek.loading();
         }
         else{
-          resolve(updateFoodList(submitReservation.edMeal, submitReservation.mealIndexInWeek, submitReservation.edDate));
+          // resolve(updateFoodList(submitReservation.edMeal, submitReservation.mealIndexInWeek, submitReservation.edDate));
+          resolve(request.responseText);
         }
-        console.log(request.responseText);
       }
       else if (request.status === 404){
         reject(request.responseText);
@@ -93,7 +93,8 @@ function deleteMeal(date, code, mealIndexInDay, mealIndexInWeek){
         return;
       }
       if (request.status === 200) {
-          resolve(updateFoodList(deleteMeal.mealIndexInDay, deleteMeal.mealIndexInWeek, deleteMeal.date));
+          // resolve(updateFoodList(deleteMeal.mealIndexInDay, deleteMeal.mealIndexInWeek, deleteMeal.date));
+          resolve(request.responseText);
       }
       else if (request.status === 404){
         reject(request.responseText);
@@ -107,7 +108,8 @@ function deleteMeal(date, code, mealIndexInDay, mealIndexInWeek){
 var DayOfAWeek = React.createClass({
   statics:{
     fromDateToDate : '',
-    loading: null
+    loading: null,
+    pageSource: ''
   },
   getInitialState(){ //they are used for Modal view
     return {
@@ -128,15 +130,14 @@ var DayOfAWeek = React.createClass({
 
       /*loading*/
       visible: false,
-      food1TextColor: 'white',
-      food2TextColor: 'white',
-
+      food1TextColor: 'black',
+      food2TextColor: 'black',
       fromDateToDate: ''
     };
   },
   onModalClosed(){
     /*reset the variables*/
-    this.setState({food1TextColor: 'white', food2TextColor: 'white', food1Code: '', food2Code: '', selectedFoodCode: '', selectedMealIndexInWeek: ''})
+    this.setState({food1TextColor: 'black', food2TextColor: 'black', food1Code: '', food2Code: '', selectedFoodCode: '', selectedMealIndexInWeek: ''})
   },
   loading(){
       this.setState({visible: !this.state.visible});
@@ -213,19 +214,76 @@ var DayOfAWeek = React.createClass({
     }
 
   },
+  updateAfterReservation(mealIndex, response){
+    var newValue = response.split("!~!")[mealIndex].split("^");
+    /*set new attributes*/
+    DayOfAWeek.pageSource.getElementById('Meal' + mealIndex).setAttribute('onclick', "DeleteMeal" + "(" + "\'" + newValue[5] + "\'" + ")");
+    newValue = newValue[newValue.length - 1] + ' ' + newValue[newValue.length - 2] + '\n' + newValue[newValue.length - 3] + " " + "ریال";
+    DayOfAWeek.pageSource.getElementById('Meal' + mealIndex).setAttribute('value', newValue);
+
+    /*update the foodlist*/
+    listOfFoods[mealIndex].status = "reserved";
+    listOfFoods[mealIndex].food = "ErrorMessage:: در تاریخ وارد شده سال معتبر نیست:0";
+
+    /*update credit*/
+    DayOfAWeek.pageSource.getElementById('edCredit').textContent = response.split('*')[1];
+  },
+  updateSingleMealList(index, value){
+    return new Promise ((resolve, reject) => {
+      var request = new XMLHttpRequest();
+      DayOfAWeek.requestMealIndex = index;
+      value = value.split(":");
+      var edDate = value && value[0];
+      var edMeal = value && value[1];
+      request.onreadystatechange = (e) => {
+        if ( request.readyState !== 4 ){
+          return;
+        }
+        /*on network failure*/
+        if (request.status !== 200){
+          Alert.alert('خطا', 'اشکال در دریافت اطلاعات');
+          reject(request.responseText);
+        }
+        else if (request.status === 200) {
+          listOfFoods[DayOfAWeek.requestMealIndex] = {food: request.responseText, status: "notReserved"};
+          resolve(request.responseText);
+        }
+      };
+      request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=" + Math.random(), true);
+      request.send();
+    });
+  },
+
+  updateAfterDeletion(mealIndex, response){
+    var newValue = response.split("!~!")[mealIndex].split("^");
+    var valueOfOnClick = newValue[4] + ":" + newValue[3];
+    DayOfAWeek.pageSource.getElementById('Meal' + mealIndex).setAttribute('onclick', "BuyMeal" + "(" + "\'" + valueOfOnClick + "\'" + ")");
+    DayOfAWeek.pageSource.getElementById('Meal' + mealIndex).setAttribute('value', "خرید ژتون");
+    /*update credit*/
+    DayOfAWeek.pageSource.getElementById('edCredit').textContent = response.split('*')[1];
+    return valueOfOnClick;
+  },
+
   submitButton(){
     //finding the edDate
     var value = DayOfAWeek.pageSource.getElementById("Meal" + this.state.selectedMealIndexInWeek).getAttribute('onclick');
-
     if (value.indexOf("DeleteMeal") > -1){    //if the food is already reserved
       value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
       var date = value[2];
       var code = value[1];
       var mealIndex = value[3];
       deleteMeal(date, code, mealIndex, this.state.selectedMealIndexInWeek)
-        .then(response => this.setHeaderValues(response))
-        .then(() => this.refs.modalView.close())
-        .catch(resp => console.error(resp));
+      .then((response) => {
+        let newOnclick = this.updateAfterDeletion(this.state.selectedMealIndexInWeek, response);
+        this.updateSingleMealList(this.state.selectedMealIndexInWeek, newOnclick)
+        .then(() => {
+          this.setHeaderValues(DayOfAWeek.pageSource);
+          this.refs.modalView.close();
+          DayOfAWeek.loading();
+        })
+        .catch(err => console.error(err))
+      })
+      .catch(err => console.error(err));
     }
     else{     //if the food is not reserved
       value = value.substring(value.search("\'") + 1, value.lastIndexOf("\'")).split(':');
@@ -233,8 +291,12 @@ var DayOfAWeek = React.createClass({
       var edMeal = value[1];
       //sending the request
       submitReservation(this.props.selectedSelfCode, this.state.selectedFoodCode, edDate, edMeal, this.state.selectedMealIndexInWeek)
-        .then(response => this.setHeaderValues(response))
-        .then(() => this.refs.modalView.close())
+        .then((response) => {
+          this.updateAfterReservation(this.state.selectedMealIndexInWeek, response);
+          this.setHeaderValues(DayOfAWeek.pageSource);
+          this.refs.modalView.close();
+          DayOfAWeek.loading();
+        })
         .catch(resp => console.error(resp));
     }
   },
@@ -242,12 +304,12 @@ var DayOfAWeek = React.createClass({
     this.props.navigator.pop();
   },
   showDays(modal){
-    var counter = -3; //TODO: replace it with a better approach to be started from 0
+    var counter = -3;
     return weekDays.map((dayName) => <Day weekDay = {dayName} date = {dates[weekDays.indexOf(dayName)]} modalView = {modal} mealIndex = {counter += 3}  />)
   },
   nextWeek(){
     DayOfAWeek.loading();
-    selfService.ReserveMealView.changeWeek("next").then(() => this.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null)).catch(() => alert("خطا", "مشکل در دریافت اطلاعات"));
+    selfService.ReserveMealView.changeWeek("next");
   },
   previousWeek(){
     DayOfAWeek.loading();
@@ -256,21 +318,19 @@ var DayOfAWeek = React.createClass({
   foodSelectionHandler(foodCode){
     this.setState({selectedFoodCode: foodCode});
     if (this.state.food1Code == foodCode){
-      this.setState({food1TextColor: "pink", food2TextColor: "white"});
+      this.setState({food1TextColor: "red", food2TextColor: "black"});
     }
     else if (foodCode == this.state.food2Code){
-      this.setState({food1TextColor: "white", food2TextColor: "pink"});
+      this.setState({food1TextColor: "black", food2TextColor: "red"});
     }
   },
   render(){
-    /*****this.nextweek, this._handleOnPres, this.previousWeek*****/
-    // getListOfFoodsForCurrentWeek(this.props.selfPage);
     return(
     <View style = {styles.daysContainer}>
 
       {/*navbar*/}
-      <View styles = {{flex:1}}>
-        <SelfServiceHeader selfPage = {this.props.selfPage} shouldParseSelfPage = {false}/>
+      <View>
+        <SelfServiceHeader credit = {SelfServiceHeader.credit}  selfPage = {DayOfAWeek.pageSource}/>
         <View style = {{flex:1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <View>
             <Button style = {styles.creditText} onPress = {this.previousWeek}><ResponsiveImage source={previousWeekIcon} initWidth="40" initHeight="40"/></Button>
@@ -283,44 +343,46 @@ var DayOfAWeek = React.createClass({
             <Button style = {styles.creditText} onPress = {this.nextWeek}><ResponsiveImage source={nextWeekIcon} initWidth="40" initHeight="40"/></Button>
           </View>
         </View>
-        <View style = {[styles.selfServiceHeader, {flexDirection:'column', alignItems: 'flex-end', backgroundColor: '#7777'}]}>
-            <Button style = { [styles.selfServiceHeaderTitle, {color: 'white'}] } onPress = {this._handlePress}>
-              <ResponsiveImage source ={backButtonIcon} initWidth = '30' initHeight = '30' />
+        <View style = {[styles.selfServiceHeader, {flexDirection:'row', alignItems: 'flex-end', backgroundColor: '#7777'}]}>
+          <View>
+            <Button onPress = {() => this._handlePress()}>
+                <ResponsiveImage style = {{flex:1}} source ={backButtonIcon} initWidth = '30' initHeight = '30' />
             </Button>
+          </View>
+          </View>
         </View>
-      </View>
 
       {/*content*/}
       <ScrollView style = {styles.daysFooter}>
         {this.showDays(this.openmodalView)}
       </ScrollView>
       <Spinner visible = {this.state.visible}/>
-      <Modal style={[styles.modal, styles.mealModalView, { backgroundColor: '#D6D6D6' }]} position={"center"} ref={"modalView"} onClosed = {() => this.onModalClosed()} swipeToClose = {this.state.swipeToClose}>
-        <View style = {{flex: 1, marginLeft: 10, marginRight: 10}}>
-          <View style = {{marginTop: 10}}>
-            <Text style = {{fontSize: 22, fontWeight: 'bold', padding: 10 , color: 'black'}}>{this.state.selectedDay} - {this.state.selectedMealName}</Text>
+      <Modal style={[styles.modal, styles.mealModalView, { backgroundColor: '#bdc3c7' }]} position={"center"} ref={"modalView"} onClosed = {() => this.onModalClosed()} swipeToClose = {this.state.swipeToClose}>
+        <View style = {{flex: 1}}>
+          <View style = {{flex:0.3, padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: '#2ecc71'}}>
+            <Text style = {{flex:1, fontSize: 22, fontWeight: 'bold', padding: 10 , color: 'black'}}>{this.state.selectedDay} - {this.state.selectedMealName}</Text>
           </View>
-          <View style = {{flex: 1, backgroundColor: '#009ECE', justifyContent: 'center'}}>
+          <View style = {{flex: 1, marginLeft: 10, marginRight: 10, justifyContent: 'center'}}>
             <Button onPress = {() => this.foodSelectionHandler(this.state.food1Code)}>
-              <Text style = {{color: this.state.food1TextColor, fontSize: 18}}> {this.state.food1} </Text>
+              <Text style = {{color: this.state.food1TextColor, fontSize: 22}}> {this.state.food1} </Text>
             </Button>
           </View>
-          <View style = {{flex: 1, backgroundColor: '#FF9E00', justifyContent: 'center'}}>
+          <View style = {{flex: 1, marginLeft: 10, marginRight: 10, justifyContent: 'center'}}>
             <Button onPress = {() => this.foodSelectionHandler(this.state.food2Code)}>
-              <Text style = {{color: this.state.food2TextColor, fontSize: 18}}> {this.state.food2} </Text>
+              <Text style = {{color: this.state.food2TextColor, fontSize: 22}}> {this.state.food2} </Text>
             </Button>
           </View>
-          <View style = {{flex:1, flexDirection: 'row', alignItems: 'stretch'}}>
-            <View style = {{flex:1}}>
-              <Button style = {{flex:1, paddingTop:10, paddingBottom: 10, fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10, color: 'white', alignItems: 'center', justifyContent: 'center', backgroundColor: '#FF0000'}} onPress = {() => this.refs.modalView.close()}>
-                  انصراف
-              </Button>
-            </View>
-            <View style = {{flex:1}}>
-              <Button style = {{flex:1, paddingTop:10, paddingBottom: 10, fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10, color: 'white', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0099CC'}} onPress = {() => this.submitButton()}>
-                  ثبت
-              </Button>
-            </View>
+        </View>
+        <View style = {{flex:0.2, flexDirection: 'row', alignItems: 'flex-end'}}>
+        <View style = {{flex:1, backgroundColor: '#ff5722'}}>
+          <Button style = {{flex:1}} onPress = {() => this.refs.modalView.close()}>
+              <Text style = {{flex:1, alignSelf: 'center', fontSize: 24, fontWeight: 'bold', color: 'white'}}> انصراف </Text>
+          </Button>
+        </View>
+          <View style = {{flex:1, backgroundColor: '#03a9f4'}}>
+            <Button style = {{flex:1}} onPress = {() => this.submitButton()}>
+                <Text style = {{flex:1, alignSelf: 'center', fontSize: 24, fontWeight: 'bold', color: 'white'}}> ثبت </Text>
+            </Button>
           </View>
         </View>
       </Modal>
@@ -330,7 +392,6 @@ var DayOfAWeek = React.createClass({
   }
 });
 
-DayOfAWeek.pageSource = '';
 /*renders one day of a week*/
 var Day = React.createClass({
   findIcon(mealIndex){
@@ -418,7 +479,7 @@ DayOfAWeek.requestFoodList = function(mealIndex){
         console.error('error' + ' ' + request.status);
       }
     };
-    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=0.9790692615049984", true);
+    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=" + Math.random(), true);
     request.send();
 
   });
