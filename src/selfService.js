@@ -2,7 +2,7 @@ var React = require('react-native');
 var styles = require('.././styles');
 var Button = require('react-native-button');
 var DOMParser = require('xmldom').DOMParser;
-var DayOfAWeek = require('./DayOfAWeek');
+var Days = require('./days');
 var SelfServiceHeader = require('./SelfServiceHeader');
 var ResponsiveImage = require('react-native-responsive-image');
 var controlPanelImage = require('.././icons/cp.png');
@@ -40,11 +40,11 @@ var ReserveMealView = React.createClass({
   },
   componentDidMount(){
     // var parser = new DOMParser();
-    // DayOfAWeek.pageSource = parser.parseFromString(DayOfAWeek.pageSource, "text/xml");
+    // Days.pageSource = parser.parseFromString(Days.pageSource, "text/xml");
     /*edName*/
-    var header = DayOfAWeek.pageSource.getElementById('Toolbar1_lblUserName').textContent.split(':');
+    var header = Days.pageSource.getElementById('Toolbar1_lblUserName').textContent.split(':');
     /*edUserType*/
-    var userType = DayOfAWeek.pageSource.getElementById('edUserType').textContent;
+    var userType = Days.pageSource.getElementById('edUserType').textContent;
     this.setState({username: header[1], desc:userType});
   },
   aboutPressHandler(){
@@ -98,10 +98,10 @@ var ReserveMealView = React.createClass({
       return (
         <DrawerLayoutAndroid
           drawerWidth={300}
-          drawerPosition={DrawerLayoutAndroid.positions.Left}
+          drawerPosition={DrawerLayoutAndroid.positions.Right}
             renderNavigationView={() => controlPanel}>
          <View style = {styles.selfServiceContainer}>
-          <SelfServiceHeader selfPage = {DayOfAWeek.pageSource}/>
+          <SelfServiceHeader selfPage = {Days.pageSource}/>
           <ScrollView style = {styles.selfServiceFooter}
           automaticallyAdjustContentInsets={false}>
             {this.showList()}
@@ -120,7 +120,7 @@ var ReserveMealView = React.createClass({
 });
 function setPageSource(response){
   var parser = new DOMParser();
-  DayOfAWeek.pageSource = parser.parseFromString(String(response), "text/xml");   //converts the response Text to document
+  Days.pageSource = parser.parseFromString(String(response), "text/xml");   //converts the response Text to document
 }
 ReserveMealView.changeWeek = function(moveTo){
   var request = new XMLHttpRequest();
@@ -162,7 +162,7 @@ ReserveMealView.openURL = function(url, indexPage){
         //update the content of app
         else{
           setPageSource(request.responseText);
-          DayOfAWeek.requestFoodList(0);
+          Days.requestFoodList(0);
           resolve(request.responseText);
         }
       }
@@ -175,7 +175,7 @@ ReserveMealView.openURL = function(url, indexPage){
 /*produce a single button for a single self service provided in the selfServices array*/
 var ViewNames = React.createClass({
   _handlePress(selectedValue){
-    // DayOfAWeek.pageSource = this.props.pageSource;
+    // Days.pageSource = this.props.pageSource;
     var code = '';
     for (i = 0; i < selfServices.length; ++i){
       if (selfServices[i].name == selectedValue){
@@ -183,7 +183,7 @@ var ViewNames = React.createClass({
         break;
       }
     }
-    this.props.navigator.push({ id: "DayOfAWeek", selectedSelfName: selectedValue, selectedSelfCode: code, selfPage: this.props.pageSource});
+    this.props.navigator.push({ id: "Days", selectedSelfName: selectedValue, selectedSelfCode: code, selfPage: this.props.pageSource});
   },
   render(){
     return(

@@ -20,7 +20,7 @@ var {
 } = React;
 import Spinner from 'react-native-loading-spinner-overlay';
 var SMSPanelView = require('./src/sms');
-var logoImage = require('./icons/vector_soup_food_logo.png');
+var logoImage = require('./icons/cp1.png');
 var username = null;
 var password = null;
 
@@ -115,7 +115,7 @@ var IndexView = React.createClass({
         <View style = {styles.loginViewContainer}>
           <View style = {styles.loginViewHeader}>
               <View style = {styles.logoView} >
-                <Image style = {{ flex:1 }} source={logoImage}/>
+                <ResponsiveImage style = {{ flex:0.2 }} source={logoImage} initHeight="300" initWidth="300"/>
               </View>
           </View>
           <View style = {styles.loginViewFooter}>

@@ -3,7 +3,7 @@ var styles = require('./styles');
 var Button = require('react-native-button');
 var Login = require('./src/login');
 var ReserveMealView = require('./src/selfService');
-var DayOfAWeek = require('./src/DayOfAWeek');
+var Days = require('./src/days');
 var SMSPanelView = require('./src/sms');
 var {
   Navigator,
@@ -42,9 +42,9 @@ var MyMainView = React.createClass({
             <ReserveMealView.ReserveMealView navigator = {navigator} changeView = {this.props.changeView}/>
           );
       }
-      else if ( routeId === 'DayOfAWeek'){
+      else if ( routeId === 'Days'){
         return (
-          <DayOfAWeek navigator = {navigator} selectedSelfName = {route.selectedSelfName} selectedSelfCode = {route.selectedSelfCode}/>
+          <Days navigator = {navigator} selectedSelfName = {route.selectedSelfName} selectedSelfCode = {route.selectedSelfCode}/>
         );
       }
       else if ( routeId === 'sms'){

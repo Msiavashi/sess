@@ -24,25 +24,25 @@ var selfService = require('./selfService');
 var listOfFoods = [];
 var weekDays = ['شنبـه', 'یک شنبـه', 'دو شنبـه','سه شنبـه', 'چهار شنبـه', 'پنج شنبـه', 'جمعه'];
 var dates = [];
-function updateFoodList(edMeal, mealIndexInWeek, edDate){
-  return new Promise((resolve, reject) => {
-    var request = new XMLHttpRequest();
-    updateFoodList.mealIndexInWeek = mealIndexInWeek;
-    request.onreadystatechange = (e) => {
-      if ( request.readyState !== 4 ){
-        return;
-      }
-      else if (request.status === 200) {
-        resolve(selfService.ReserveMealView.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null));
-      }
-      else if (request.status === 404){
-        reject(request.responseText);
-      }
-    };
-    request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=" + Math.random(), true);
-    request.send();
-  })
-}
+// function updateFoodList(edMeal, mealIndexInWeek, edDate){
+//   return new Promise((resolve, reject) => {
+//     var request = new XMLHttpRequest();
+//     updateFoodList.mealIndexInWeek = mealIndexInWeek;
+//     request.onreadystatechange = (e) => {
+//       if ( request.readyState !== 4 ){
+//         return;
+//       }
+//       else if (request.status === 200) {
+//         resolve(selfService.ReserveMealView.openURL("http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx", null));
+//       }
+//       else if (request.status === 404){
+//         reject(request.responseText);
+//       }
+//     };
+//     request.open('GET', "http://sups.shirazu.ac.ir/SfxWeb/Script/AjaxMember.aspx?Act=FoodDessert&ProgDate=" + edDate +  "&Restaurant=8&Meal=" + edMeal + "&Rand=" + Math.random(), true);
+//     request.send();
+//   })
+// }
 
 function submitReservation(selfCode, foodCode, edDate, edMeal, mealIndexInWeek){
   DayOfAWeek.loading();
@@ -359,7 +359,7 @@ var DayOfAWeek = React.createClass({
       <Spinner visible = {this.state.visible}/>
       <Modal style={[styles.modal, styles.mealModalView, { backgroundColor: '#bdc3c7' }]} position={"center"} ref={"modalView"} onClosed = {() => this.onModalClosed()} swipeToClose = {this.state.swipeToClose}>
         <View style = {{flex: 1}}>
-          <View style = {{flex:0.3, padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: '#2ecc71'}}>
+          <View style = {{flex:0.3, padding: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: 'grey'}}>
             <Text style = {{flex:1, fontSize: 22, fontWeight: 'bold', padding: 10 , color: 'black'}}>{this.state.selectedDay} - {this.state.selectedMealName}</Text>
           </View>
           <View style = {{flex: 1, marginLeft: 10, marginRight: 10, justifyContent: 'center'}}>

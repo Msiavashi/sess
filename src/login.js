@@ -10,7 +10,7 @@ var {
 import DB from './database';
 var DOMParser = require('xmldom').DOMParser;
 var selfService = require('./selfService');
-var DayOfAWeek = require('./DayOfAWeek');
+var Days = require('./days');
 var url = "http://sups.shirazu.ac.ir/SfxWeb/Gate/Login.aspx";
 var selfURL = "http://sups.shirazu.ac.ir/SfxWeb/Emp/MemInfo.aspx";
 var weeklyReservationURL = "http://sups.shirazu.ac.ir/SfxWeb/Sfx/SfxChipWeek.aspx";
@@ -26,7 +26,7 @@ var Login = {
           .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
           .catch(error => {
             ToastAndroid.show("مشکل در اتصال به اینترنت", ToastAndroid.SHORT);
-            DayOfAWeek.loading();     //TODO: move the loading to index.android.js
+            Days.loading();     //TODO: move the loading to index.android.js
           });
     }
     else{
@@ -36,7 +36,7 @@ var Login = {
         .then(() => selfService.ReserveMealView.openURL(weeklyReservationURL, indexPage))
         .catch(error => {
           ToastAndroid.show("مشکل در اتصال به اینترنت", ToastAndroid.SHORT);
-          DayOfAWeek.loading();     //TODO: move the loading to index.android.js
+          Days.loading();     //TODO: move the loading to index.android.js
         });
     }
 
